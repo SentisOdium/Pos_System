@@ -1,12 +1,5 @@
-const express = require('express');
-const app = express();
+const app = require('./app');
 const port = 5000;
-
-app.use(express.json());
-
- app.get('/hello', (req, res) => {
-        res.send('hello world')
-    });
 
 
 app.listen(port, () => {
