@@ -1,33 +1,24 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 const connection = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'pointofsale',
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
     connectionLimit: 25
 });
 
-const dbConnection = connection;
+async function getAccount() {
+    const [rows] = await connection.query("SELECT * FROM accounts");
+    return rows;
+}
 
-dbConnection.on('connection', function(connection){
-    console.log('DB Connection Established');
+(async () => {
+    const accounts = await getAccount();
+    console.log(accounts);
+})();
 
-    connection.on('error', function(err){
-        console.error(new Date(), 'Mysql Error', err.code);
-    });
-
-    connection.on('close', function(err){
-        console.error(new Date(), 'Mysql Error', err.code);
-    });
-});
-
-dbConnection.query('SELECT 1 + 1 AS solution', (err, results) => {
-    if (err) {
-        console.error("❌ Query Error:", err);
-    } else {
-        console.log("✅ Query Result:", results[0].solution);
-    }
-});
-
-module.exports = dbConnection;
-
+module.exports = connection;
