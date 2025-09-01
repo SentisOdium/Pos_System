@@ -1,3 +1,14 @@
 /*CSS For Register*/
+.form-container{
+   padding: 10px;
+   align-content: center;
+   display: flex;
+   justify-content: center;
+   border: 2px solid;
+}
+.input{
+    border-radius:none;
+    background-color: rgb(255, 255, 255);
+}
 
 /*CSS For Login*/
