@@ -1,8 +1,9 @@
+import { signup } from "@/app/Login/Register/signup";
 import "../login.css";
 export default function Register(){
     return(
         <div className="form-container">
-            <form action="">
+            <form>
                 <div>
                     <input 
                         type="text" 
