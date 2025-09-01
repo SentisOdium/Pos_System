@@ -1,14 +1,34 @@
-/*CSS For Register*/
-.form-container{
-   padding: 10px;
-   align-content: center;
-   display: flex;
-   justify-content: center;
-   border: 2px solid;
+/* CSS For Register */
+.form-container {
+    margin-top: 150px;
+    padding: 10px;
+    display: flex;
+    justify-content: justify;
+    align-items: center;
 }
-.input{
-    border-radius:none;
-    background-color: rgb(255, 255, 255);
+
+.input {
+    border-radius: 0; /* no rounded corners */
+    background-color: #fff; /* white background */
+    padding: 8px; /* give spacing inside input */
+    border: 1px solid #ccc; /* add border to inputs */
+    outline: none; /* remove default blue outline */
+    border-radius: 25px;
+    margin: 5px auto;
 }
+.btn {
+    
+    padding: 8px;
+    border-radius: 25px;
+    color: white;
+    margin: 5px;
+}
+.btn-red{
+    background-color:#DA291C;
+}
+.btn-red:hover{
+    background-color:#a51d13;
+}
+
 
 /*CSS For Login*/

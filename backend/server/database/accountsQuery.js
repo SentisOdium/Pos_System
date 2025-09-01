@@ -1,7 +1,7 @@
 import { pool } from "../config/db.js";
 
   
-async function getAccounts(){
+export async function getAccounts(){
     try{
         const [rows] = await pool.query("SELECT * FROM accounts")
         return rows
@@ -10,4 +10,17 @@ async function getAccounts(){
     }
 }
 
-export  {getAccounts};
+export async function addAccounts(){
+    try{
+        const [result] = await pool.query(
+            "INSERT INTO accounts (Name, Email, Password) VALUES (?, ?, ?)",
+        [name, email, password]
+    );
+        console.log("Successfully Inserted into the Database!");
+        return result;
+    }catch(err){
+        console.error("Failed to fetch Data", err.message);
+        throw err;
+    }
+}
+  

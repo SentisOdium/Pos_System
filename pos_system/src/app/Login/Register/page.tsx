@@ -4,7 +4,6 @@ export default function Register(){
         <div className="form-container">
             <form action="">
                 <div>
-                    <span><label htmlFor="">Name</label></span>
                     <input 
                         type="text" 
                         id="name" 
@@ -14,7 +13,6 @@ export default function Register(){
                         />
                 </div>
                 <div>
-                    <span><label htmlFor="">Email</label></span>
                     <input 
                         type="email" 
                         id="email" 
@@ -24,7 +22,6 @@ export default function Register(){
                         />
                 </div>
                 <div>
-                    <span><label htmlFor="">Contact No.</label></span>
                     <input 
                         type="text" 
                         id="number" 
@@ -34,7 +31,6 @@ export default function Register(){
                         />
                 </div>
                 <div>
-                    <span><label htmlFor="">Password</label></span>
                     <input 
                         type="password" 
                         id="password" 
@@ -43,6 +39,8 @@ export default function Register(){
                         className="input" 
                         />
                 </div>
+
+                <button className="btn btn-red">Sign-In</button>
             </form>
         </div>
     )
