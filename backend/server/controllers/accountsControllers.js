@@ -1,7 +1,4 @@
-import {getAccounts, 
-          addAccounts, 
-          deleteAccounts,
-          updateAccounts} from "../database/accountsQuery.js";
+import {getAccounts, addAccounts, deleteAccounts, updateAccounts} from "../database/accountsQuery.js";
 
 export async function getAccountsController(req, res) {
    try{
@@ -55,7 +52,7 @@ export async function deleteAccountController(req, res){
           });
 
      }catch(err){
-           console.error("Error Deleting Account:", err);
+          console.error("Error Deleting Account:", err);
           return res.status(500).json({error: "Failed to Delete Account"}); //change error code that fits the error
      }
 }
@@ -81,7 +78,7 @@ export async function updateAccountsController(req, res){
                data: accounts,
           })
      }catch(err){
-               console.error("Error Updateing  Account in the Database: ", err);
+               console.error("Error Updating  Account in the Database: ", err);
                return res.status(500).json({error: "Failed to Update Accounts"});
           }
 }

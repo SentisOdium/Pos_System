@@ -19,7 +19,7 @@ export async function addAccounts(name, email, password, role){
         console.log("Successfully Inserted into the Database!");
         return result;
     }catch(err){
-        console.error("Failed to fetch Data", err.message);
+        console.error("Failed to Insert Data", err.message);
         throw err;
     }
 }

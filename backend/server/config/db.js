@@ -12,11 +12,5 @@ dotenv.config();
         connectionLimit: 25
     });
 
-    async function getAccounts(){
-            const [rows] = await pool.query("SELECT * FROM accounts");
-            return rows;      
-    }
- const accounts = await getAccounts();
- console.log(accounts);
-
+   
  export {pool};
