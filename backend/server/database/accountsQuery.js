@@ -10,11 +10,11 @@ export async function getAccounts(){
     }
 }
 
-export async function addAccounts(name, email, password){
+export async function addAccounts(name, email, password, role){
     try{
         const [result] = await pool.query(
-            "INSERT INTO accounts (Name, Email, Password) VALUES (?, ?, ?)",
-        [name, email, password]
+            "INSERT INTO accounts (Name, Email, Password, Role) VALUES (?, ?, ?, ?)",
+        [name, email, password, role]
     );
         console.log("Successfully Inserted into the Database!");
         return result;

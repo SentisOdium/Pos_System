@@ -16,13 +16,16 @@ export async function getAccountsController(req, res) {
 
 export async function addAccountsController(req, res) {
      try{
-          const {name, email, password} = req.body;
+          const {Name, Email, Password, Role} = req.body;
           
-               if (!name || !email || !password) {
+               if (!Name || !Email || !Password) {
                     return res.status(400).json({ error: "Name, email, and password are required." });
                }
 
-          const accounts = await addAccounts(name, email, password);
+               const userRole = Role || "user";
+
+          const accounts = await addAccounts(Name, Email, Password, userRole);
+
           console.log(accounts);
 
           return res.status(201).json({
