@@ -10,6 +10,15 @@ export async function getAccounts(){
     }
 }
 
+export async function getSingleAccount(id){
+    try{
+        const [UserRow] = await pool.query("SELECT * FROM accounts where id = ?",[id] )
+        return UserRow
+    }catch(err){
+        console.error("Failed to fetch User", err.message);
+    }
+}
+
 export async function addAccounts(name, email, password, role){
     try{
         const [result] = await pool.query(

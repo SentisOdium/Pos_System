@@ -1,5 +1,7 @@
-import {getAccounts, addAccounts, deleteAccounts, updateAccounts} from "../database/accountsQuery.js";
+import {getAccounts, addAccounts, deleteAccounts, updateAccounts, getSingleAccount} from "../database/accountsQuery.js";
+import bcrypt from "bcrypt";
 
+//fetch ALL accounts
 export async function getAccountsController(req, res) {
    try{
         const accounts = await getAccounts();
@@ -11,18 +13,40 @@ export async function getAccountsController(req, res) {
    }
 };
 
+//fetch SINGLE account
+export async function getUserController(req, res) {
+     
+     try {
+          const { id } = req.params;
+          const singleAccount = await getSingleAccount(id);
+          
+          if (!singleAccount || singleAccount.length === 0) {
+            return res.status(404).json({ error: "User not found" });
+          }
+
+          
+          return res.json(singleAccount);
+     } catch (error) {
+          console.error("Error Fetching User", error);
+          return res.status(500).json({error: "Failed to Fetch User"});
+     }
+}
+
 export async function addAccountsController(req, res) {
      try{
-          const {Name, Email, Password, Role} = req.body;
+          const {name, email, password, role} = req.body;
           
-               if (!Name || !Email || !Password) {
+               if (!name || !email || !password) {
                     return res.status(400).json({ error: "Name, email, and password are required." });
                }
 
-               const userRole = Role || "user";
+               const userRole = role || "user";
 
-          const accounts = await addAccounts(Name, Email, Password, userRole);
-
+          const saltRounds = 10;
+          const hashedPassword = await bcrypt.hash(password, saltRounds);
+          const accounts = await addAccounts(name, email, hashedPassword, userRole);
+          
+          //delete accounts.Password;
           console.log(accounts);
 
           return res.status(201).json({
@@ -70,7 +94,13 @@ export async function updateAccountsController(req, res){
                     return res.status(400).json({ error: "Please fillout all fields, they are required." });
           }
 
-          const accounts = await updateAccounts(id, name, email, contactNo, password, description, role);
+          let hashedPassword = password; // default to current password
+
+          if(password){
+               const saltRounds = 10;
+               hashedPassword = await bcrypt.hash(password, saltRounds);
+          }
+          const accounts = await updateAccounts(id, name, email, contactNo, hashedPassword, description, role);
           console.log(accounts);
 
           return res.status(200).json({
@@ -82,3 +112,10 @@ export async function updateAccountsController(req, res){
                return res.status(500).json({error: "Failed to Update Accounts"});
           }
 }
+
+/*
+NOTES: 
+
+partition these controllers into a folder /accounts -> seprate files, keep the function names as is.
+
+*/

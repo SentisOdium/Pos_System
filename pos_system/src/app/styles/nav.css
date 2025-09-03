@@ -4,7 +4,7 @@
     top: 0;
     width: 100%;          /* make sure it spans the screen */
     display: flex;        /* align items horizontally */
-    justify-content: space-between; /* spread items apart */
+     /* spread items apart */
     align-items: center;  /* vertically center items */
     padding: 10px 20px;   /* spacing inside navbar */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* subtle shadow */

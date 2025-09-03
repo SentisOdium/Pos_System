@@ -1,7 +1,7 @@
 // app/layout.tsx (or layout.js)
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Navigation from './components/navbar/Navigation';
+import Navigation from './components/ui/navbar/Navigation';
 import "./globals.css";
 
 // Load Google fonts
@@ -24,15 +24,13 @@ export const metadata: Metadata = {
 // Root layout component
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navigation /> {/* ✅ Include your navigation here */}
+      <body>
+      <Navigation />
         {children}
       </body>
     </html>

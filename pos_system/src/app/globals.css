@@ -1,2 +1,7 @@
 @import "tailwindcss";
 
+body{
+    align-items: center;
+    display: flex;
+    justify-items: center;
+}
