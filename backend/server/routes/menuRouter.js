@@ -1,5 +1,9 @@
-import  {Router} from "express";
-import {getMenusController, addMenuController, deleteMenuController, updateMenuController} from "../controllers/menuControllers.js";
+import {Router} from "express";
+import { getMenusController } from "../controllers/menuController/GetMenuController";
+import { addMenuController } from "../controllers/menuController/AddMenuController";
+import { deleteMenuController } from "../controllers/menuController/DeleteMenuController";
+import { updateMenuController } from "../controllers/menuController/UpdateMenuController";
+
 const router = Router();
 
 router.get("/menu", getMenusController);

@@ -1,9 +1,9 @@
-import  {Router} from "express";
-import {getAccountsController, 
-        addAccountsController,
-        deleteAccountController,
-        updateAccountsController,
-        getUserController} from "../controllers/accountsControllers.js";
+import {Router} from "express";
+import { getAccountsController } from "../controllers/accountController/GetAccountController";
+import { getUserController } from "../controllers/accountController/GetUserController";
+import { addAccountsController } from "../controllers/accountController/AddAccountsController";
+import { deleteAccountController } from "../controllers/accountController/DeleteAccountsController";
+import { updateAccountsController } from "../controllers/accountController/UpdateAccountsControllers";
 
 const router = Router();
 
