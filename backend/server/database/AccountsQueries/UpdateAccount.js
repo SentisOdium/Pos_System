@@ -1,0 +1,17 @@
+import { pool } from "../config/db.js";
+
+export async function updateAccounts(id, name, email, contactNo, password, description, role ) {
+    try{
+        const [result] = await pool.query(
+            `UPDATE accounts
+            SET name = ?, email = ?, contactNo = ?, password = ?, description = ?, role = ?
+             WHERE id = ?
+            `, [ name, email, contactNo, password, description, role, id]
+        )
+        console.log("Successfully Updated the Account!");
+        return result;
+     }catch(err){
+        console.error({ success: false, message: "Failed to Update the specified Account." });
+        throw err;
+     }
+}
