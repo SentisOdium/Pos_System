@@ -1,4 +1,4 @@
-import { updateAccounts } from "../../database/AccountsQueries/UpdateAccount";
+import { updateAccounts } from "../../database/AccountsQueries/UpdateAccount.js";
 import bcrypt from "bcrypt";
 
 export async function updateAccountsController(req, res){

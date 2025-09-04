@@ -41,6 +41,7 @@ input::placeholder{
     padding: 0.5rem;
     border-radius: 25px;
     align-items: center;
+    border: red;
 }
 .btn-signup{
     color: white;

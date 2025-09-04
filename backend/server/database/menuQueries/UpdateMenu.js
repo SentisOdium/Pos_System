@@ -1,4 +1,4 @@
-import { pool } from "../config/db.js";
+import { pool } from "../../config/db.js";
 
 export async function putMenu(id, sku, item, category, quantity, price, description){
     try {

@@ -1,8 +1,8 @@
 import {Router} from "express";
-import { getMenusController } from "../controllers/menuController/GetMenuController";
-import { addMenuController } from "../controllers/menuController/AddMenuController";
-import { deleteMenuController } from "../controllers/menuController/DeleteMenuController";
-import { updateMenuController } from "../controllers/menuController/UpdateMenuController";
+import { getMenusController } from "../controllers/menuController/GetMenuController.js";
+import { addMenuController } from "../controllers/menuController/AddMenuController.js";
+import { deleteMenuController } from "../controllers/menuController/DeleteMenuController.js";
+import { updateMenuController } from "../controllers/menuController/UpdateMenuController.js";
 
 const router = Router();
 

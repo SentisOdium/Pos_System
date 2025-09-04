@@ -1,4 +1,4 @@
-import { putMenu } from "../../database/menuQueries/UpdateMenu";
+import { putMenu } from "../../database/menuQueries/UpdateMenu.js";
 
 export async function updateMenuController(req, res) {
     try {

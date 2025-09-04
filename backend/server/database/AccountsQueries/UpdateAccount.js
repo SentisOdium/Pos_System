@@ -1,4 +1,4 @@
-import { pool } from "../config/db.js";
+import { pool } from "../../config/db.js";
 
 export async function updateAccounts(id, name, email, contactNo, password, description, role ) {
     try{

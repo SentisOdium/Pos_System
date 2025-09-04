@@ -1,4 +1,4 @@
-import { addMenu } from "../../database/menuQueries/AddMenu";
+import { addMenu } from "../../database/menuQueries/AddMenu.js";
 
 export async function addMenuController(req, res){
     try {

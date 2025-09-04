@@ -1,4 +1,4 @@
-import { deleteAccounts } from "../../database/AccountsQueries/DeleteAccount";
+import { deleteAccounts } from "../../database/AccountsQueries/DeleteAccount.js";
 
 export async function deleteAccountController(req, res){
      try{

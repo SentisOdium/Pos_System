@@ -1,4 +1,4 @@
-import { deleteMenu } from "../../database/menuQueries/DeleteMenu";
+import { deleteMenu } from "../../database/menuQueries/DeleteMenu.js";
 
 export async function deleteMenuController(req, res) {
     try {

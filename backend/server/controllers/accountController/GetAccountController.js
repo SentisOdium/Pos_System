@@ -1,4 +1,4 @@
-import { getAccounts } from "../../database/AccountsQueries/getAccount";
+import { getAccounts } from "../../database/AccountsQueries/getAccount.js";
 
 export async function getAccountsController(req, res) {
    try{
