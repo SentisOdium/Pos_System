@@ -18,7 +18,7 @@ export default function Login() {
     try {
       const result = await loginUser({email, password});
       console.log("Login Successful: ", result)
-      alert("Logged-in Successfully")
+      alert("Logged")
       router.push("/");
     } catch (error: any) {
       console.error("Login failed full error:", error);
