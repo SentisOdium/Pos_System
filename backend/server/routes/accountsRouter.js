@@ -5,6 +5,7 @@ import { addAccountsController } from "../controllers/accountController/AddAccou
 import { deleteAccountController } from "../controllers/accountController/DeleteAccountsController.js";
 import { updateAccountsController } from "../controllers/accountController/UpdateAccountsControllers.js";
 import { loginController } from "../controllers/loginController/loginController.js";
+import {userController} from "../controllers/loginController/userController.js";
 //middlewares
 import { authenticateToken } from "../middleware/LoginAuthMiddleware.js";
 import { authorizeRoles } from "../middleware/RoleAuthMiddleware.js";
@@ -18,5 +19,6 @@ router.post("/accounts", addAccountsController);
 // router.delete("/accounts/:id", deleteAccountController);
 // router.put("/accounts/:id", updateAccountsController);
 
-router.post("/login", loginController)
+router.post("/login", loginController);
+router.get("/profilePage",userController);
 export default router;
