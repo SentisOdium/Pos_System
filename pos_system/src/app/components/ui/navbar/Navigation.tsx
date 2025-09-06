@@ -12,9 +12,15 @@ export default function Navigation() {
 
   useEffect(() =>{
     async function fetchUser(){
-      const u = await getUser();
-      console.log("Fetched user:", u);
-      setUser(u);
+      try {
+      const res = await fetch("http://localhost:5000/api/profilePage", {
+        credentials: "include", // <-- needed to send cookie
+      });
+      const data = await res.json();
+      setUser(data.user);
+    } catch (err) {
+      console.error("Fetch user error:", err);
+    }
     }
     fetchUser();
   }, []);
@@ -27,7 +33,7 @@ export default function Navigation() {
     ] 
    :[
       { href: "/", label: "Home" },
-      { href: "/profile", label: user.name || "Profile" }, 
+      { href: "/auth/userPage", label: user.name || "Profile" }, 
       { href: "/logout", label: "Logout" },
     ];
 

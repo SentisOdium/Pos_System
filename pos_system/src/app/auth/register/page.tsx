@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react'
 import { registerUser } from './register';
 import "../../styles/auth.css";
 import { useRouter } from 'next/navigation';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Register() {
     const router = useRouter();
@@ -25,11 +26,11 @@ export default function Register() {
         e.preventDefault();
         try {
             const result = await registerUser(formData);
-            alert("Account created successfully!");
+            toast.success("Successfully created an Account!");
             console.log(result);
             router.push("/auth/login");
         } catch(err: any){
-            console.log("Failed to create account", err);
+            toast.error("Failed to Create User! Please Try Again!");
         }
     } 
 

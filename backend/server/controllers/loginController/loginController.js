@@ -28,7 +28,7 @@ export async function loginController(req, res) {
 
     // Set token as a session cookie
     res.cookie("token", token, {
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV !== "production",
       sameSite: "lax",
     });

@@ -1,4 +1,3 @@
-import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
 import { getSingleAccount } from "../../database/AccountsQueries/getIdAccount.js";
 

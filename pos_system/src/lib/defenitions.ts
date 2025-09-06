@@ -1,9 +1,6 @@
 import {z} from 'zod';
 
 export const SignupFormSchema = z.object({
-        name:  z.string()
-                .min(12, {message: "Password Must Be Atleast 10 Characters Long"})
-                .trim(),
     email:     z.string().email({message: "Please enter a Valid Email"}).trim(),
     password:  z.string()
                 .min(12, { message: 'Be at least 12 characters long' })

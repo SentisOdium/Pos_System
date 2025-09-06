@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navigation from './components/ui/navbar/Navigation';
 import "./globals.css";
-
+import "./styles/toast.css";
+import {ToastContainer, Bounce} from 'react-toastify'; 
 // Load Google fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,20 @@ export default function RootLayout({
       <body>
       <Navigation />
         {children}
+        <ToastContainer
+            className="toast-Container"
+            position="top-right"
+            autoClose={10000}
+            hideProgressBar={false}
+            newestOnTop={true}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+        />
       </body>
     </html>
   );

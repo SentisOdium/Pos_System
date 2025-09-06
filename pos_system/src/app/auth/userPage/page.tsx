@@ -1,8 +1,9 @@
 import React from 'react'
 
-export default function page() {
+export default function UserPage() {
   return (
-    <div>page</div>
+    <div>
+      <h1>UserPage</h1> <h1>UserPage</h1> <h1>UserPage</h1> <h1>UserPage</h1> <h1>UserPage</h1> <h1>UserPage</h1> <h1>UserPage</h1> <h1>UserPage</h1>
+    </div>
   )
 }
-
