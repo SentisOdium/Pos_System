@@ -1,4 +1,4 @@
-import { getSingleAccount } from "../../database/AccountsQueries/getIdAccount.js";
+import { getSingleAccount } from "../../database/loginQuery/GetIdAccount.js"
 
 export async function getUserController(req, res) {
      

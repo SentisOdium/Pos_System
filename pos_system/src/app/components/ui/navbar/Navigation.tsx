@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "../../../styles/nav.css";
 import { useEffect, useState } from "react";
-import { getUser } from "@/lib/getUser";
 
 export default function Navigation() {
   const [user, setUser] = useState<any>(null);
@@ -14,9 +13,11 @@ export default function Navigation() {
     async function fetchUser(){
       try {
       const res = await fetch("http://localhost:5000/api/profilePage", {
-        credentials: "include", // <-- needed to send cookie
+        credentials: "include",
       });
+      
       const data = await res.json();
+      console.log("Fetched user data:", data);
       setUser(data.user);
     } catch (err) {
       console.error("Fetch user error:", err);
@@ -33,8 +34,8 @@ export default function Navigation() {
     ] 
    :[
       { href: "/", label: "Home" },
-      { href: "/auth/userPage", label: user.name || "Profile" }, 
-      { href: "/logout", label: "Logout" },
+      { href: "/auth/userPage", label: "Profile" }, 
+      
     ];
 
   return (
@@ -51,6 +52,7 @@ export default function Navigation() {
           </Link>
         );
       })}
+      
     </nav>
   );
 }

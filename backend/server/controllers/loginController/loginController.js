@@ -21,18 +21,19 @@ export async function loginController(req, res) {
     }
 
     const token = jwt.sign(
-      { id: account.Id, role: account.Role },
+      { id: account.ID, role: account.Role },
       process.env.TOKEN_SECRET,
       { expiresIn: "24h" }
     );
 
     // Set token as a session cookie
-    res.cookie("token", token, {
-      httpOnly: false,
-      secure: process.env.NODE_ENV !== "production",
+      res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
       sameSite: "lax",
+      path: "/",   
     });
-console.log("Logging in account:", account); 
+    console.log("Logging in account:", account); 
     return res.json({ message: "Login Successful" });
 
   } catch (error) {

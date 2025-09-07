@@ -4,6 +4,7 @@ import React,{useState} from 'react'
 import { useRouter } from "next/navigation";
 import "../../styles/auth.css";
 import { loginUser } from './login';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Login() {
   const router = useRouter();
@@ -32,6 +33,7 @@ export default function Login() {
         <div className='form-container'>
             <form onSubmit={handleSubmit}>
                 <div className='input-container'>
+                  {error }
                     <input  id="email" 
                             name="email" 
                             type="email" 

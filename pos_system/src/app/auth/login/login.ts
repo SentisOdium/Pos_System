@@ -4,11 +4,10 @@ export async function loginUser(userData: any) {
   try {
     const res = await axios.post("http://localhost:5000/api/login", userData, {
       headers: { "Content-Type": "application/json" },
+      withCredentials: true,
     });
 
-    // Save token to localStorage
-    localStorage.setItem("token", res.data.token);
-
+   
     return res.data;
   } catch (error: any) {
    console.error("Login failed full error:", error);

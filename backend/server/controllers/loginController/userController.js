@@ -1,22 +1,31 @@
 import jwt from "jsonwebtoken";
-import { getSingleAccount } from "../../database/AccountsQueries/getIdAccount.js";
+import { getSingleAccount } from "../../database/loginQuery/GetIdAccount.js";
 
 export async function userController(req, res) {
   try {
+    console.log("Cookies received:", req.cookies);
+    console.log("Cookies received in /profilePage:", req.cookies);
     const token = req.cookies.token;
     if (!token) return res.status(401).json({ error: "Unauthorized Access" });
 
     const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
-    console.log("Decoded JWT:", decoded); // should now include id
+    console.log("Decoded JWT:", decoded);
 
     const user = await getSingleAccount(decoded.id);
-    console.log("User from DB:", user); // should now return your account row
+    console.log("User from DB:", user);
 
-    if (!user || user.length === 0) {
+    if (!user) {
       return res.status(404).json({ error: "User Not Found" });
     }
 
-    const { Password, ...safeUser } = user[0]; // remove sensitive info
+    const { ID, Name, Email, Role, ...rest } = user;
+    const safeUser = {
+      id: ID,
+      name: Name,
+      email: Email,
+      role: Role,
+      ...rest
+    };
     return res.json({ user: safeUser });
 
   } catch (error) {

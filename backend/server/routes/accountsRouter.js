@@ -20,5 +20,5 @@ router.post("/accounts", addAccountsController);
 // router.put("/accounts/:id", updateAccountsController);
 
 router.post("/login", loginController);
-router.get("/profilePage",userController);
+router.get("/profilePage",authenticateToken, authorizeRoles("user",  "admin"),userController);
 export default router;
