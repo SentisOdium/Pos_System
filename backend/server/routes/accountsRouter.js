@@ -13,11 +13,11 @@ import { authorizeRoles } from "../middleware/RoleAuthMiddleware.js";
 
 const router = Router();
 
-// router.get("/accounts", getAccountsController);
-// router.get("/accounts/:id", getUserController);
+router.get("/accounts", getAccountsController);
+router.get("/accounts/:id", getUserController);
 router.post("/accounts", addAccountsController);
-// router.delete("/accounts/:id", deleteAccountController);
-// router.put("/accounts/:id", updateAccountsController);
+router.delete("/accounts/:id", deleteAccountController);
+router.put("/accounts/:id", updateAccountsController);
 
 router.post("/login", loginController);
 router.get("/profilePage",authenticateToken, authorizeRoles("user",  "admin"),userController);

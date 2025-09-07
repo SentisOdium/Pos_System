@@ -23,12 +23,14 @@
 .input{
     margin: 0.5rem;
 }
-input{
+input, textarea{
     margin-left: 15px;
     background-color: white;
-    border-radius: 1.5rem;
+
     padding: 0.5rem;
 }
+
+
 input::placeholder{
     font-style: italic;
     margin-left: 12px;

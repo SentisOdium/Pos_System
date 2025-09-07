@@ -25,22 +25,23 @@ export default function Navigation() {
    let links;
 
   if (!user) {
-    // guest
+   
     links = [
       { href: "/", label: "Home" },
       { href: "/auth/register", label: "Register" },
       { href: "/auth/login", label: "Login" },
     ];
   } else if (user.role === "admin") {
-    // admin
+  
     links = [
       { href: "/", label: "Home" },
       { href: "/auth/userPage", label: user.name || "Profile" },
       { href: "/rwar", label: "Admin Dashboard" },
       { href: "/teset", label: "Users" },
+      { href: "/tesdfet", label: "Menu Table" },
     ];
   } else {
-    // normal user
+    
     links = [
       { href: "/", label: "Home" },
       { href: "/auth/userPage", label: user.name || "Profile" },

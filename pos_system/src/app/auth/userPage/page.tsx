@@ -23,23 +23,17 @@ export default function UserPage() {
   },[]);
 
   return (
-
-    <Fragment>
       <div className="container">
         <div className="profile-container">
           <label>Name: {user?.name}</label><br />
           <label>Email: {user?.email}</label><br />
-          <label>Contact No.: {user?.ContactNo || "N/A"}</label><br />
+          <label>Contact No.: {user?.ContactNo || "No User Data"}</label><br />
           <label>Password: (hidden)</label><br />
-          <label>Description: {user?.Description || "N/A"}</label><br />
+          <label>Description: {user?.Description || "No User Data"}</label><br />
           <label>Role: {user?.role}</label><br /> <br />
           <UserBtn />
         </div>
-
-        
         <ToastContainer />
-
       </div>
-    </Fragment>
   )
 }

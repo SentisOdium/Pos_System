@@ -2,6 +2,8 @@ import { updateAccounts } from "../../database/AccountsQueries/UpdateAccount.js"
 import bcrypt from "bcrypt";
 
 export async function updateAccountsController(req, res){
+         console.log("Update request body:", req.body, "Params:", req.params);
+
      try{
           const {id} = req.params;
           const {name, email, contactNo, password, description, role} = req.body;
