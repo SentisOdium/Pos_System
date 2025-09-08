@@ -11,7 +11,7 @@ export async function loginController(req, res) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    const isMatch = await bcrypt.compare(password, account.Password);
+    const isMatch = await bcrypt.compare(password, account.password);
     if (!isMatch) {
       return res.status(401).json({ error: "Invalid email or password" });
     }
@@ -21,7 +21,7 @@ export async function loginController(req, res) {
     }
 
     const token = jwt.sign(
-      { id: account.ID, role: account.Role },
+      { id: account.id, role: account.role },
       process.env.TOKEN_SECRET,
       { expiresIn: "24h" }
     );

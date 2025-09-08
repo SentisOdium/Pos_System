@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import "../../styles/auth.css";
 import { fetchUser } from './fetchSignedInUser';
 
+
 export default function UserPage() {
   const [user, setUser] = useState<any>(null);
 
@@ -27,9 +28,9 @@ export default function UserPage() {
         <div className="profile-container">
           <label>Name: {user?.name}</label><br />
           <label>Email: {user?.email}</label><br />
-          <label>Contact No.: {user?.ContactNo || "No User Data"}</label><br />
+          <label>Contact No.: {user?.contactNo || "No User Data"}</label><br />
           <label>Password: (hidden)</label><br />
-          <label>Description: {user?.Description || "No User Data"}</label><br />
+          <label>Description: {user?.description || "No User Data"}</label><br />
           <label>Role: {user?.role}</label><br /> <br />
           <UserBtn />
         </div>

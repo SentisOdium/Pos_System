@@ -1,10 +1,10 @@
 import { pool } from "../../config/db.js";
 
-export async function getSingleAccount(ID) {
+export async function getSingleAccount(id) {
   try {
     const [rows] = await pool.query(
-      "SELECT * FROM accounts WHERE ID = ?",
-      [ID]
+      "SELECT * FROM accounts WHERE id = ?",
+      [id]
     );
 
     // Return the first row or null if no user found

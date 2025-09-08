@@ -5,7 +5,7 @@ export async function deleteMenuController(req, res) {
         const {id} = req.params;
 
         if(!id){
-            return res.status(400).json({error: "Failed to Locate the account!"});
+            return res.status(400).json({error: "Failed to Locate the Menu!"});
         }
 
         const del_Menu = await deleteMenu(id);

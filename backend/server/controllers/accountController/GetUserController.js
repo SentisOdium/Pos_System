@@ -7,7 +7,7 @@ export async function getUserController(req, res) {
 
           const singleAccount = await getSingleAccount(id);
           
-          if (!singleAccount || singleAccount.length === 0) {
+          if (!singleAccount) {
             return res.status(404).json({ error: "User not found" });
           }
         

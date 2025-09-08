@@ -18,12 +18,12 @@ export async function userController(req, res) {
       return res.status(404).json({ error: "User Not Found" });
     }
 
-    const { ID, Name, Email, Role, ...rest } = user;
+    const { id, name, email, role, ...rest } = user;
     const safeUser = {
-      id: ID,
-      name: Name,
-      email: Email,
-      role: Role,
+      id: id,
+      name: name,
+      email: email,
+      role: role,
       ...rest
     };
     return res.json({ user: safeUser });

@@ -9,7 +9,7 @@ export async function putMenu(id, sku, item, category, quantity, price, descript
             `, [sku, item, category, quantity, price, description, id]
         );
         return updateMenu
-    } catch (error) {
+    } catch (err) {
         console.error({ success: false, message: "Failed to Update the specified Account." });
         throw err;
     }

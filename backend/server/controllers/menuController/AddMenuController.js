@@ -4,19 +4,9 @@ export async function addMenuController(req, res){
     try {
         const {sku, item, category, quantity, price, description} = req.body;
 
-        if (
-            sku === undefined || sku === "" ||
-            item === undefined || item === "" ||
-            category === undefined || category === "" ||
-            quantity === undefined || quantity === "" ||
-            price === undefined || price === "" ||
-            description === undefined || description === ""
-        ) {
-            return res.status(400).json({
-                error: "All Fields are Required"
-            });
-        }
-
+       if (!sku || !item || !category || quantity == null || price == null || !description) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
         const addNewMenu = await addMenu(sku, item, category, quantity, price, description);
         return res.status(201).json({
             message: "Menu Successfully Added!",
