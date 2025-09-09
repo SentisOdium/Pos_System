@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, createContext, useState } from "react";
 import { userdata } from "./updateSignedInUser";
 import { fetchUser } from "./fetchSignedInUser";
- 
+
 
 type UserContextType = {
   user: userdata | null;
@@ -22,6 +22,7 @@ export function UserProvider({children} : {children: React.ReactNode}){
             try {
                 const data = await fetchUser();
                 setUser(data); 
+                
             } catch (err) {
                 console.error("Failed to Fetch User!", err);
                 setUser(null); 

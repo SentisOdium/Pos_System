@@ -25,10 +25,10 @@ export default function Navigation() {
   
     links = [
       { href: "/", label: "Home" },
-      { href: "/auth/userPage", label: user.name || "Profile" },
       { href: "/rwar", label: "Admin Dashboard" },
       { href: "/teset", label: "Users" },
       { href: "/tesdfet", label: "Menu Table" },
+      { href: "/auth/userPage", label: user.name || "Profile" },
     ];
   } else {
     

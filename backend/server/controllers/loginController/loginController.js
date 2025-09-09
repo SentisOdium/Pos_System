@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 
 export async function loginController(req, res) {
   try {
-    const { email, password } = req.body; // lowercase consistently
+    const { email, password } = req.body; 
     const account = await getAccountByEmail(email);
 
     if (!account) {
@@ -26,10 +26,11 @@ export async function loginController(req, res) {
       { expiresIn: "24h" }
     );
 
-    // Set token as a session cookie
+    const isProduction = process.env.NODE_ENV === "production";
+  
       res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
+      secure: isProduction,
       sameSite: "lax",
       path: "/",   
     });
