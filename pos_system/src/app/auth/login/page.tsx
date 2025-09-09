@@ -13,20 +13,18 @@ export default function Login() {
   const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
+  e.preventDefault();
+  setError("");
 
-    try {
-      const result = await loginUser({email, password});
-      console.log("Login Successful: ", result)
-      alert("Logged")
-      router.push("/auth/userPage");
-    } catch (error: any) {
-      console.error("Login failed full error:", error);
-    console.error("Login failed response:", error.response);
-    throw new Error(error.response?.data?.error || error.message || "Failed to login user");
-    }
+  try {
+    const result = await loginUser({ email, password });
+    console.log("Login Successful:", result);
+    router.push("/auth/userPage");
+  } catch (error: any) {
+    console.error("Login failed:", error);
+    setError(error.response?.data?.error || error.message || "Failed to login user");
   }
+};
 
   return (
    <div className='container'>

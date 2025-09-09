@@ -4,25 +4,12 @@ import React,{ Fragment, useEffect, useState } from 'react'
 import UserBtn from '@/app/components/ui/modal/buttons/userBtn';
 import { ToastContainer, toast } from 'react-toastify';
 import "../../styles/auth.css";
-import { fetchUser } from './fetchSignedInUser';
+import { useUser } from './userContext';
 
 
 export default function UserPage() {
-  const [user, setUser] = useState<any>(null);
-
-  useEffect(() => {
-      async function loadUser() {
-        try {
-          const data = await fetchUser();
-          setUser(data);
-        } catch (err) {
-          console.error("Fetch user error:", err);
-          toast.error("Failed to Load Data");
-        }
-      }
-    loadUser();
-  },[]);
-
+  const {user} = useUser();
+  
   return (
       <div className="container">
         <div className="profile-container">

@@ -5,6 +5,7 @@ import Navigation from './components/ui/navbar/Navigation';
 import "./globals.css";
 import "./styles/toast.css";
 import {ToastContainer, Bounce} from 'react-toastify'; 
+import { UserProvider } from "./auth/userPage/userContext";
 // Load Google fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,8 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <Navigation />
-        {children}
+      
+      <UserProvider>
+        <Navigation />
+         {children}
         <ToastContainer
             className="toast-Container"
             position="top-right"
@@ -47,6 +50,8 @@ export default function RootLayout({
             theme="light"
             transition={Bounce}
         />
+      </UserProvider>
+       
       </body>
     </html>
   );

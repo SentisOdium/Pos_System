@@ -3,24 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "../../../styles/nav.css";
-import { useEffect, useState } from "react";
-import { fetchUser } from "@/app/auth/userPage/fetchSignedInUser";
+import { useUser } from "@/app/auth/userPage/userContext";
 export default function Navigation() {
-  const [user, setUser] = useState<any>(null);
   const pathname = usePathname();
+  const { user, loading } = useUser();
 
-  useEffect(() =>{
-    async function loadUser(){
-      try {
-        const data = await fetchUser();
-        setUser(data);
-      } catch (err) {
-        console.error("Fetch user error:", err);
-      }
-    }
-    loadUser();
-  }, []);
-  
+  if (loading) {
+    return <nav className="navbar">Loading...</nav>;
+  }
 
    let links;
 

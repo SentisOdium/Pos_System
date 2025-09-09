@@ -45,10 +45,11 @@ export default function AccountEdit({ onClose }: EditUserPageProps) {
           role: user.role,
         });
 
-
-        setUser(updatedUser);
+        const refreshedUser = await fetchUser();
+        setUser(refreshedUser);
         toast.success("Profile Updated Successfully!");
         onClose();
+        
       } catch (err) {
         console.error("Update error:", err);
         toast.error("Failed to update profile");

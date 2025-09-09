@@ -6,8 +6,11 @@ export async function fetchUser() {
             withCredentials: true,
             });
             return res.data.user
-        } catch (err) {
-            console.error("Fetch user error:", err);
-            throw new Error("Failed to load user data");
+        } catch (err: any) {
+           if(axios.isAxiosError(err) && err.response?.status === 401){
+            return null;
+           }
+        console.error("Unexpected Error,", err);
+        throw err;
     }
 }

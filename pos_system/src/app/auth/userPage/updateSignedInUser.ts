@@ -1,6 +1,6 @@
 import axios from "axios";
 
-type userdata= {
+export type userdata= {
   name?: string;
   email?: string;
   contactNo?: string;
