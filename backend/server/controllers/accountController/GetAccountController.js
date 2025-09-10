@@ -1,10 +1,21 @@
-import { getAccounts } from "../../database/AccountsQueries/getAccount.js";
+import { getAccounts, getAccountTotal } from "../../database/AccountsQueries/getAccount.js";
 
 export async function getAccountsController(req, res) {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
+    const offset = (page - 1) * limit;
+    const search = req.query.search || "";
+
    try{
-        const accounts = await getAccounts();
-        console.log(accounts);
-        return res.json(accounts);
+          const total = await getAccountTotal(search);
+          const accounts = await getAccounts(offset, limit, search);
+          console.log(accounts);
+        return res.json({
+          page,
+          limit,
+          total,
+          accounts,
+     });
    }catch(err){
         console.error("Error Fetching Accounts", err);
         return res.status(500).json({error: "Failed to Fetch Accounts"});

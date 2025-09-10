@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 export function authenticateToken(req, res, next) {
   // Try getting token from Authorization header
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // 👈 FIXED
+  const token = authHeader && authHeader.split(' ')[1]; 
 
   // Or fallback to cookie (if you’re setting it in login)
   const cookieToken = req.cookies?.token;

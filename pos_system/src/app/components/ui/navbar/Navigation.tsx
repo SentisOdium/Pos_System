@@ -26,8 +26,8 @@ export default function Navigation() {
     links = [
       { href: "/", label: "Home" },
       { href: "/rwar", label: "Admin Dashboard" },
-      { href: "/teset", label: "Users" },
-      { href: "/tesdfet", label: "Menu Table" },
+      { href: "/userTable", label: "Users Table" },
+      { href: "/menuTable", label: "Menu Table" },
       { href: "/auth/userPage", label: user.name || "Profile" },
     ];
   } else {
