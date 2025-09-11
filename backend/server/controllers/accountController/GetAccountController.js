@@ -1,4 +1,4 @@
-import { getAccounts, getAccountTotal } from "../../database/AccountsQueries/getAccount.js";
+import { getAccounts, getAccountTotal } from "../../database/AccountsQueries/GetAccount.js";
 
 export async function getAccountsController(req, res) {
     const page = parseInt(req.query.page) || 1;
@@ -14,7 +14,8 @@ export async function getAccountsController(req, res) {
           page,
           limit,
           total,
-          accounts,
+          totalPages: Math.ceil(total / limit),
+          users: accounts,
      });
    }catch(err){
         console.error("Error Fetching Accounts", err);

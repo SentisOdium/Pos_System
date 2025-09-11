@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function fetchUser() {
     try {
-        const res = await axios.get("http://localhost:5000/api/profilePage", {
+        const res = await axios.get("http://localhost:5000/api/profile", {
             withCredentials: true,
             });
             return res.data.user;

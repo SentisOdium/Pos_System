@@ -1,15 +1,15 @@
-
-
+import TableHead from "./tableHead";
+import TableBody from "./tableBody";
+import TableFooter from "./tableFooter";
 export default function Table() {
 
   return (
     <div>
-      <div className="overflow-y-scroll max-h-[500px] max-w-[1100px] min-h-[500px] min-w-[1100px]">
         <table className="min-w-full bg-white ">
-        
+          <TableHead />
+          <TableBody />
+          <TableFooter />
       </table>
-      </div>
-    
     </div>
   );
 }

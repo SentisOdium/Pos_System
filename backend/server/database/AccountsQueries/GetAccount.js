@@ -18,7 +18,7 @@ export async function getAccountTotal(search = "") {
     try {
         const [rows] = await pool.query(`
             SELECT COUNT(*) as total FROM accounts
-            WHERE name LIKE ? or email LIKE ? contactNo LIKE ?`,
+            WHERE name LIKE ? or email LIKE ? or contactNo LIKE ?`,
                 [`%${search}%`,`%${search}%`,`%${search}%`]
         );
         return rows[0].total;

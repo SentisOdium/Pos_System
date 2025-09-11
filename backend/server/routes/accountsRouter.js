@@ -1,29 +1,74 @@
-import {Router} from "express";
+import { Router } from "express";
 
+// Controllers
 import { getAccountsController } from "../controllers/accountController/GetAccountController.js";
 import { getUserController } from "../controllers/accountController/GetUserController.js";
 import { addAccountsController } from "../controllers/accountController/AddAccountsController.js";
 import { deleteAccountController } from "../controllers/accountController/DeleteAccountsController.js";
 import { updateAccountsController } from "../controllers/accountController/UpdateAccountsControllers.js";
 
-//middlewares or auth
+import { loginController } from "../controllers/loginController/loginController.js";
+import { LogoutController } from "../controllers/loginController/logoutController.js";
+import { userController } from "../controllers/loginController/userController.js";
+
+// Middlewares
 import { authenticateToken } from "../middleware/LoginAuthMiddleware.js";
 import { authorizeRoles } from "../middleware/RoleAuthMiddleware.js";
 
-//login and logout
-import { LogoutController } from "../controllers/loginController/logoutController.js";
-import { loginController } from "../controllers/loginController/loginController.js";
-import {userController} from "../controllers/loginController/userController.js";
-
 const router = Router();
 
-router.get("/accounts", getAccountsController);
-router.get("/accounts/:id", getUserController);
-router.post("/accounts", addAccountsController);
-router.delete("/accounts/:id", deleteAccountController);
-router.put("/accounts/:id", updateAccountsController);
+/**
+ * Accounts (Admin only)
+ */
+router.get(
+  "/accounts",
+  authenticateToken,
+  authorizeRoles("admin"),
+  getAccountsController
+);
 
+router.get(
+  "/accounts/:id",
+  authenticateToken,
+  authorizeRoles("admin"),
+  getUserController
+);
+
+router.post(
+  "/accounts",
+  authenticateToken,
+  authorizeRoles("admin"),
+  addAccountsController
+);
+
+router.put(
+  "/accounts/:id",
+  authenticateToken,
+  authorizeRoles("admin"),
+  updateAccountsController
+);
+
+router.delete(
+  "/accounts/:id",
+  authenticateToken,
+  authorizeRoles("admin"),
+  deleteAccountController
+);
+
+/**
+ * Auth
+ */
 router.post("/login", loginController);
-router.post('/logout', LogoutController)
-router.get("/profilePage",authenticateToken, authorizeRoles("user",  "admin"),userController);
+router.post("/logout", LogoutController);
+
+/**
+ * User Profile (User & Admin)
+ */
+router.get(
+  "/profile",
+  authenticateToken,
+  authorizeRoles("user", "admin"),
+  userController
+);
+
 export default router;

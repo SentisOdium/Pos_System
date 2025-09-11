@@ -1,14 +1,15 @@
-const headers = [
-    {id: 1, KEY: "name",    LABEL: "Name"   },
-    {id: 2, KEY: "email",   LABEL: "Email"  },
-    {id: 3, KEY: "year",    LABEL: "Year"   },
-    {id: 4, KEY: "section", LABEL: "Section"},
-]
+import { tblHeaders } from "../../common/userObject";
 
 export default function TableHead(){
     return(
-        <div>
-            
-        </div>
+        <thead>
+             <tr className="bg-gray-200 p-2">
+                {tblHeaders.map(({KEY, label}) => (
+                            <th key={KEY} className="border border-gray-400 px-4 py-2">
+                                {label}
+                            </th>
+                    ))}
+             </tr>
+        </thead>
     )
 }
