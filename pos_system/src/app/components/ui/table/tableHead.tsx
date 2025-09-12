@@ -5,7 +5,7 @@ export default function TableHead(){
         <thead>
              <tr className="bg-gray-200 p-2">
                 {tblHeaders.map(({KEY, label}) => (
-                            <th key={KEY} className="border border-gray-400 px-4 py-2">
+                            <th key={KEY} className="border border-gray-300 p-2 w-1/7 break-words text-center">
                                 {label}
                             </th>
                     ))}

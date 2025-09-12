@@ -4,8 +4,8 @@ import TableFooter from "./tableFooter";
 export default function Table() {
 
   return (
-    <div className="w-full flex justify-center items-center">
-      <table className="min-w-full bg-white ">
+    <div className=" inset-0 flex items-center justify-center">
+      <table className="border border-gray-300 rounded-lg shadow-lg bg-white">
         <TableHead />
         <TableBody />
         <TableFooter />

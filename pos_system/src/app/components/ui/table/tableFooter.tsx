@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { TableUserContext } from '@/app/(pages)/(protectedPages)/userTable/UserContext';
-
+import SetRows from '../setRows/setRows';
 export default function TableFooter() {
     
     const data = useContext(TableUserContext);
@@ -12,10 +12,11 @@ export default function TableFooter() {
     
     const {setPage, page, totalPages } = data;
   return (
-   <tfoot className='border m-2'>
-    <tr>
-      <td>
-        <button
+   <tfoot className='border m-2 '>
+    <tr >
+      <td  colSpan={7}>
+        
+          <button
           className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mr-2"
           onClick={() => setPage(page - 1)}
           disabled={page <= 1}>
@@ -40,7 +41,10 @@ export default function TableFooter() {
           Next
       </button>
 
-      <span className="text-sm">Page {page} of {totalPages}</span>
+      <span className="text-sm mr-2">Page {page} of {totalPages}</span>
+
+      <span><SetRows/></span>
+       
       </td>
     </tr>
     

@@ -5,13 +5,13 @@ export default function SetRows(){
     const data = useContext(TableUserContext);
         
     if (!data) {
-        throw new Error("Table Body must be used within a PageContext.Provider");
+        throw new Error("Table Footer must be used within a PageContext.Provider");
     }
         
     const {setLimit, setPage} = data;
 
     return(
-        <select className="border-2 border-gray-300 rounded-md p-2 transition-all duration-300 hover:scale-110" 
+        <select className="border-2 border-gray-300 rounded-md p-1 " 
                 onChange={(e)=> {setLimit(Number((e.target as HTMLSelectElement).value));
                 setPage(1);}}>
                 <option value="5">5</option>

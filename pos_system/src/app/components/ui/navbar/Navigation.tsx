@@ -48,7 +48,7 @@ export default function Navigation() {
             key={href}
             href={href}
             className={`hover:underline px-2 py-1 rounded ${
-              pathname === href ? "text-white font-bold" : "text-black font-bold"}`}> 
+              pathname === href ? "text-red-500 font-bold" : "text-white font-bold"}`}> 
             {label}
           </Link>
         );

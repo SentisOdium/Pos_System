@@ -7,20 +7,17 @@ import { UserProvider } from '@/app/(pages)/(protectedPages)/userTable/UserConte
 
 export default function UserTable(){
  
-    return(
-     
-  <UserProvider>
-    <div className='mt-20 flex flex-col items-center justify-center '>
-      <div className='m-5 w-full flex justify-center'>
-        <SearchQuery />
-      </div>
-      <div className='w-full flex justify-center'>
-        <Table />
-      </div>
-        <ToastContainer />
-    </div>
-  </UserProvider>
-        
-      
-    )
+  return(
+    <UserProvider>
+      <div className='flex flex-col items-center justify-center min-h-screen p-5'>
+  <div className='m-5 w-full flex justify-center'>
+    <SearchQuery />
+  </div>
+  <div className='w-full flex justify-center'>
+    <Table />
+  </div>
+  <ToastContainer />
+</div>
+    </UserProvider>  
+  )
 }
