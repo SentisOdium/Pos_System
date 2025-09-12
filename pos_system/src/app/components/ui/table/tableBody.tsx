@@ -11,8 +11,6 @@
     }
     
     const {users, loading} = data;
-
-    console.log("Context data in TableBody:", data);
     return (
       <tbody>
         {loading? 

@@ -83,17 +83,7 @@ export default function AccountEdit({ onClose }: EditUserPageProps) {
                         onChange={handleChange}
                         value={user?.contactNo || ""} 
                         className="mb-10 border-1"/>
-                    
-                    {/* <label className="ml-9">Password</label>
-                    <input 
-                        type="text"
-                        name="password" 
-                        placeholder="Change Password isnt available for now"
-                        value={user?.password || ""} 
-                        onChange={handleChange}
-                        className="mb-10 border-1"
-                        disabled/> */}
-                    
+                  
                     <label className="ml-9">Description</label>
                     <textarea
                       rows={4}

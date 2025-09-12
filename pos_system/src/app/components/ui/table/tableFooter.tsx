@@ -1,45 +1,43 @@
 import React, { useContext } from 'react'
-  import { TableUserContext } from '@/app/(pages)/(protectedPages)/userTable/UserContext';
-import Link from 'next/link';
-
+import { TableUserContext } from '@/app/(pages)/(protectedPages)/userTable/UserContext';
 
 export default function TableFooter() {
     
     const data = useContext(TableUserContext);
 
     if (!data) {
-      throw new Error("Table Body must be used within a PageContext.Provider");
+      throw new Error("Table Head must be used within a PageContext.Provider");
     }
+
     
-    const {setPage, page, users, totalPages } = data;
+    const {setPage, page, totalPages } = data;
   return (
-   <tfoot>
+   <tfoot className='border m-2'>
     <tr>
       <td>
         <button
-        className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
-        onClick={() => setPage(page - 1)}
-        disabled={page <= 1}
-      >
-        Prev
-      </button>
+          className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mr-2"
+          onClick={() => setPage(page - 1)}
+          disabled={page <= 1}>
+            Prev
+        </button>
 
-        <ul>
-          <li>
-            <Link href="#"  className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
-            1
-          </Link>
-          </li>
-        </ul>
-          
-    
+        
+      {Array.from({length: totalPages}, (_, index) =>(
+        <button key={index} onClick={() => setPage(index + 1)}
+          className={`px-3 py-1 rounded mr-1 ${
+          page === index + 1
+          ? "bg-blue-600 text-white font-bold"
+          : "bg-gray-200 hover:bg-gray-300"}`}>
+            {index + 1}
+        </button>
+      ))}
 
       <button
-        className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
+        className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded m-2"
         onClick={() => setPage(page + 1)}
-        disabled={page >= totalPages}
-      >
-        Next
+        disabled={page >= totalPages}>
+          Next
       </button>
 
       <span className="text-sm">Page {page} of {totalPages}</span>
