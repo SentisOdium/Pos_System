@@ -9,11 +9,11 @@ export default function UserTable(){
  
   return(
     <UserProvider>
-      <div className='flex flex-col items-center justify-center min-h-screen p-5'>
+      <div className='w-full top-100 flex flex-col items-center justify-center  p-5'>
   <div className='m-5 w-full flex justify-center'>
     <SearchQuery />
   </div>
-  <div className='w-full flex justify-center'>
+  <div className='flex justify-center'>
     <Table />
   </div>
   <ToastContainer />

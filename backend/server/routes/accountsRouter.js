@@ -6,6 +6,7 @@ import { getUserController } from "../controllers/accountController/GetUserContr
 import { addAccountsController } from "../controllers/accountController/AddAccountsController.js";
 import { deleteAccountController } from "../controllers/accountController/DeleteAccountsController.js";
 import { updateAccountsController } from "../controllers/accountController/UpdateAccountsControllers.js";
+import { SortAccountsController } from "../controllers/accountController/SortAccountsColController.js";
 
 import { loginController } from "../controllers/loginController/loginController.js";
 import { LogoutController } from "../controllers/loginController/logoutController.js";
@@ -17,9 +18,10 @@ import { authorizeRoles } from "../middleware/RoleAuthMiddleware.js";
 
 const router = Router();
 
-/**
- * Accounts (Admin only)
- */
+/*
+  Accounts (Admin only)
+*/
+  
 router.get(
   "/accounts",
   authenticateToken,
@@ -32,6 +34,13 @@ router.get(
   authenticateToken,
   authorizeRoles("admin"),
   getUserController
+);
+
+router.get(
+  "/accountSort",
+  authenticateToken,
+  authorizeRoles("admin"),
+  SortAccountsController
 );
 
 router.post(
@@ -70,5 +79,6 @@ router.get(
   authorizeRoles("user", "admin"),
   userController
 );
+
 
 export default router;

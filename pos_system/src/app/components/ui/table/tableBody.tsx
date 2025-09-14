@@ -16,26 +16,26 @@
         {loading? 
         (
           <tr>
-            <td colSpan={5} className='text-center p-4'> Loading </td>
+            <td colSpan={7} className='text-center p-4'> Loading </td>
           </tr>
         )
         : !users || users.length === 0 ?  
         (
           <tr>
-            <td colSpan={5} className='text-center p-4'>No User Found</td>
+            <td colSpan={7} className='text-center p-4'>No User Found</td>
           </tr>
         )
         :
         (
           users.map(user =>(
             <tr key={user.id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.contactNo}</td>
-              <td>{user.password}</td>
-              <td>{user.description}</td>
-              <td>{user.role}</td>   
-              <td>
+              <td className='p-4'>{user.name}</td>
+              <td className='p-4'>{user.email}</td>
+              <td className='p-4'>{user.contactNo}</td>
+              <td className='p-4'>{user.password}</td>
+              <td className='p-4'>{user.description}</td>
+              <td className='p-4'>{user.role}</td>   
+              <td className='p-4 flex'>
                 <button className='bg-yellow-400 hover:bg-yellow-500 px-5 py-1 rounded-4xl m-1 text-white'>Update</button>
                 
                 <button className='bg-red-600 hover:bg-red-700 px-6 py-1 rounded-4xl m-1 text-white'>Delete</button>

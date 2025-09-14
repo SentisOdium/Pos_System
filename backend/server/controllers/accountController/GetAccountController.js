@@ -1,5 +1,5 @@
 import { getAccounts, getAccountTotal } from "../../database/AccountsQueries/GetAccount.js";
-
+import { sortAccountsBy } from "../../database/AccountsQueries/sortAccounts.js";
 export async function getAccountsController(req, res) {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 5;
@@ -9,7 +9,7 @@ export async function getAccountsController(req, res) {
    try{
           const total = await getAccountTotal(search);
           const accounts = await getAccounts(offset, limit, search);
-          console.log(accounts);
+
         return res.json({
           page,
           limit,
