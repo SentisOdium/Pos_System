@@ -16,6 +16,12 @@
             setTotalPages: React.Dispatch<React.SetStateAction<number>>;
             searchQuery: string;
             setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+            sortColumn: string;
+            setSortColumn: React.Dispatch<React.SetStateAction<string>>;
+            sortAsc: boolean;
+            setSortAsc: React.Dispatch<React.SetStateAction<boolean>>;
+            fetchUsers: () => Promise<void>;   
+
         };
 
         export const TableUserContext = createContext<UserContextType | undefined>(undefined);
@@ -23,43 +29,58 @@
         export const UserProvider = ({children} : {children: React.ReactNode}) => {
             const [users, setUsers] = useState<userObject[]>([]);
             const [loading, setLoading] = useState(false);
+            
+            //pagination
             const [page, setPage] = useState(1);
             const [limit, setLimit] = useState(5);
             const [totalPages, setTotalPages] = useState(1);
             const [searchQuery, setSearchQuery] = useState("");
+            const [sortColumn, setSortColumn] = useState<string>("name");
+            const [sortAsc, setSortAsc] = useState<boolean>(true);
 
             const fetchUsers = async () => {
             setLoading(true);
             try {
             const res = await axios.get(
-                `http://localhost:5000/api/accounts?page=${page}&limit=${limit}&search=${searchQuery}`,
+                `http://localhost:5000/api/accounts`,
                 {
-                withCredentials: true,
-                }
-            );
+                    params:{
+                        page,
+                        limit,
+                        search: searchQuery,
+                        column: sortColumn || "name",
+                        order: sortAsc ? "ASC" : "DESC",
+                    },
+                    withCredentials: true,
+                });
 
             const data =  res.data;
 
-            setUsers(data.users); 
-            setTotalPages(data.totalPages);
+                setUsers(data.users); 
+                setTotalPages(data.totalPages);
             } catch (err) {
-            console.error("Fetch error:", err);
+                console.error("Fetch error:", err);
             } finally {
-            setLoading(false);
+                setLoading(false);
             }
         };
 
             useEffect(() => {
                 fetchUsers();
-            }, [page, limit, searchQuery])
+            }, [page, limit, searchQuery,sortColumn, sortAsc])
             return(
-                <TableUserContext.Provider value={{ 
-                    users, setUsers, 
-                    page, setPage, limit, 
-                    setLimit, loading, 
-                    setLoading, 
-                    totalPages, setTotalPages,
-                    searchQuery, setSearchQuery}}>
+                <TableUserContext.Provider value=
+                {{ 
+                    users,       setUsers, 
+                    page,        setPage, 
+                    limit,       setLimit, 
+                    loading,     setLoading, 
+                    totalPages,  setTotalPages,
+                    searchQuery, setSearchQuery,
+                    sortColumn,  setSortColumn,
+                    sortAsc,      setSortAsc,
+                    fetchUsers,
+                }}>
                         {children}
                 </TableUserContext.Provider>
             )

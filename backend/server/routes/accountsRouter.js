@@ -6,7 +6,6 @@ import { getUserController } from "../controllers/accountController/GetUserContr
 import { addAccountsController } from "../controllers/accountController/AddAccountsController.js";
 import { deleteAccountController } from "../controllers/accountController/DeleteAccountsController.js";
 import { updateAccountsController } from "../controllers/accountController/UpdateAccountsControllers.js";
-import { SortAccountsController } from "../controllers/accountController/SortAccountsColController.js";
 
 import { loginController } from "../controllers/loginController/loginController.js";
 import { LogoutController } from "../controllers/loginController/logoutController.js";
@@ -36,12 +35,6 @@ router.get(
   getUserController
 );
 
-router.get(
-  "/accountSort",
-  authenticateToken,
-  authorizeRoles("admin"),
-  SortAccountsController
-);
 
 router.post(
   "/accounts",

@@ -1,7 +1,7 @@
   import React, { useContext } from 'react'
   import { userObject } from '../../common/userObject';
   import { TableUserContext } from '@/app/(pages)/(protectedPages)/userTable/UserContext';
-
+  import {DeleteBtn, UpdateBtn} from '../modal/buttons/tableBtn';
   export default function TableBody() {
     const data = useContext(TableUserContext);
 
@@ -11,6 +11,8 @@
     }
     
     const {users, loading} = data;
+
+   
     return (
       <tbody>
         {loading? 
@@ -36,9 +38,8 @@
               <td className='p-4'>{user.description}</td>
               <td className='p-4'>{user.role}</td>   
               <td className='p-4 flex'>
-                <button className='bg-yellow-400 hover:bg-yellow-500 px-5 py-1 rounded-4xl m-1 text-white'>Update</button>
-                
-                <button className='bg-red-600 hover:bg-red-700 px-6 py-1 rounded-4xl m-1 text-white'>Delete</button>
+                <UpdateBtn id={user.id}/>
+               <DeleteBtn id={user.id}/>
               </td>    
             </tr>
           ))

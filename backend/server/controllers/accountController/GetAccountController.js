@@ -1,14 +1,14 @@
 import { getAccounts, getAccountTotal } from "../../database/AccountsQueries/GetAccount.js";
-import { sortAccountsBy } from "../../database/AccountsQueries/sortAccounts.js";
 export async function getAccountsController(req, res) {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 5;
     const offset = (page - 1) * limit;
     const search = req.query.search || "";
-
+    const column =  req.query.column || "name";
+    const order = req.query.order || "ASC";
    try{
           const total = await getAccountTotal(search);
-          const accounts = await getAccounts(offset, limit, search);
+          const accounts = await getAccounts(offset, limit, search, column, order);
 
         return res.json({
           page,

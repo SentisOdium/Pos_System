@@ -17,9 +17,8 @@ const Modal = ({isVisible, onClose, children}: ModalProps) => {
         flex justify-center items-center" id="wrapper" onClick={handleClose}>
             <div className="w-[660px] flex flex-col" onClick={(e) => e.stopPropagation()}>
                 
-                <div className="bg-white rounded-xl p-10">
-                    <button className="text-black text-xl place-self-end"
-                        onClick={()=> onClose()}>X</button>
+                <div className="bg-white rounded-xl p-10 ">
+                    
                     {children}
                 </div>
             </div>
