@@ -38,7 +38,7 @@
               <td className='p-4'>{user.description}</td>
               <td className='p-4'>{user.role}</td>   
               <td className='p-4 flex'>
-                <UpdateBtn id={user.id}/>
+               <UpdateBtn id={user.id}/>
                <DeleteBtn id={user.id}/>
               </td>    
             </tr>
