@@ -4,7 +4,8 @@ import { DeleteUser, AddUser, UpdateUser } from "../action/userActions";
 import { RiDeleteBin2Fill,RiAlertFill , RiEditFill, RiAddCircleLine  } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import { TableUserContext } from "@/app/(pages)/(protectedPages)/userTable/UserContext";
-import AddUserForms from "../forms/addForms";
+import UserForms from "../forms/addForms";
+
 export const  DeleteBtn = ({ id}: { id: string}) => {
     
     const [showModal, setShowModal] = useState(false);
@@ -72,7 +73,13 @@ export const UpdateBtn = ({ id}: { id: string}) => {
             </button>
 
             <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
-                <AddUserForms />
+                <UserForms 
+                mode="update" 
+                userId={id}
+                onSuccess={() => {
+                    fetchUsers();
+                    setShowModal(false);
+                }} />
             </Modal>
 
         </>
