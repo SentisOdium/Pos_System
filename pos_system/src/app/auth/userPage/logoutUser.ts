@@ -7,7 +7,7 @@ export async function logoutUser() {
       {}, 
       { withCredentials: true }
     );
-    return res.data.message; // { message: "Logout Successful!" }
+    return res.data.message; 
   } catch (err: any) {
     console.error("Logout failed:", err);
     throw err;

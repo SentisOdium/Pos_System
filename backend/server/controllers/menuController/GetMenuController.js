@@ -1,8 +1,8 @@
-import { getMenus } from "../../database/menuQueries/GetMenu.js";
+import { GetMenus } from "../../database/menuQueries/MenuQueries.js";
 
 export async function getMenusController(req, res) {
     try {
-        const menus = await getMenus();
+        const menus = await GetMenus();
         return res.json(menus);
     } catch (error) {
         console.error("Error Fetching the Menus", error);

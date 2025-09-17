@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
 import Modal from "../Modal";
-import { DeleteUser, AddUser, UpdateUser } from "../action/userActions";
+import { DeleteUser} from "../action/userActions";
 import { RiDeleteBin2Fill,RiAlertFill , RiEditFill, RiAddCircleLine  } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import { TableUserContext } from "@/app/(pages)/(protectedPages)/userTable/UserContext";
 import UserForms from "../forms/addForms";
+import { userObject } from "@/app/components/common/userObject";
 
 export const  DeleteBtn = ({ id}: { id: string}) => {
     
@@ -42,12 +43,8 @@ export const  DeleteBtn = ({ id}: { id: string}) => {
     
                     </div>
                    
-                    <div className="mt-5 flex justify-between">
-                        <button onClick={()=> setShowModal(false)} 
-                            className="bg-gray-400 hover:bg-gray-500 px-3 py-2 text-white text-xl rounded-4xl">
-                                Cancel
-                        </button>
-
+                    <div className="mt-5 flex abosulute bottom-10">
+                    
                         <button onClick={handleDelete} disabled={loading}  className="bg-red-600 hover:bg-red-700 px-3
                             py-2 text-xl text-white rounded-4xl">
                                 {loading ? "Deleting..." : "Yes, Delete"}
@@ -61,7 +58,6 @@ export const  DeleteBtn = ({ id}: { id: string}) => {
 
 export const UpdateBtn = ({ id}: { id: string}) => {
     const [showModal, setShowModal] = useState(false);
-    const [loading, setLoading] = useState(false);
     const { fetchUsers } = useContext(TableUserContext)!;
 
     return(
@@ -85,3 +81,26 @@ export const UpdateBtn = ({ id}: { id: string}) => {
         </>
     )
 }
+
+export const AddUser = () =>{
+        const [showModal, setShowModal] = useState(false);
+        const { fetchUsers } = useContext(TableUserContext)!;
+
+    return(
+        <div>
+            <button className="bg-blue-600 hover:bg-blue-700 px-5 py-1 rounded-4xl m-1 
+            text-white flex items-center mr-2 cursor-pointer" onClick={() => setShowModal(true)}>
+                    <RiAddCircleLine />   Add 
+            </button>
+
+            <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
+                <UserForms 
+                mode="add" 
+                onSuccess={() => {
+                    fetchUsers();
+                    setShowModal(false);
+                }} />
+            </Modal>
+        </div>
+    )
+} 

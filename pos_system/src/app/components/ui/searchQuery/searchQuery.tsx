@@ -29,7 +29,7 @@ export default function SearchQuery(){
             <div className="flex items-center bg-gray-200 p-1 rounded-4xl">
                     <input type="text"
                         value={input}  
-                        className=" p-2 w-[500px] focus:outline-none " 
+                        className=" p-2 w-[500px] focus:outline-none bg-none" 
                         placeholder="Search..."
                         onChange={handleChange}
                     />

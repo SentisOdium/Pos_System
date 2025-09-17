@@ -8,6 +8,11 @@ export type userObject = {
   role:         string; 
 };
 
+export type User= {
+  name: string;
+  email: string;
+  password: string;
+}
 export const tblHeaders =[
     { KEY: "name",          label: "Name",          sortable: true  },
     { KEY: "email",         label: "Email",         sortable: true  },

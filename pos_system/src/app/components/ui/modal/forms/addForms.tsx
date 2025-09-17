@@ -1,7 +1,9 @@
     "use client";
     
-    import { useState, useContext, useEffect } from "react"
+    import { useState, useEffect } from "react"
     import axios from "axios";
+    import { UpdateFormSchema } from "@/lib/defenitions";
+import { updateSignedInUser } from "@/app/auth/userPage/updateSignedInUser";
     type UserFormProps = {
         mode: "add" | "update";
         userId?: string;
@@ -9,6 +11,7 @@
     }
 
     export default function UserForms({mode, userId, onSuccess} : UserFormProps){
+        const [errors, setErrors] = useState<{[key: string]: string}>({})
         const [formData, setFormdata] = useState({
             name: "",
             email: "",
@@ -23,14 +26,14 @@
                 const fetchUser = async () => {
                     try{
                         const res = await axios.get(`http://localhost:5000/api/accounts/${userId}`, {withCredentials: true}); 
-setFormdata({
-  name: res.data.name ?? "",
-  email: res.data.email ?? "",
-  contactNo: res.data.contactNo ?? "",
-  password: res.data.password ?? "",
-  description: res.data.description ?? "",
-  role: res.data.role ?? "",
-});
+                        setFormdata({
+                            name: res.data.name ?? "",
+                            email: res.data.email ?? "",
+                            contactNo: res.data.contactNo ?? "",
+                            password: res.data.password ?? "",
+                            description: res.data.description ?? "",
+                            role: res.data.role ?? "",
+                        });
                     }catch(err){
                         console.error("Error Fetching User: ", err);
                     }
@@ -39,12 +42,27 @@ setFormdata({
             }
         },[mode, userId])
 
-        const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             setFormdata({ ...formData, [e.target.name]: e.target.value});
         };
 
         const handleSubmit = async (e: React.FormEvent) =>{
             e.preventDefault();
+
+            const userValidation = UpdateFormSchema.safeParse(formData);
+
+            if(!userValidation.success){
+                const fieldErrors: {[key: string]: string} = {};
+
+                userValidation.error.issues.forEach((err: any) =>{
+                    if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message; 
+                });
+
+                setErrors(fieldErrors);
+                return;
+            }
+
+            setErrors({});
 
             try {
                 if(mode === "add"){
@@ -55,7 +73,7 @@ setFormdata({
                     alert("Fallback");
                 }
 
-                    if (onSuccess) onSuccess();
+                if (onSuccess) onSuccess();
 
             } catch (err) {
                 console.error("Error in submitting Form", err);
@@ -64,52 +82,71 @@ setFormdata({
 
         return(
         <form onSubmit={handleSubmit}className="flex flex-col gap-2">
+            
+            {errors.name && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.name}</p>)}
             <input 
                 type="text"
                 name="name" 
                 placeholder="Name" 
-                className="input-field"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
                 value={formData.name}
                 onChange={handleChange}
                 />
-
+            
+            {errors.email && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.email}</p>)}
             <input 
                 type="email" 
                 name="email" 
                 placeholder="Email" 
-                className="input-field"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
                 value={formData.email}
                 onChange={handleChange}/>
-
-            <input 
-                type="text" 
-                name="contactNo" 
-                placeholder="Contact No." 
-                className="input-field"
-                value={formData.contactNo}
-                onChange={handleChange}/>
-
+            
+            
+            {mode === "update" && 
+                (
+                <>
+                    {errors.contactNo && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.contactNo}</p>)}
+                    <input 
+                        type="text" 
+                        name="contactNo" 
+                        placeholder="Contact No." 
+                        className={`rounded-4xl bg-gray-200 p-2 m-1 `}
+                        value={formData.contactNo}
+                        onChange={handleChange}/>
+                </>
+                )}
+            
+            {errors.password && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.password}</p>)}
             <input 
                 type="password" 
                 name="password" 
                 placeholder="Password" 
-                className="input-field"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
                 value={formData.password}
                 onChange={handleChange}/>
 
-            <input 
-                type="text" 
-                name="description" 
-                placeholder="Description" 
-                className="input-field"
-                value={formData.description}
-                onChange={handleChange}/>
-
+            
+            {mode === "update" &&
+                (
+                <>
+                {errors.description && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.description}</p>)}
+                <input 
+                    type="text" 
+                    name="description" 
+                    placeholder="Description" 
+                    className={`rounded-4xl bg-gray-200 p-2 m-1 `}
+                    value={formData.description}
+                    onChange={handleChange}/>
+                </>
+                )}
+            
+            {errors.role && (<p className="ml-7 -mb-3 text-red-500 text-sm ">{errors.role}</p>)}
             <input 
                 type="text" 
                 name="role" 
                 placeholder="Role" 
-                className="input-field"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
                 value={formData.role}
                 onChange={handleChange}/>
 

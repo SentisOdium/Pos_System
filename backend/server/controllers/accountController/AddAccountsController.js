@@ -3,17 +3,18 @@ import bcrypt from "bcrypt";
 
 export async function addAccountsController(req, res) {
      try{
-          const {name, email, password, role} = req.body;
+          const {name, email, password,  role} = req.body;
           
                if (!name || !email || !password) {
                     return res.status(400).json({ error: "Name, email, and password are required." });
                }
 
-               const userRole = role || "user";
+               const isRegister = req.path === "/register";
+               const userDefaultRole = isRegister? "user" : role || "user";
 
-          const saltRounds = 10;
-          const hashedPassword = await bcrypt.hash(password, saltRounds);
-          const accounts = await addAccounts(name, email, hashedPassword, userRole);
+               const saltRounds = 10;
+               const hashedPassword = await bcrypt.hash(password, saltRounds);
+               const accounts = await addAccounts(name, email, hashedPassword, userDefaultRole);
           
           //delete accounts.Password;
           console.log(accounts);

@@ -1,5 +1,4 @@
-import { deleteMenu } from "../../database/menuQueries/DeleteMenu.js";
-
+import { DeleteMenu } from "../../database/menuQueries/MenuQueries.js";
 export async function deleteMenuController(req, res) {
     try {
         const {id} = req.params;
@@ -8,7 +7,7 @@ export async function deleteMenuController(req, res) {
             return res.status(400).json({error: "Failed to Locate the Menu!"});
         }
 
-        const del_Menu = await deleteMenu(id);
+        const del_Menu = await DeleteMenu(id);
 
         return res.status(200).json({
             message: "Account Successfully Deleted!",

@@ -25,6 +25,8 @@ export async function updateAccountsController(req, res) {
       role
     );
 
+
+
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: "Account not found." });
     }

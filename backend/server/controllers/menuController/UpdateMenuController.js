@@ -1,5 +1,4 @@
-import { putMenu } from "../../database/menuQueries/UpdateMenu.js";
-
+import { PutMenu } from "../../database/menuQueries/MenuQueries.js";
 export async function updateMenuController(req, res) {
     try {
         const {id} = req.params;
@@ -9,7 +8,7 @@ export async function updateMenuController(req, res) {
             return res.status(400).json({ error: "Please fillout all fields, they are required." });
         }
 
-        const updateMenu = await putMenu(id, sku, item, category, quantity, price, description);
+        const updateMenu = await PutMenu(id, sku, item, category, quantity, price, description);
         return res.status(200).json({
                message: "Menu Successfully Updated!",
                data: updateMenu,});

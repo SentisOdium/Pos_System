@@ -1,5 +1,4 @@
-import { addMenu } from "../../database/menuQueries/AddMenu.js";
-
+import { AddMenu } from "../../database/menuQueries/MenuQueries.js";
 export async function addMenuController(req, res){
     try {
         const {sku, item, category, quantity, price, description} = req.body;
@@ -7,7 +6,7 @@ export async function addMenuController(req, res){
        if (!sku || !item || !category || quantity == null || price == null || !description) {
       return res.status(400).json({ error: "All fields are required" });
     }
-        const addNewMenu = await addMenu(sku, item, category, quantity, price, description);
+        const addNewMenu = await AddMenu(sku, item, category, quantity, price, description);
         return res.status(201).json({
             message: "Menu Successfully Added!",
             data: addNewMenu,

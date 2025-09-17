@@ -23,7 +23,7 @@ export async function loginController(req, res) {
     const token = jwt.sign(
       { id: account.id, role: account.role },
       process.env.TOKEN_SECRET,
-      { expiresIn: "24h" }
+      { expiresIn: "10h" }
     );
 
     const isProduction = process.env.NODE_ENV === "production";

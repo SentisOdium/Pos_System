@@ -35,6 +35,13 @@ router.get(
   getUserController
 );
 
+/*
+ register Account
+*/
+router.post(
+  "/register", 
+  addAccountsController
+);
 
 router.post(
   "/accounts",

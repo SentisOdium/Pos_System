@@ -16,20 +16,3 @@ export async function DeleteUser(id: string){
         return false;
     }
 }
-export async function AddUser(userData: Omit<userObject, "id">){
-    try {
-        const res = await axios.post(`http://localhost:5000/api/accounts`, userData, {withCredentials: true});
-        return res.status === 201;
-    } catch (err: any) {
-        console.error("Error Adding User:", err.message);
-        return false;
-    }
-}
-export async function UpdateUser(){
-    try {
-        const res = await axios.put(`http://localhost:5000/api/accounts`, {withCredentials: true});
-
-    } catch (err: any) {
-        
-    }
-}
