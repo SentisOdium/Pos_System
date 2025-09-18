@@ -36,11 +36,11 @@ export const tblHeaders =
 
 export const tblMenuHeaders =
 [
-    { KEY: "sku",          label: "Name",          sortable: true  },
-    { KEY: "item",         label: "Email",         sortable: true  },
-    { KEY: "category",     label: "Contact No.",   sortable: true  },
-    { KEY: "quantity",     label: "Password",      sortable: true  },
-    { KEY: "price",        label: "Description",   sortable: true  },
-    { KEY: "description",  label: "Role",          sortable: true  },
-    { KEY: "action",       label: "Action",        sortable: false },
+    { KEY: "sku",          label: "Sku",          sortable: true  },
+    { KEY: "item",         label: "Item",         sortable: true  },
+    { KEY: "category",     label: "Category",     sortable: true  },
+    { KEY: "quantity",     label: "Quantity",     sortable: true  },
+    { KEY: "price",        label: "Price",        sortable: true  },
+    { KEY: "description",  label: "Description",  sortable: true  },
+    { KEY: "action",       label: "Action",       sortable: false },
 ]
