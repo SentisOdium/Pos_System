@@ -43,12 +43,15 @@ export const  DeleteBtn = ({ id}: { id: string}) => {
     
                     </div>
                    
-                    <div className="mt-5 flex abosulute bottom-10">
-                    
+                    <div className="mt-5 flex justify-between">
+                        
+                       
+
                         <button onClick={handleDelete} disabled={loading}  className="bg-red-600 hover:bg-red-700 px-3
                             py-2 text-xl text-white rounded-4xl">
                                 {loading ? "Deleting..." : "Yes, Delete"}
                         </button>
+
                     </div>
                 </div>
             </Modal>
@@ -61,7 +64,8 @@ export const UpdateBtn = ({ id}: { id: string}) => {
     const { fetchUsers } = useContext(TableUserContext)!;
 
     return(
-        <>
+        <>  
+        
 
             <button className="bg-yellow-400 hover:bg-yellow-500 px-5 py-1 rounded-4xl m-1 text-white
             flex items-center mr-2 cursor-pointer" onClick={() => setShowModal(true)}>
@@ -104,3 +108,15 @@ export const AddUser = () =>{
         </div>
     )
 } 
+
+export const CancelBtn = ({onClose}: {onClose: () => void}) =>{
+    const [showModal, setShowModal] = useState(false);
+
+    return(
+        <button className="text-white bg-gray-400 hover:bg-gray-600 px-5 py-1 rounded-4xl m-1 
+             flex items-center mr-2 cursor-pointer"
+                            onClick={onClose}>
+                                Cancel
+        </button>   
+    )
+}

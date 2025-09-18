@@ -8,8 +8,7 @@ export async function updateAccounts(id, name, email, contactNo,  description, r
              WHERE id = ?
             `, [ name, email, contactNo, description, role, id]
         )
-        console.log("Successfully Updated the Account!");
-        return result;
+                return result;
      }catch(err){
         console.error({ success: false, message: "Failed to Update the specified Account." });
         throw err;

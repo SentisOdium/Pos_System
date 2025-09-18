@@ -1,64 +1,64 @@
     "use client";
     
-    import { useState, useEffect } from "react"
-    import axios from "axios";
-    import { UpdateFormSchema } from "@/lib/defenitions";
-import { updateSignedInUser } from "@/app/auth/userPage/updateSignedInUser";
-    type UserFormProps = {
-        mode: "add" | "update";
-        userId?: string;
-        onSuccess?: () => void;
-    }
+import { useState, useEffect } from "react"
+import axios from "axios";
+import { UpdateFormSchema } from "@/lib/defenitions";
+import { CancelBtn } from "../buttons/tableBtn";
+type UserFormProps = {
+    mode: "add" | "update";
+    userId?: string;
+    onSuccess?: () => void;
+}
 
-    export default function UserForms({mode, userId, onSuccess} : UserFormProps){
-        const [errors, setErrors] = useState<{[key: string]: string}>({})
-        const [formData, setFormdata] = useState({
-            name: "",
-            email: "",
-            contactNo: "",
-            password: "",
-            description: "",
-            role: "",
-        });
+export default function UserForms({mode, userId, onSuccess} : UserFormProps){
+    const [errors, setErrors] = useState<{[key: string]: string}>({})
+    const [formData, setFormdata] = useState({
+        name: "",
+        email: "",
+        contactNo: "",
+        password: "",
+        description: "",
+        role: "",
+    });
         
-        useEffect(() => {
-            if(mode === "update" && userId){
-                const fetchUser = async () => {
-                    try{
-                        const res = await axios.get(`http://localhost:5000/api/accounts/${userId}`, {withCredentials: true}); 
-                        setFormdata({
-                            name: res.data.name ?? "",
-                            email: res.data.email ?? "",
-                            contactNo: res.data.contactNo ?? "",
-                            password: res.data.password ?? "",
-                            description: res.data.description ?? "",
-                            role: res.data.role ?? "",
-                        });
-                    }catch(err){
-                        console.error("Error Fetching User: ", err);
-                    }
-                };
-                fetchUser();
-            }
-        },[mode, userId])
+    useEffect(() => {
+        if(mode === "update" && userId){
+            const fetchUser = async () => {
+                try{
+                    const res = await axios.get(`http://localhost:5000/api/accounts/${userId}`, {withCredentials: true}); 
+                    setFormdata({
+                        name: res.data.name ?? "",
+                        email: res.data.email ?? "",
+                        contactNo: res.data.contactNo ?? "",
+                        password: res.data.password ?? "",
+                        description: res.data.description ?? "",
+                        role: res.data.role ?? "",
+                    });
+                }catch(err){
+                    console.error("Error Fetching User: ", err);
+                }
+            };
+            fetchUser();
+        }
+    },[mode, userId])
 
-        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-            setFormdata({ ...formData, [e.target.name]: e.target.value});
-        };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormdata({ ...formData, [e.target.name]: e.target.value});
+    };
 
-        const handleSubmit = async (e: React.FormEvent) =>{
-            e.preventDefault();
+    const handleSubmit = async (e: React.FormEvent) =>{
+        e.preventDefault();
 
-            const userValidation = UpdateFormSchema.safeParse(formData);
+        const userValidation = UpdateFormSchema.safeParse(formData);
 
-            if(!userValidation.success){
-                const fieldErrors: {[key: string]: string} = {};
+        if(!userValidation.success){
+            const fieldErrors: {[key: string]: string} = {};
 
-                userValidation.error.issues.forEach((err: any) =>{
-                    if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message; 
-                });
+            userValidation.error.issues.forEach((err: any) =>{
+                if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message; 
+            });
 
-                setErrors(fieldErrors);
+            setErrors(fieldErrors);
                 return;
             }
 
@@ -90,8 +90,7 @@ import { updateSignedInUser } from "@/app/auth/userPage/updateSignedInUser";
                 placeholder="Name" 
                 className="rounded-4xl bg-gray-200 p-2 m-1"
                 value={formData.name}
-                onChange={handleChange}
-                />
+                onChange={handleChange}/>
             
             {errors.email && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.email}</p>)}
             <input 
@@ -150,10 +149,9 @@ import { updateSignedInUser } from "@/app/auth/userPage/updateSignedInUser";
                 value={formData.role}
                 onChange={handleChange}/>
 
-
             <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-4xl">
                     {mode === "add" ? "Add User" : "Update User"}
             </button>
         </form>
