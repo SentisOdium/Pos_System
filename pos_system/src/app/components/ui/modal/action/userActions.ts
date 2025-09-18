@@ -1,6 +1,4 @@
 import axios from "axios"
-import { userObject } from "@/app/components/common/userObject";
-import { Id } from "react-toastify";
 
 export async function DeleteUser(id: string){
     try {

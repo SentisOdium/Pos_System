@@ -2,6 +2,7 @@ import { pool } from "../../config/db.js";
 
 export async function AddMenu(sku, item, category, quantity, price, description){
     try {
+    
         const [newMenu] = await pool.query(
             "INSERT INTO menu (sku, item, category, quantity, price, description) VALUES (?, ?, ?, ?, ?, ?)",
             [sku, item, category, quantity, price, description]
@@ -10,7 +11,7 @@ export async function AddMenu(sku, item, category, quantity, price, description)
     } catch (error) {
         console.error("Failed to Insert Data", error.message);
         throw error;
-    }
+    } 
 }
 
 export async function DeleteMenu(id){
@@ -28,7 +29,7 @@ export async function DeleteMenu(id){
 const allowedColumns = [ "sku", "item", "category", "price", "description"];
 const sortOrder = ["ASC", "DESC"];
 
-export async function GetMenus(offset = 0, limit = 5, search = "", column = "sku", order = "ASC"){
+export async function GetMenus(offset = 0, limit = 5, search = "", column = "sku", order = "DESC"){
 
     if(!allowedColumns.includes(column)) column = "sku";
     order = order.toUpperCase();

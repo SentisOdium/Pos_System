@@ -13,7 +13,8 @@ export type User= {
   email: string;
   password: string;
 }
-export const tblHeaders =[
+export const tblHeaders =
+[
     { KEY: "name",          label: "Name",          sortable: true  },
     { KEY: "email",         label: "Email",         sortable: true  },
     { KEY: "contactNo",     label: "Contact No.",   sortable: true  },
@@ -21,4 +22,25 @@ export const tblHeaders =[
     { KEY: "description",   label: "Description",   sortable: true  },
     { KEY: "role",          label: "Role",          sortable: true  },
     { KEY: "action",        label: "Action",        sortable: false },
-  ]
+]
+
+  export type menuObject = {
+  id:          string;
+  sku:         string;
+  item:        string;
+  category:    string;
+  quantity:    string; 
+  price:       string; 
+  description: string; 
+};
+
+export const tblMenuHeaders =
+[
+    { KEY: "sku",          label: "Name",          sortable: true  },
+    { KEY: "item",         label: "Email",         sortable: true  },
+    { KEY: "category",     label: "Contact No.",   sortable: true  },
+    { KEY: "quantity",     label: "Password",      sortable: true  },
+    { KEY: "price",        label: "Description",   sortable: true  },
+    { KEY: "description",  label: "Role",          sortable: true  },
+    { KEY: "action",       label: "Action",        sortable: false },
+]

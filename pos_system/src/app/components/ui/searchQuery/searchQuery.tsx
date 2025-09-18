@@ -10,6 +10,7 @@ export default function SearchQuery(){
         }
       
         const { setSearchQuery, setPage } = data;
+        
         const debounceDelay = 600;
         let debounce: NodeJS.Timeout;
 

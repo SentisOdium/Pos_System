@@ -5,7 +5,6 @@ import { RiDeleteBin2Fill,RiAlertFill , RiEditFill, RiAddCircleLine  } from "rea
 import { ToastContainer, toast } from "react-toastify";
 import { TableUserContext } from "@/app/(pages)/(protectedPages)/userTable/UserContext";
 import UserForms from "../forms/addForms";
-import { userObject } from "@/app/components/common/userObject";
 
 export const  DeleteBtn = ({ id}: { id: string}) => {
     
