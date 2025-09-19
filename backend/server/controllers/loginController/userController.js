@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { getSingleAccount } from "../../database/loginQuery/GetIdAccount.js";
 
-export async function userController(req, res) {
+export async function UserController(req, res) {
   try {
     console.log("Cookies received:", req.cookies);
     console.log("Cookies received in /profilePage:", req.cookies);

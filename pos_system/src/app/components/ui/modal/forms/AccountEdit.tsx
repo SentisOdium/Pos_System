@@ -94,16 +94,6 @@ export default function AccountEdit({ onClose }: EditUserPageProps) {
                       className="mb-10 border-1"
                     />
 
-
-                    <label className="ml-9">Role</label>
-                    <input 
-                        type="text"
-                        name="role" 
-                        placeholder="Please fill out Role" 
-                        value={user?.role || ""} 
-                        onChange={handleChange}
-                        className={`mb-10 border-1 `}/>
-
                     <button type="submit" onClick={handleUpdate} className="text-white bg-yellow-400 hover:bg-amber-300 p-2 rounded-full">
                         Update Profile
                     </button>

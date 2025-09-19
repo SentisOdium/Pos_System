@@ -6,12 +6,16 @@ import "../../styles/auth.css";
 import { loginUser } from './login';
 import { ToastContainer, toast } from 'react-toastify';
 import { LoginFormSchema } from '@/lib/defenitions';
+import { useUser } from '../userPage/userContext';
+import { fetchUser } from '../userPage/fetchSignedInUser';
 
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{[key: string]: string}>({})
+  const [loading, setLoading] = useState(false);
+  const { setUser } = useUser(); 
 
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -32,13 +36,24 @@ export default function Login() {
   }
 
   setErrors({});
+  setLoading(true);
 
   try {
-    const result = await loginUser({ email, password });
+    const result = await loginUser({ email, password }, setUser);
+
+    if(result.user){
+      setUser(result.user);
+    }else{
+      const loggedInUser = await fetchUser();
+      setUser(loggedInUser);
+    }
     toast.success("Login Successful");
     router.push("/auth/userPage");
+   
   } catch (error: any) {
     toast.error("Login failed");
+  } finally{
+    setLoading(false);
   }
 };
 
@@ -66,8 +81,11 @@ export default function Login() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             />
-                    
-                    <button type="submit" className='bg-red-500 hover:bg-red-600'>Login</button>    
+                     
+                    <button type="submit" className='bg-red-500 hover:bg-red-600'
+                    disabled={loading}>
+                      {loading ? "Logging in..." : "Login"}
+                      </button>    
                 </div>
                 
                 

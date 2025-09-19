@@ -1,5 +1,4 @@
   import React, { useContext } from 'react'
-  import { userObject } from '../../common/userObject';
   import { TableUserContext } from '@/app/(pages)/(protectedPages)/userTable/UserContext';
   import {DeleteBtn, UpdateBtn} from '../modal/buttons/tableBtn';
   export default function TableBody() {

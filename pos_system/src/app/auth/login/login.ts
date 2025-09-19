@@ -1,13 +1,15 @@
 import axios from "axios";
+import { userdata } from "../userPage/updateSignedInUser";
 
-export async function loginUser(userData: any) {
+export async function loginUser(userData: any,setUser: (user: userdata | null) => void) {
   try {
     const res = await axios.post("http://localhost:5000/api/login", userData, {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     });
 
-   
+    setUser(res.data.user);
+    
     return res.data;
   } catch (error: any) {
    console.error("Login failed full error:", error);

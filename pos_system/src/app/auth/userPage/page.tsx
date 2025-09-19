@@ -29,7 +29,6 @@ export default function UserPage() {
           <p><strong>Contact No.:</strong> {user?.contactNo || "No User Data"}</p>
           <p><strong>Password:</strong> ********</p>
           <p><strong>Description:</strong> {user?.description || "No User Data"}</p>
-          <p><strong>Role:</strong> {user?.role || "No Role Assigned"}</p>
         </div>
         <UserBtn />
         <button className='bg-red-600 hover:bg-red-700 text-white p-2 w-full m-5 rounded-4xl' onClick={handleLogout}>Logout</button>

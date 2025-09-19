@@ -35,6 +35,7 @@ export default function Navigation() {
     links = [
       { href: "/", label: "Home" },
       { href: "/auth/userPage", label: user.name || "Profile" },
+      { href: "/tes", label: "Order Here!"}
     ];
   }
 

@@ -9,7 +9,7 @@ import { updateAccountsController } from "../controllers/accountController/Updat
 
 import { loginController } from "../controllers/loginController/loginController.js";
 import { LogoutController } from "../controllers/loginController/logoutController.js";
-import { userController } from "../controllers/loginController/userController.js";
+import { UserController } from "../controllers/loginController/userController.js";
 
 // Middlewares
 import { authenticateToken } from "../middleware/LoginAuthMiddleware.js";
@@ -24,7 +24,7 @@ const router = Router();
 router.get(
   "/accounts",
   authenticateToken,
-  authorizeRoles("admin"),
+  authorizeRoles("admin", "user"),
   getAccountsController
 );
 
@@ -46,7 +46,6 @@ router.post(
 router.post(
   "/accounts",
   authenticateToken,
-  authorizeRoles("admin"),
   addAccountsController
 );
 
@@ -77,7 +76,7 @@ router.get(
   "/profile",
   authenticateToken,
   authorizeRoles("user", "admin"),
-  userController
+  UserController
 );
 
 

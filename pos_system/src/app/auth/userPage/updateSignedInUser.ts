@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { fetchUser } from "./fetchSignedInUser";
 export type userdata= {
   name?: string;
   email?: string;
@@ -15,6 +15,8 @@ export async function updateSignedInUser(id: string, data: userdata ) {
       data, 
       { withCredentials: true}
     );
+
+    
     return res.data;
   } catch (err) {
     console.error("Failed to Update user:", err);

@@ -7,7 +7,7 @@ export default function TableFooter() {
     const data = useContext(TableUserContext);
 
     if (!data) {
-      throw new Error("Table Head must be used within a PageContext.Provider");
+      throw new Error("Table Footer must be used within a PageContext.Provider");
     }
 
     

@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import Modal from "../Modal";
 import { DeleteUser} from "../action/userActions";
 import { RiDeleteBin2Fill,RiAlertFill , RiEditFill, RiAddCircleLine  } from "react-icons/ri";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import { TableUserContext } from "@/app/(pages)/(protectedPages)/userTable/UserContext";
 import UserForms from "../forms/addForms";
 
