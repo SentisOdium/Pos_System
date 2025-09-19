@@ -1,17 +1,13 @@
-  import React, { useContext } from 'react'
-  import { TableUserContext } from '@/app/(pages)/(protectedPages)/userTable/UserContext';
-  import {DeleteBtn, UpdateBtn} from '../modal/buttons/tableBtn';
-  export default function TableBody() {
-    const data = useContext(TableUserContext);
+  import React from 'react'
+  import {DeleteBtn, UpdateBtn} from '../../modal/buttons/AccountTableBtn';
+  import { userObject } from '@/app/components/common/userObject';
 
-    
-    if (!data) {
-      throw new Error("Table Body must be used within a PageContext.Provider");
-    }
-    
-    const {users, loading} = data;
-
-   
+  type TableBodyProps = {
+    accounts: userObject[];
+    loading: boolean;
+    fetchData: () => void;
+  }
+  export default function TableBody({accounts, loading, fetchData}: TableBodyProps) {
     return (
       <tbody>
         {loading? 
@@ -20,7 +16,7 @@
             <td colSpan={7} className='text-center p-4'> Loading </td>
           </tr>
         )
-        : !users || users.length === 0 ?  
+        : !accounts || accounts.length === 0 ?  
         (
           <tr>
             <td colSpan={7} className='text-center p-4'>No User Found</td>
@@ -28,7 +24,7 @@
         )
         :
         (
-          users.map(user =>(
+          accounts.map(user =>(
             <tr key={user.id}>
               <td className='p-4'>{user.name}</td>
               <td className='p-4'>{user.email}</td>
@@ -37,8 +33,8 @@
               <td className='p-4'>{user.description}</td>
               <td className='p-4'>{user.role}</td>   
               <td className='p-4 flex'>
-               <UpdateBtn id={user.id}/>
-               <DeleteBtn id={user.id}/>
+               <UpdateBtn id={user.id} fetchData={fetchData}/>
+               <DeleteBtn id={user.id} fetchData={fetchData}/>
               </td>    
             </tr>
           ))

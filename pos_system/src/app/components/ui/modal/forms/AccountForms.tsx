@@ -1,8 +1,9 @@
-    "use client";
+"use client";
     
 import { useState, useEffect } from "react"
 import axios from "axios";
 import { UpdateFormSchema } from "@/lib/defenitions";
+import { ToastContainer, toast } from "react-toastify";
 
 type UserFormProps = {
     mode: "add" | "update";
@@ -46,12 +47,14 @@ export default function UserForms({mode, userId, onSuccess} : UserFormProps){
         setFormdata({ ...formData, [e.target.name]: e.target.value});
     };
 
+    console.log("Form data:", formData);
     const handleSubmit = async (e: React.FormEvent) =>{
         e.preventDefault();
 
         const userValidation = UpdateFormSchema.safeParse(formData);
 
         if(!userValidation.success){
+            console.log("Validation failed:", userValidation.error.issues);
             const fieldErrors: {[key: string]: string} = {};
 
             userValidation.error.issues.forEach((err: any) =>{
@@ -61,14 +64,17 @@ export default function UserForms({mode, userId, onSuccess} : UserFormProps){
             setErrors(fieldErrors);
                 return;
             }
+            
 
             setErrors({});
-
+console.log("Validation passed:", userValidation.success);
             try {
                 if(mode === "add"){
                     await axios.post("http://localhost:5000/api/accounts", formData, {withCredentials: true});
+                    toast.success("User Added Successfully!");
                 }else if(mode === "update"){
-                    await axios.put(`http://localhost:5000/api/accounts/${userId}`, formData, {withCredentials: true})
+                    await axios.put(`http://localhost:5000/api/accounts/${userId}`, formData, {withCredentials: true});
+                    toast.success("User Updated Successfully!");
                 }else{
                     alert("Fallback");
                 }
@@ -77,6 +83,7 @@ export default function UserForms({mode, userId, onSuccess} : UserFormProps){
 
             } catch (err) {
                 console.error("Error in submitting Form", err);
+                toast.error("Failed to Submit Form!");
             }
         };
 

@@ -1,26 +1,24 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import Modal from "../Modal";
-import { DeleteUser} from "../action/userActions";
+import { DeleteMenu } from "../action/DeleteMenutAction";
 import { RiDeleteBin2Fill,RiAlertFill , RiEditFill, RiAddCircleLine  } from "react-icons/ri";
 import {  toast } from "react-toastify";
-import { TableUserContext } from "@/app/(pages)/(protectedPages)/userTable/UserContext";
-import UserForms from "../forms/addForms";
+import MenuForms from "../forms/MenuForms";
 
-export const  DeleteBtn = ({ id}: { id: string}) => {
+export const  DeleteBtn = ({id, fetchData}: { id: string; fetchData: () => void}) => {
     
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
-    const { fetchUsers } = useContext(TableUserContext)!;
 
     const handleDelete = async () => {
         setLoading(true);
-        const success = await DeleteUser(id);
+        const success = await DeleteMenu(id);
         setLoading(false);
 
         if(success){
             setShowModal(false);
             toast.success("User Deleted!");
-            fetchUsers();
+            fetchData();
         }else{
             toast.error("failed to Delete User!");
         }
@@ -58,9 +56,9 @@ export const  DeleteBtn = ({ id}: { id: string}) => {
     )
 }
 
-export const UpdateBtn = ({ id}: { id: string}) => {
+export const UpdateBtn = ({id, fetchData}: { id: string; fetchData: () => void}) => {
     const [showModal, setShowModal] = useState(false);
-    const { fetchUsers } = useContext(TableUserContext)!;
+
 
     return(
         <>  
@@ -72,11 +70,11 @@ export const UpdateBtn = ({ id}: { id: string}) => {
             </button>
 
             <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
-                <UserForms 
+                <MenuForms 
                 mode="update" 
                 userId={id}
                 onSuccess={() => {
-                    fetchUsers();
+                    fetchData();
                     setShowModal(false);
                 }} />
             </Modal>
@@ -87,7 +85,6 @@ export const UpdateBtn = ({ id}: { id: string}) => {
 
 export const AddUser = () =>{
         const [showModal, setShowModal] = useState(false);
-        const { fetchUsers } = useContext(TableUserContext)!;
 
     return(
         <div>
@@ -97,10 +94,9 @@ export const AddUser = () =>{
             </button>
 
             <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
-                <UserForms 
+                <MenuForms 
                 mode="add" 
                 onSuccess={() => {
-                    fetchUsers();
                     setShowModal(false);
                 }} />
             </Modal>
@@ -109,7 +105,6 @@ export const AddUser = () =>{
 } 
 
 export const CancelBtn = ({onClose}: {onClose: () => void}) =>{
-    const [showModal, setShowModal] = useState(false);
 
     return(
         <button className="text-white bg-gray-400 hover:bg-gray-600 px-5 py-1 rounded-4xl m-1 

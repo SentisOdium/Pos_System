@@ -1,27 +1,47 @@
 "use client";
-import React from 'react'
-import { ToastContainer, toast } from 'react-toastify';
-import Table from '@/app/components/ui/table/table';
-import SearchQuery from '@/app/components/ui/searchQuery/searchQuery';
-import { UserProvider } from '@/app/(pages)/(protectedPages)/userTable/UserContext';
-import { AddUser } from '@/app/components/ui/modal/buttons/tableBtn';
-export default function UserTable(){
 
-  return(
-  <UserProvider>
-  <div className='w-full flex flex-col mt-15 items-center justify-center border p-5'>
-    <div className='m-5 w-full flex border justify-center'>
-      <SearchQuery />
-      <AddUser />
-    </div>
+import { userObject } from "@/app/components/common/userObject";
+import { useTableData } from "../../useTableData";
+import TableAccounts from "@/app/components/ui/Tables/accountsTable/ATableAccounts";
+import { AddUser } from "@/app/components/ui/modal/buttons/AccountTableBtn";
+import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
 
-    <div className='flex justify-center'>
-      <Table />
-    </div>
-    
-    <ToastContainer />
-  </div>
+export  default function AccountsTable(){
+    const {
+        data: accounts,
+        loading,     page, 
+        setPage,     totalPages,
+        searchQuery, setSearchQuery,
+        sortColumn,  setSortColumn,    
+        sortAsc,     setSortAsc,
+        fetchData,
+    }= useTableData<userObject>({
+        apiUrl: "http://localhost:5000/api/accounts",
+        initialSortColumn: "name",
+    })
 
-  </UserProvider>  
-  )
+    return(
+            <div className='w-full flex flex-col mt-15 items-center justify-center border p-5'>
+                <div className='m-5 w-full flex border justify-center'>
+                   
+                    <AddUser />
+                </div>
+                <div className='flex justify-center'>
+                    <TableAccounts 
+                        accounts={accounts}
+                        loading={loading}
+                        page={page}
+                        setPage={setPage}
+                        totalPages={totalPages}
+                        searchQuery={searchQuery}
+                        setsearchQuery={setSearchQuery}
+                        sortColumn={sortColumn}      
+                        sortAsc={sortAsc}
+                        setSortColumn={setSortColumn}
+                        setSortAsc={setSortAsc}
+                        fetchData={fetchData}
+                    />
+                </div>
+            </div>
+        )
 }

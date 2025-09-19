@@ -1,15 +1,14 @@
+"use client";
+
 import React,{useContext} from "react";
-import { TableMenuContext } from "@/app/(pages)/(protectedPages)/menuTable/contextMenu";
 
-export default function TableFooter() {
-    const data = useContext(TableMenuContext);
-
-    if(!data){
-      throw new Error("Table Footer must Exist within the Provider");
-    }
-
-    const {setPage, page, totalPages} = data;
-
+type TableFooterProps = {
+  page: number;
+  setPage: (page: number) => void;
+  totalPages: number;
+}
+export default function TableFooter({page, setPage, totalPages}:TableFooterProps) {
+   
   return (
     <tfoot className='border m-2'>
       <tr>

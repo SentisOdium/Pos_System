@@ -1,19 +1,14 @@
-import { tblHeaders } from "../../common/userObject";
+import { tblHeaders } from "../../../common/userObject";
 import { FaCaretUp } from "react-icons/fa";
-import { useState, useContext } from "react";
-import { TableUserContext } from '@/app/(pages)/(protectedPages)/userTable/UserContext';
  
-export default function TableHead(){
-    const data = useContext(TableUserContext);
-    
-        if (!data) {
-          throw new Error("Table Body must be used within a PageContext.Provider");
-        }
-        
-        const {sortColumn, sortAsc, setSortColumn, setSortAsc } = data;
-
+type TableHeaderProps = {
+    sortColumn: string;
+    sortAsc: boolean;
+    setSortColumn: (sortColumn: string) => void;
+    setSortAsc: (asc: boolean) => void;
+}
+export default function TableHead({sortColumn, sortAsc, setSortColumn, setSortAsc}: TableHeaderProps){
     function headerClick(column: string){
-        //console.log("this is header: ", headerId)
         if(sortColumn === column){
             setSortAsc(!sortAsc);
         }else{

@@ -1,16 +1,15 @@
-import { tblMenuHeaders } from "../../common/userObject";
+import { tblMenuHeaders } from "../../../common/userObject";
 import { FaCaretUp } from "react-icons/fa";
-import { useContext } from "react";
-import { TableMenuContext } from "@/app/(pages)/(protectedPages)/menuTable/contextMenu";
 
-export default function TableHead(){
-   const data = useContext(TableMenuContext);
+type TableHeaderProps = {
+    sortColumn: string;
+    sortAsc: boolean;
+    setSortColumn: (sortColumn: string) => void;
+    setSortAsc: (asc: boolean) => void;
+}
+export default function TableHead({sortColumn, sortAsc, setSortAsc, setSortColumn}:TableHeaderProps){
+ 
 
-   if(!data){
-    throw new Error("Table Body must be used within a PageContext.Provider");
-   }
-
-   const {sortColumn, sortAsc, setSortColumn, setSortAsc} = data;
    
    function headerClick(column: string){
         if(sortColumn === column){
