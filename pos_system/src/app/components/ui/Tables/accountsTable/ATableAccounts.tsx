@@ -3,7 +3,7 @@ import TableBody from "./AtableBody";
 import { userObject } from "@/app/components/common/userObject";
 import TableFooter from "./ATableFooter";
 
-type TableMenuProps = {
+type TableAccountsProps = {
   accounts: userObject[];
   loading: boolean;
   page: number;
@@ -16,6 +16,7 @@ type TableMenuProps = {
   sortAsc: boolean;
   setSortAsc: (asc: boolean) => void;
   fetchData: () => void; 
+  setLimit: (limit: number) => void;
 }
 
 export default function TableAccounts({
@@ -30,9 +31,10 @@ export default function TableAccounts({
     setSortColumn,
     sortAsc,
     setSortAsc,
-    fetchData
+    fetchData,
+    setLimit
   }
-    :TableMenuProps)  {
+    :TableAccountsProps)  {
 
   return (
     <div className=" inset-0 flex items-center justify-center">
@@ -50,7 +52,8 @@ export default function TableAccounts({
         <TableFooter 
           page={page}
           setPage={setPage}
-          totalPages={totalPages}/>
+          totalPages={totalPages}
+          setLimit={setLimit}/>
         
       </table>
     </div>

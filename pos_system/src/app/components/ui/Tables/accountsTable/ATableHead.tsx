@@ -1,5 +1,5 @@
 import { tblHeaders } from "../../../common/userObject";
-import { FaCaretUp } from "react-icons/fa";
+import {FaCaretUp} from  "react-icons/fa";
  
 type TableHeaderProps = {
     sortColumn: string;

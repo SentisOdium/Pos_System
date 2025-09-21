@@ -14,7 +14,7 @@ export  default function AccountsTable(){
         searchQuery, setSearchQuery,
         sortColumn,  setSortColumn,    
         sortAsc,     setSortAsc,
-        fetchData,
+        fetchData,    setLimit
     }= useTableData<userObject>({
         apiUrl: "http://localhost:5000/api/accounts",
         initialSortColumn: "name",
@@ -23,7 +23,7 @@ export  default function AccountsTable(){
     return(
             <div className='w-full flex flex-col mt-15 items-center justify-center border p-5'>
                 <div className='m-5 w-full flex border justify-center'>
-                   
+                    <SearchQuery setSearchQuery={setSearchQuery} setPage={setPage} />
                     <AddUser />
                 </div>
                 <div className='flex justify-center'>
@@ -40,7 +40,8 @@ export  default function AccountsTable(){
                         setSortColumn={setSortColumn}
                         setSortAsc={setSortAsc}
                         fetchData={fetchData}
-                    />
+                        setLimit={setLimit}
+                        />
                 </div>
             </div>
         )

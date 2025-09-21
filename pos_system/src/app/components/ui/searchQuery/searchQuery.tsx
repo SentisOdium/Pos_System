@@ -1,16 +1,9 @@
-import React, { useContext, useState } from "react";
-import { TableUserContext } from "@/app/(pages)/(protectedPages)/userTable/UserContext";
+import React, { useState } from "react";
+import { SearchQueryProps } from "../../common/userObject";
 
-export default function SearchQuery(){
-    const data = useContext(TableUserContext);
+export default function SearchQuery({setPage, setSearchQuery}: SearchQueryProps) {
     const [input, setInput] = useState("");
-
-        if (!data) {
-          throw new Error("Search must be used within a Provider");
-        }
-      
-        const { setSearchQuery, setPage } = data;
-        
+       
         const debounceDelay = 600;
         let debounce: NodeJS.Timeout;
 
@@ -30,7 +23,7 @@ export default function SearchQuery(){
             <div className="flex items-center bg-gray-200 p-1 rounded-4xl">
                     <input type="text"
                         value={input}  
-                        className=" p-2 w-[500px] focus:outline-none bg-none" 
+                        className=" p-2 w-[500px] focus:outline-none " 
                         placeholder="Search..."
                         onChange={handleChange}
                     />

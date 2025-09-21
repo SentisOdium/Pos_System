@@ -28,6 +28,7 @@ export default function Navigation() {
       { href: "/rwar", label: "Admin Dashboard" },
       { href: "/userTable", label: "Users Table" },
       { href: "/menuTable", label: "Menu Table" },
+      { href: "/orderPage", label: "Order Page!" },
       { href: "/auth/userPage", label: user.name || "Profile" },
     ];
   } else {
@@ -35,7 +36,7 @@ export default function Navigation() {
     links = [
       { href: "/", label: "Home" },
       { href: "/auth/userPage", label: user.name || "Profile" },
-      { href: "/tes", label: "Order Here!"}
+      { href: "/orderPage", label: "Order Page!" },
     ];
   }
 

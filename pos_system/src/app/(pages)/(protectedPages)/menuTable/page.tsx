@@ -2,6 +2,7 @@
 
 import { menuObject } from "@/app/components/common/userObject";
 import { useTableData } from "../../useTableData";
+import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
 import TableMenus from "@/app/components/ui/Tables/menuTable/MTableMenus";
 
 export default function MenuTable(){
@@ -12,7 +13,7 @@ export default function MenuTable(){
                 searchQuery, setSearchQuery,
                 sortColumn,  setSortColumn,    
                 sortAsc,     setSortAsc,
-                fetchData
+                fetchData,    setLimit
             } = useTableData<menuObject>({
                 apiUrl: "http://localhost:5000/api/menu",
                 initialSortColumn: "sku",
@@ -21,7 +22,7 @@ export default function MenuTable(){
     return(
         <div className='w-full flex flex-col mt-15 items-center justify-center border p-5'>
             <div className='m-5 w-full flex border justify-center'>
-                <h1>test</h1>
+                <SearchQuery setPage={setPage} setSearchQuery={setSearchQuery} />
             </div>
             <div className='flex justify-center'>
                 <TableMenus 
@@ -36,7 +37,8 @@ export default function MenuTable(){
                     sortAsc={sortAsc}
                     setSortColumn={setSortColumn}
                     setSortAsc={setSortAsc}
-                     fetchData={fetchData}
+                    fetchData={fetchData}
+                    setLimit={setLimit}
                 />
             </div>
         </div>

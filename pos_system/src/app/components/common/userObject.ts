@@ -44,3 +44,27 @@ export const tblMenuHeaders =
     { KEY: "description",  label: "Description",  sortable: true  },
     { KEY: "action",       label: "Action",       sortable: false },
 ]
+
+export type FooterProps = {
+  page: number;
+  setPage: (page: number) => void;
+  totalPages: number;
+  setLimit: (limit: number) => void;
+}
+
+
+export type PaginationProps = {
+  page: number;
+  setPage: (page: number) => void;
+  totalPages: number;
+}
+
+export type SearchQueryProps = {
+  setSearchQuery: (query: string) => void;
+  setPage: (page: number) => void;
+}
+
+export type SetRowsProps = {
+  setLimit: (limit: number) => void;
+  setPage: (page: number) => void;
+}

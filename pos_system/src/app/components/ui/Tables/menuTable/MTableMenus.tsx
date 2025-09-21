@@ -16,6 +16,7 @@ type TableMenuProps = {
   sortAsc: boolean;
   setSortAsc: (asc: boolean) => void;
   fetchData: () => void;
+  setLimit: (limit: number) => void;
 }
 export default function TableMenus({
     menu, 
@@ -29,7 +30,8 @@ export default function TableMenus({
     setSortColumn,
     sortAsc,
     setSortAsc,
-    fetchData}
+    fetchData,
+    setLimit}
     :TableMenuProps) 
 
 {
@@ -48,7 +50,8 @@ export default function TableMenus({
         <TableFooter 
           page={page}
           setPage={setPage}
-          totalPages={totalPages}/>
+          totalPages={totalPages}
+          setLimit={setLimit}/>
       </table>
     </div>
   );
