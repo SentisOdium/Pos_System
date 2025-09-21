@@ -89,74 +89,74 @@ export default function MenuForms({mode, userId, onSuccess} : UserFormProps){
 
         return(
         <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-  {errors.sku && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.sku}</p>)}
-  <input
-    type="text"
-    name="sku"
-    placeholder="SKU"
-    className="rounded-4xl bg-gray-200 p-2 m-1"
-    value={formData.sku}
-    onChange={handleChange}
-  />
+            {errors.sku && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.sku}</p>)}
+            <input
+                type="text"
+                name="sku"
+                placeholder="SKU"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
+                value={formData.sku}
+                onChange={handleChange}
+            />
 
-  {errors.item && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.item}</p>)}
-  <input
-    type="text"
-    name="item"
-    placeholder="Item"
-    className="rounded-4xl bg-gray-200 p-2 m-1"
-    value={formData.item}
-    onChange={handleChange}
-  />
+            {errors.item && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.item}</p>)}
+            <input
+                type="text"
+                name="item"
+                placeholder="Item"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
+                value={formData.item}
+                onChange={handleChange}
+            />
 
-  {errors.category && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.category}</p>)}
-  <input
-    type="text"
-    name="category"
-    placeholder="Category"
-    className="rounded-4xl bg-gray-200 p-2 m-1"
-    value={formData.category}
-    onChange={handleChange}
-  />
+            {errors.category && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.category}</p>)}
+            <input
+                type="text"
+                name="category"
+                placeholder="Category"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
+                value={formData.category}
+                onChange={handleChange}
+            />
 
-  {errors.quantity && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.quantity}</p>)}
-  <input
-    type="number"
-    name="quantity"
-    placeholder="Quantity"
-    className="rounded-4xl bg-gray-200 p-2 m-1"
-    value={formData.quantity}
-    onChange={handleChange}
-  />
+            {errors.quantity && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.quantity}</p>)}
+            <input
+                type="number"
+                name="quantity"
+                placeholder="Quantity"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
+                value={formData.quantity}
+                onChange={handleChange}
+            />
 
-  {errors.price && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.price}</p>)}
-  <input
-    type="text"
-    step="0.01"
-    name="price"
-    placeholder="Price"
-    className="rounded-4xl bg-gray-200 p-2 m-1"
-    value={formData.price}
-    onChange={handleChange}
-  />
+            {errors.price && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.price}</p>)}
+            <input
+                type="text"
+                step="0.01"
+                name="price"
+                placeholder="Price"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
+                value={formData.price}
+                onChange={handleChange}
+            />
 
-  {errors.description && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.description}</p>)}
-  <input
-    type="text"
-    name="description"
-    placeholder="Description"
-    className="rounded-4xl bg-gray-200 p-2 m-1"
-    value={formData.description}
-    onChange={handleChange}
-  />
+            {errors.description && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.description}</p>)}
+            <input
+                type="text"
+                name="description"
+                placeholder="Description"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
+                value={formData.description}
+                onChange={handleChange}
+            />
 
-  <button
-    type="submit"
-    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-4xl"
-  >
-    {mode === "add" ? "Add Menu" : "Update Menu"}
-  </button>
-</form>
+            <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-4xl"
+            >
+                {mode === "add" ? "Add Menu" : "Update Menu"}
+            </button>
+        </form>
 
         )
     }

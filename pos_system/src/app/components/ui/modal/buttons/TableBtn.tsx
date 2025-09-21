@@ -3,9 +3,11 @@
 import React,{useEffect, useState} from "react";
 import { DeleteUser, DeleteMenu } from "../action/DeleteAction";
 import {  toast } from "react-toastify";
-import { success } from "zod";
-import { RiAlertFill, RiDeleteBin2Fill } from "react-icons/ri";
+import { RiAddCircleLine, RiAlertFill, RiDeleteBin2Fill, RiEditFill } from "react-icons/ri";
 import Modal from "../Modal";
+import UserForms from "../forms/AccountForms";
+import MenuForms from "../forms/MenuForms";
+
 type TableBtnProps = {
     id: string;
     fetchData: () => void;
@@ -13,12 +15,17 @@ type TableBtnProps = {
     onsuccess?: () => void;
 }
 
+type AddUpdateBtnProps = {
+    formMode: "add" | "update";
+}
+
+type CombinedTableBtnProps = TableBtnProps & AddUpdateBtnProps;
+
 export const CancelBtn = ({onClose}: {onClose: () => void}) =>{
     return(
-        <button className="text-white bg-gray-400 hover:bg-gray-600 px-5 py-1 rounded-4xl m-1 
-             flex items-center mr-2 cursor-pointer"
-                            onClick={onClose}>
-                                Cancel
+        <button className="bg-gray-400 hover:bg-gray-500 px-5 py-2 rounded-4xl m-1 
+            text-white flex items-center mr-2 cursor-pointer text-2xl" onClick={onClose}>
+                Cancel
         </button>   
     )
 }
@@ -79,15 +86,50 @@ export const DeleteBtn = ({id, fetchData, mode, onsuccess}: TableBtnProps) => {
                         <p className="text-xl">Are you sure you want to delete this {mode === "menu" ? "Item on the Menu?" : "User?"}</p>
                     </div>
                     <div className="mt-5 flex justify-between">
-                        <button onClick={handleDelete} disabled={loading}  className="bg-red-600 hover:bg-red-700 px-3
-                            py-2 text-xl text-white rounded-4xl">
-                                {loading ? "Deleting..." : "Yes, Delete"}
+                        <button onClick={handleDelete} disabled={loading}  className=" hover:bg-red-700 px-5 hover:text-white
+                            py-2 text-2xl text-red-600 rounded-4xl font-bold">
+                                {loading ? "Deleting..." : "Confirm"}
                         </button>
                         <CancelBtn onClose={() => setShowModal(false)}/>
+                            
                     </div>
+                
                  </div>
             </Modal>
             
+        </>
+    )
+}
+
+export const AddUpdateBtn = ({id, fetchData, formMode, mode}: CombinedTableBtnProps) => {
+
+    const [showModal, setShowModal] = useState(false);
+
+    return(
+        <>
+            <button className={`${formMode === "add" 
+                                    ? "bg-blue-600 hover:bg-blue-700" 
+                                    : "bg-yellow-400 hover:bg-yellow-500"} 
+                                    px-5 py-1 rounded-4xl m-1 text-white flex items-center mr-2 cursor-pointer`}
+                     onClick={() => setShowModal(true)}>
+                        {mode ==="account" &&  formMode === "add"
+                            ? <><RiAddCircleLine /> Add</>
+                            : <><RiEditFill /> Update</>}
+            </button>
+            
+            <Modal isVisible={showModal} onClose={() => setShowModal(false)}> 
+               {(() => {
+                    if(mode === "account" && formMode === "add") {
+                        return <UserForms mode="add" onSuccess={() => {setShowModal(false);}}/>
+                    }else if(mode === "account" && formMode === "update"){
+                        return <UserForms mode="update" userId={id} onSuccess={() => {fetchData(); setShowModal(false);}}/>
+                    }else if (formMode === "add") {
+                        return <MenuForms mode="add" onSuccess={() => setShowModal(false)} />;
+                    } else {
+                        return <MenuForms mode="update" onSuccess={() => setShowModal(false)} />;
+                    }
+                })()}
+            </Modal>
         </>
     )
 }

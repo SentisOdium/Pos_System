@@ -4,7 +4,7 @@ import { menuObject } from "@/app/components/common/userObject";
 import { useTableData } from "../../useTableData";
 import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
 import TableMenus from "@/app/components/ui/Tables/menuTable/MTableMenus";
-
+import  {AddUpdateBtn}  from "@/app/components/ui/modal/buttons/TableBtn";
 export default function MenuTable(){
     const   {
                 data: menu, 
@@ -23,6 +23,7 @@ export default function MenuTable(){
         <div className='w-full flex flex-col mt-15 items-center justify-center border p-5'>
             <div className='m-5 w-full flex border justify-center'>
                 <SearchQuery setPage={setPage} setSearchQuery={setSearchQuery} />
+                <AddUpdateBtn id="" fetchData={fetchData} formMode='add' mode='menu'/>
             </div>
             <div className='flex justify-center'>
                 <TableMenus 
