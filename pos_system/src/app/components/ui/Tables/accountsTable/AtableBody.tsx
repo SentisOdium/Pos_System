@@ -1,12 +1,14 @@
   import React from 'react'
-  import {DeleteBtn, UpdateBtn} from '../../modal/buttons/AccountTableBtn';
+  import {UpdateBtn} from '../../modal/buttons/AccountTableBtn';
   import { userObject } from '@/app/components/common/userObject';
+  import { DeleteBtn } from '../../modal/buttons/TableBtn';
 
   type TableBodyProps = {
     accounts: userObject[];
     loading: boolean;
     fetchData: () => void;
   }
+  
   export default function TableBody({accounts, loading, fetchData}: TableBodyProps) {
     return (
       <tbody>
@@ -34,7 +36,7 @@
               <td className='p-4'>{user.role}</td>   
               <td className='p-4 flex'>
                <UpdateBtn id={user.id} fetchData={fetchData}/>
-               <DeleteBtn id={user.id} fetchData={fetchData}/>
+               <DeleteBtn id={user.id} fetchData={fetchData} mode="account"/>
               </td>    
             </tr>
           ))

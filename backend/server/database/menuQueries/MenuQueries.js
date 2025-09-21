@@ -16,10 +16,10 @@ export async function AddMenu(sku, item, category, quantity, price, description)
 
 export async function DeleteMenu(id){
     try {
-        const [menuID] = await pool.query(
+        const [result] = await pool.query(
             "DELETE FROM menu WHERE id = ?", [id]
         );
-        return menuID;
+        return result;
     } catch (error) {
         console.error({ success: false, message: "Specfied ID cannot be found, failed to delete the Menu." });
         throw error;
@@ -34,6 +34,7 @@ export async function GetMenus(offset = 0, limit = 5, search = "", column = "sku
     if(!allowedColumns.includes(column)) column = "sku";
     order = order.toUpperCase();
     if(!sortOrder.includes(order)) order = "ASC";
+
     try{
         const [menu] = await pool.query(`
             SELECT * FROM menu
@@ -41,7 +42,8 @@ export async function GetMenus(offset = 0, limit = 5, search = "", column = "sku
              ORDER BY ${column} ${order}
             LIMIT ? OFFSET ? 
             `, [`%${search}%`,`%${search}%`,`%${search}%`,`%${search}%`,`%${search}%`,  limit, offset] )
-        return menu
+        
+            return menu
     }catch(err){
         console.error({
             message: "Failed to Fetch Menu", 

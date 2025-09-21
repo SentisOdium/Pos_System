@@ -3,13 +3,14 @@ import CardComponent from "@/app/components/ui/card/CardComponent";
 import React, {useEffect} from "react";
 import { useTableData } from "../../useTableData";
 import { menuObject } from "@/app/components/common/userObject";
-import PaginationControls from "@/app/components/ui/pagination/pagination";
+import PaginationControls from "@/app/components/ui/pagnation/pagination";
 
 export default function OrderPage() {
     const   {
                 data: menu,  setLimit, loading,     page, 
                 setPage,     totalPages,searchQuery, setSearchQuery,
-                sortColumn,  setSortColumn,    sortAsc,     setSortAsc,
+                sortColumn,  setSortColumn,    
+sortAsc,     setSortAsc,
                 fetchData
             } = useTableData<menuObject>({
                 apiUrl: "http://localhost:5000/api/menu",

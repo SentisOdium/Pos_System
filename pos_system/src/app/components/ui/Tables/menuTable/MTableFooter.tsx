@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PaginationControls from "../../pagination/pagination";
+import PaginationControls from "../../pagnation/pagination";
 import SetRows from "@/app/components/ui/setRows/setRows";
 import { FooterProps } from "@/app/components/common/userObject";
 

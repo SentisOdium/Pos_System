@@ -1,11 +1,12 @@
 import React from 'react'
 import { menuObject } from '../../../common/userObject'
-import { DeleteBtn, UpdateBtn } from '../../modal/buttons/MenuTableBtn'
+import { DeleteBtn } from '../../modal/buttons/TableBtn'
 type TableBodyProps = {
   menu: menuObject[];
   loading: boolean;
   fetchData: () => void;
 }
+
 export default function TableBody({menu, loading, fetchData}: TableBodyProps) {
     
   return (
@@ -33,8 +34,7 @@ export default function TableBody({menu, loading, fetchData}: TableBodyProps) {
               <td className='p-4'>{item.price}</td>
               <td className='p-4'>{item.description}</td>
               <td className='p-4 flex'>
-                <UpdateBtn id={item.id} fetchData={fetchData}/>
-                <DeleteBtn id={item.id} fetchData={fetchData}/>
+                <DeleteBtn id={item.id} fetchData={fetchData} mode="menu"/>
               </td>
             </tr>
           ))

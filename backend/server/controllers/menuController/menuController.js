@@ -29,25 +29,30 @@ export async function addMenuController(req, res){
 
 export async function deleteMenuController(req, res) {
     try {
-        const {id} = req.params;
+        const id = parseInt(req.params.id, 10);         
 
-        if(!id){
+        if(isNaN(id)){
             return res.status(400).json({error: "Failed to Locate the Menu!"});
         }
 
-        const del_Menu = await DeleteMenu(id);
+        const result = await DeleteMenu(id);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: "Menu item not found" });
+        }
 
         return res.status(200).json({
-            message: "Account Successfully Deleted!",
-            data: del_Menu,
+            message: "Item in Menu Successfully Deleted!",
+            data: result,
         });
     } catch (error) {
-        console.error("Error Deleting Menu:", error);
-        return res.status(500).json({error: "Failed to Delete Account"});
+        console.error("Error Deleting Item in Menu:", error);
+        return res.status(500).json({error: "Failed to Delete Item in Menu"});
     }
 }
 
 export async function getMenusController(req, res) {
+    
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 5;
     const offset = (page - 1) * limit;
