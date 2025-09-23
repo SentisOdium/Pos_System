@@ -1,6 +1,6 @@
 import React from 'react'
 import { menuObject } from '../../../common/userObject'
-import { DeleteBtn, AddUpdateBtn } from '../../modal/buttons/TableBtn'
+import { DeleteBtn, UpdateBtn } from '../../modal/buttons/TableBtn'
 
 type TableBodyProps = {
   menu: menuObject[];
@@ -21,7 +21,7 @@ export default function TableBody({menu, loading, fetchData}: TableBodyProps) {
         : !menu || menu.length === 0 ?
         (
           <tr>
-            <td colSpan={7} className='text-center p-4'>No User Found</td>
+            <td colSpan={7} className='text-center p-4'>No Items on Menu Found</td>
           </tr>
         )
         :
@@ -33,10 +33,10 @@ export default function TableBody({menu, loading, fetchData}: TableBodyProps) {
               <td className='p-4'>{item.category}</td>
               <td className='p-4'>{item.quantity}</td>
               <td className='p-4'>{item.price}</td>
-              <td className='p-4'>{item.description}</td>
+              <td className='p-4'>{item.description}</td> 
               <td className='p-4 flex'>
                 <DeleteBtn id={item.id} fetchData={fetchData} mode="menu"/>
-                <AddUpdateBtn id={item.id} fetchData={fetchData} formMode='update' mode='menu'/>
+                <UpdateBtn id={item.id} fetchData={fetchData} mode="menu"/>
               </td>
             </tr>
           ))

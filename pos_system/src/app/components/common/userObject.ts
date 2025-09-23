@@ -24,7 +24,7 @@ export const tblHeaders =
     { KEY: "action",        label: "Action",        sortable: false },
 ]
 
-  export type menuObject = {
+export type menuObject = {
   id:          string;
   sku:         string;
   item:        string;
@@ -52,7 +52,6 @@ export type FooterProps = {
   setLimit: (limit: number) => void;
 }
 
-
 export type PaginationProps = {
   page: number;
   setPage: (page: number) => void;
@@ -67,4 +66,11 @@ export type SearchQueryProps = {
 export type SetRowsProps = {
   setLimit: (limit: number) => void;
   setPage: (page: number) => void;
+}
+
+export type FormProps = {
+    mode: "add" | "update";
+    id?: string;
+    onSuccess?: () => void;
+    fetchData?: () => void; 
 }

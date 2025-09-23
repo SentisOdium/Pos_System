@@ -1,7 +1,6 @@
   import React from 'react'
-  import {UpdateBtn} from '../../modal/buttons/AccountTableBtn';
   import { userObject } from '@/app/components/common/userObject';
-  import { DeleteBtn } from '../../modal/buttons/TableBtn';
+  import { DeleteBtn, UpdateBtn } from '../../modal/buttons/TableBtn';
 
   type TableBodyProps = {
     accounts: userObject[];
@@ -35,8 +34,8 @@
               <td className='p-4'>{user.description}</td>
               <td className='p-4'>{user.role}</td>   
               <td className='p-4 flex'>
-               <UpdateBtn id={user.id} fetchData={fetchData}/>
-               <DeleteBtn id={user.id} fetchData={fetchData} mode="account"/>
+                <UpdateBtn id={user.id} fetchData={fetchData} mode="account"/>
+                <DeleteBtn id={user.id} fetchData={fetchData} mode="account"/>
               </td>    
             </tr>
           ))

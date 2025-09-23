@@ -3,15 +3,10 @@
 import { useState, useEffect } from "react"
 import axios from "axios";
 import { UpdateFormSchema } from "@/lib/defenitions";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { FormProps } from "@/app/components/common/userObject";
 
-type UserFormProps = {
-    mode: "add" | "update";
-    userId?: string;
-    onSuccess?: () => void;
-}
-
-export default function UserForms({mode, userId, onSuccess} : UserFormProps){
+export default function UserForms({mode, id, onSuccess, fetchData} : FormProps){
     const [errors, setErrors] = useState<{[key: string]: string}>({})
     const [formData, setFormdata] = useState({
         name: "",
@@ -23,10 +18,10 @@ export default function UserForms({mode, userId, onSuccess} : UserFormProps){
     });
         
     useEffect(() => {
-        if(mode === "update" && userId){
+        if(mode === "update" && id){
             const fetchUser = async () => {
                 try{
-                    const res = await axios.get(`http://localhost:5000/api/accounts/${userId}`, {withCredentials: true}); 
+                    const res = await axios.get(`http://localhost:5000/api/accounts/${id}`, {withCredentials: true}); 
                     setFormdata({
                         name: res.data.name ?? "",
                         email: res.data.email ?? "",
@@ -41,20 +36,18 @@ export default function UserForms({mode, userId, onSuccess} : UserFormProps){
             };
             fetchUser();
         }
-    },[mode, userId])
+    },[mode, id])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormdata({ ...formData, [e.target.name]: e.target.value});
     };
 
-    console.log("Form data:", formData);
     const handleSubmit = async (e: React.FormEvent) =>{
         e.preventDefault();
 
         const userValidation = UpdateFormSchema.safeParse(formData);
 
         if(!userValidation.success){
-            console.log("Validation failed:", userValidation.error.issues);
             const fieldErrors: {[key: string]: string} = {};
 
             userValidation.error.issues.forEach((err: any) =>{
@@ -65,21 +58,26 @@ export default function UserForms({mode, userId, onSuccess} : UserFormProps){
                 return;
             }
             
-
             setErrors({});
-console.log("Validation passed:", userValidation.success);
+
             try {
                 if(mode === "add"){
-                    await axios.post("http://localhost:5000/api/accounts", formData, {withCredentials: true});
+                    await axios.post("http://localhost:5000/api/accounts", 
+                        formData, {withCredentials: true});
                     toast.success("User Added Successfully!");
                 }else if(mode === "update"){
-                    await axios.put(`http://localhost:5000/api/accounts/${userId}`, formData, {withCredentials: true});
+                    await axios.put(`http://localhost:5000/api/accounts/${id}`, 
+                        formData, {withCredentials: true});
                     toast.success("User Updated Successfully!");
                 }else{
-                    alert("Fallback");
+                    console.error("Invalid mode");  
+                    toast.error("Invalid mode");
+                    return;
                 }
 
+                if (fetchData) fetchData();
                 if (onSuccess) onSuccess();
+               
 
             } catch (err) {
                 console.error("Error in submitting Form", err);
@@ -88,7 +86,7 @@ console.log("Validation passed:", userValidation.success);
         };
 
         return(
-        <form onSubmit={handleSubmit}className="flex flex-col gap-2">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
             
             {errors.name && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.name}</p>)}
             <input 
@@ -161,6 +159,8 @@ console.log("Validation passed:", userValidation.success);
                 className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-4xl">
                     {mode === "add" ? "Add User" : "Update User"}
             </button>
+
+    
         </form>
         )
     }

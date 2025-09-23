@@ -3,8 +3,8 @@
 import { userObject } from "@/app/components/common/userObject";
 import { useTableData } from "../../useTableData";
 import TableAccounts from "@/app/components/ui/Tables/accountsTable/ATableAccounts";
-import { AddUser } from "@/app/components/ui/modal/buttons/AccountTableBtn";
 import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
+import { AddBtn } from "@/app/components/ui/modal/buttons/TableBtn";
 
 export  default function AccountsTable(){
     const {
@@ -24,7 +24,7 @@ export  default function AccountsTable(){
             <div className='w-full flex flex-col mt-15 items-center justify-center border p-5'>
                 <div className='m-5 w-full flex border justify-center'>
                     <SearchQuery setSearchQuery={setSearchQuery} setPage={setPage} />
-                    <AddUser />
+                    <AddBtn fetchData={fetchData}  mode='account' />
                 </div>
                 <div className='flex justify-center'>
                     <TableAccounts 

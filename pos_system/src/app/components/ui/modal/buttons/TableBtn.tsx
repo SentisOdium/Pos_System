@@ -1,6 +1,6 @@
 "use client";
 
-import React,{useEffect, useState} from "react";
+import React,{ useState } from "react";
 import { DeleteUser, DeleteMenu } from "../action/DeleteAction";
 import {  toast } from "react-toastify";
 import { RiAddCircleLine, RiAlertFill, RiDeleteBin2Fill, RiEditFill } from "react-icons/ri";
@@ -9,17 +9,14 @@ import UserForms from "../forms/AccountForms";
 import MenuForms from "../forms/MenuForms";
 
 type TableBtnProps = {
-    id: string;
     fetchData: () => void;
     mode: "menu" | "account";
     onsuccess?: () => void;
 }
 
-type AddUpdateBtnProps = {
-    formMode: "add" | "update";
-}
-
-type CombinedTableBtnProps = TableBtnProps & AddUpdateBtnProps;
+type BtnPropsWithId = TableBtnProps & {
+    id: string;
+};
 
 export const CancelBtn = ({onClose}: {onClose: () => void}) =>{
     return(
@@ -30,7 +27,7 @@ export const CancelBtn = ({onClose}: {onClose: () => void}) =>{
     )
 }
 
-export const DeleteBtn = ({id, fetchData, mode, onsuccess}: TableBtnProps) => {
+export const DeleteBtn = ({id, fetchData, mode, onsuccess}: BtnPropsWithId) => {
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -101,34 +98,54 @@ export const DeleteBtn = ({id, fetchData, mode, onsuccess}: TableBtnProps) => {
     )
 }
 
-export const AddUpdateBtn = ({id, fetchData, formMode, mode}: CombinedTableBtnProps) => {
-
+export const AddBtn = ({fetchData, mode}: TableBtnProps) => {
     const [showModal, setShowModal] = useState(false);
-
+    
     return(
         <>
-            <button className={`${formMode === "add" 
-                                    ? "bg-blue-600 hover:bg-blue-700" 
-                                    : "bg-yellow-400 hover:bg-yellow-500"} 
-                                    px-5 py-1 rounded-4xl m-1 text-white flex items-center mr-2 cursor-pointer`}
-                     onClick={() => setShowModal(true)}>
-                        {mode ==="account" &&  formMode === "add"
-                            ? <><RiAddCircleLine /> Add</>
-                            : <><RiEditFill /> Update</>}
+            <button className={`bg-blue-600 hover:bg-blue-700" px-5 py-1 rounded-4xl m-1 text-white flex items-center mr-2 cursor-pointer`} 
+                onClick={() => setShowModal(true)}>
+                <RiAddCircleLine /> Add
             </button>
-            
-            <Modal isVisible={showModal} onClose={() => setShowModal(false)}> 
-               {(() => {
-                    if(mode === "account" && formMode === "add") {
-                        return <UserForms mode="add" onSuccess={() => {setShowModal(false);}}/>
-                    }else if(mode === "account" && formMode === "update"){
-                        return <UserForms mode="update" userId={id} onSuccess={() => {fetchData(); setShowModal(false);}}/>
-                    }else if (formMode === "add") {
-                        return <MenuForms mode="add" onSuccess={() => setShowModal(false)} />;
-                    } else {
-                        return <MenuForms mode="update" onSuccess={() => setShowModal(false)} />;
+
+            <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
+              {(() => {
+                    if(mode === "account"){
+                        return <UserForms mode="add" onSuccess={() => setShowModal(false)}/>;
+                    }else if(mode === "menu"){
+                        return <MenuForms mode="add" onSuccess={() => setShowModal(false)}/>;
+                    }else{
+                        return <div>Invalid mode {toast.error("Invalid mode")}</div>
                     }
                 })()}
+                <CancelBtn onClose={() => setShowModal(false)}/>
+            </Modal>
+
+        </>
+    )
+}; 
+
+export const UpdateBtn = ({id, fetchData, mode}: BtnPropsWithId) => {
+    const [showModal, setShowModal] = useState(false);
+    
+    return(
+        <>
+            <button className={`bg-yellow-400 hover:bg-yellow-500 px-5 py-1 rounded-4xl m-1 text-white flex items-center mr-2 cursor-pointer`} 
+                onClick={() => setShowModal(true)}>
+                    <RiEditFill />   Update
+            </button>
+
+            <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
+              {(() => {
+                    if(mode === "account"){
+                        return <UserForms mode="update" id={id} fetchData={fetchData} onSuccess={() => setShowModal(false)}/>;
+                    }else if(mode === "menu"){
+                        return <MenuForms mode="update" id={id} fetchData={fetchData} onSuccess={() => setShowModal(false)}/>;
+                    }else{
+                        return <div>Invalid mode {toast.error("Invalid mode")}</div>
+                    }
+                })()}
+                <CancelBtn onClose={() => setShowModal(false)}/>
             </Modal>
         </>
     )

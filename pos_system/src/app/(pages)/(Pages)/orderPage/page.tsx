@@ -7,11 +7,13 @@ import PaginationControls from "@/app/components/ui/pagnation/pagination";
 
 export default function OrderPage() {
     const   {
-                data: menu,  setLimit, loading,     page, 
-                setPage,     totalPages,searchQuery, setSearchQuery,
-                sortColumn,  setSortColumn,    
-sortAsc,     setSortAsc,
-                fetchData
+                data: menu,  
+                setLimit, 
+                loading,     
+                page, 
+                setPage,    
+                totalPages,searchQuery, 
+                setSearchQuery,
             } = useTableData<menuObject>({
                 apiUrl: "http://localhost:5000/api/menu",
                 initialSortColumn: "sku",
@@ -25,7 +27,7 @@ sortAsc,     setSortAsc,
             }
     
     return (
-        <div className="p-4 mt-20">
+        <div className="p-4 mt-20 flex flex-col items-center w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {menu.length > 0 ? 
                     (
@@ -54,11 +56,13 @@ sortAsc,     setSortAsc,
                     onChange={(e) => { setSearchQuery(e.target.value); setPage(1); }}
                     className="border p-1 rounded">
                     <option value="">All Categories</option>
-                    <option value="burger">Burger</option>
-                    <option value="lunch">Lunch</option>
-                    <option value="beverage">Beverages</option>
                     <option value="sides">Sides</option>
                     <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="burger">Burger</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="beverage">Beverages</option>
+                    <option value="dessert">Dessert</option>
                 </select>
             </div>
         </div>

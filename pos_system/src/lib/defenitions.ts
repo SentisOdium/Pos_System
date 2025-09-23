@@ -77,10 +77,10 @@ export const UpdateFormSchema = z.object({
 });
 
 export const MenuFormSchema = z.object({
-  sku: z.string().min(1, { message: "SKU is required" }).trim(),
+  sku: z.coerce.number().min(1, { message: "SKU is required" }),
   item: z.string().min(1, { message: "Item name is required" }).trim(),
   category: z.string().min(1, { message: "Category is required" }).trim(),
-  quantity: z.number().min(0, { message: "Quantity must be 0 or more" }),
-  price: z.number().min(0, { message: "Price must be 0 or more" }),
+  quantity:  z.coerce.number().min(0, { message: "Quantity must be 0 or more" }),
+  price:  z.coerce.number().min(0, { message: "Price must be 0 or more" }),
   description: z.string().trim(),
 });

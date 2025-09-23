@@ -11,7 +11,7 @@ type CardProps = {
 const CardComponent = ({children}: CardProps) =>{
     return(
         <div>
-            <div className="border rounded-4xl shadow-lg min-w-[300px]">
+            <div className="border rounded-4xl shadow-lg w-300px h-200px">
             
                 <div className="card-body">
                     {children}
