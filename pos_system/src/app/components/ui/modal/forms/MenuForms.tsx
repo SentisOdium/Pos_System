@@ -15,6 +15,7 @@ export default function MenuForms({mode, id, onSuccess, fetchData} : FormProps){
         quantity: "",
         price: "",
         description: "",
+        url: "",
     });
 
     useEffect(() => {
@@ -29,6 +30,7 @@ export default function MenuForms({mode, id, onSuccess, fetchData} : FormProps){
                         quantity: res.data.quantity ?? "",
                         price: res.data.price ?? "",
                         description: res.data.description ?? "",
+                        url: res.data.url ?? "",
                     });
                 }catch (error) {
                     console.error("Error fetching menu data:", error);
@@ -64,8 +66,8 @@ export default function MenuForms({mode, id, onSuccess, fetchData} : FormProps){
             if(mode === "add"){
                 await axios.post (`http://localhost:5000/api/menu`,
                     formData, {withCredentials: true});
-                    setFormdata({sku: "", item: "", category: "", quantity: "", price: "", description: "",});
-                toast.success("Item Menu Added Successfully!");
+                    setFormdata({sku: "", item: "", category: "", quantity: "", price: "", description: "", url: ""});
+                    toast.success("Item Menu Added Successfully!");
             }else if (mode === "update"){
                 await axios.put(`http://localhost:5000/api/menu/${id}`,
                     formData, {withCredentials: true}); 
@@ -144,6 +146,15 @@ export default function MenuForms({mode, id, onSuccess, fetchData} : FormProps){
                 value={formData.description}
                 onChange={handleChange}/>
             
+            {errors.url && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.url}</p>)}
+            <input 
+                type="text" 
+                name="url" 
+                placeholder="Image URL"
+                className="rounded-4xl bg-gray-200 p-2 m-1"
+                value={formData.url}
+                onChange={handleChange}/>
+
             <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-4xl">

@@ -24,8 +24,6 @@ export default function TableMenus({
     page, 
     setPage, 
     totalPages, 
-    searchQuery,
-    setsearchQuery,
     sortColumn,
     setSortColumn,
     sortAsc,

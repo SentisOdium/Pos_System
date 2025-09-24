@@ -34,6 +34,7 @@ export default function TableBody({menu, loading, fetchData}: TableBodyProps) {
               <td className='p-4'>{item.quantity}</td>
               <td className='p-4'>{item.price}</td>
               <td className='p-4'>{item.description}</td> 
+              <td className='p-4'>{item.url}</td> 
               <td className='p-4 flex'>
                 <DeleteBtn id={item.id} fetchData={fetchData} mode="menu"/>
                 <UpdateBtn id={item.id} fetchData={fetchData} mode="menu"/>

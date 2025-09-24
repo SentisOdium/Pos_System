@@ -10,13 +10,13 @@ import
 
 export async function addMenuController(req, res){
     try {
-        const {sku, item, category, quantity, price, description} = req.body;
+        const {sku, item, category, quantity, price, description, url} = req.body;
 
-       if (!sku || !item || !category || quantity == null || price == null || !description) {
+       if (!sku || !item || !category || quantity == null || price == null || !description || !url ) {
         return res.status(400).json({ error: "All fields are required" });
         }
-        
-        const addNewMenu = await AddMenu(sku, item, category, quantity, price, description);
+
+        const addNewMenu = await AddMenu(sku, item, category, quantity, price, description, url);
         return res.status(201).json({
             message: "Menu Successfully Added!",
             data: addNewMenu,
@@ -97,13 +97,13 @@ export async function getItemMenuController(req, res){
 export async function updateMenuController(req, res) {
     try {
         const {id} = req.params;
-        const {sku, item, category, quantity, price, description} = req.body;
+        const {sku, item, category, quantity, price, description, url} = req.body;
 
-        if(!sku || !item || !category || !quantity || !price || !description){
+        if(!sku || !item || !category || !quantity || !price || !description || !url ){
             return res.status(400).json({ error: "Please fillout all fields, they are required." });
         }
 
-        const updateMenu = await PutMenu(id, sku, item, category, quantity, price, description);
+        const updateMenu = await PutMenu(id, sku, item, category, quantity, price, description, url);
         return res.status(200).json({
                message: "Menu Successfully Updated!",
                data: updateMenu,});

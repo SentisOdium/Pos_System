@@ -1,11 +1,11 @@
 import { pool } from "../../config/db.js";
 
-export async function AddMenu(sku, item, category, quantity, price, description){
+export async function AddMenu(sku, item, category, quantity, price, description, url){
     try {
     
         const [newMenu] = await pool.query(
-            "INSERT INTO menu (sku, item, category, quantity, price, description) VALUES (?, ?, ?, ?, ?, ?)",
-            [sku, item, category, quantity, price, description]
+            "INSERT INTO menu (sku, item, category, quantity, price, description, url) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            [sku, item, category, quantity, price, description, url]
         )
         return newMenu;
     } catch (error) {
@@ -66,13 +66,13 @@ export async function getMenuTotal(search = ""){
     }
 }
 
-export async function PutMenu(id, sku, item, category, quantity, price, description){
+export async function PutMenu(id, sku, item, category, quantity, price, description, url){
     try {
         const [updateMenu] = await pool.query(
             `UPDATE menu
-                SET sku = ?, item = ?, category = ?, quantity = ?, price = ?, description = ?
+                SET sku = ?, item = ?, category = ?, quantity = ?, price = ?, description = ?, url = ?  
                 WHERE id = ?
-            `, [sku, item, category, quantity, price, description, id]
+            `, [sku, item, category, quantity, price, description, url, id]
         );
         return updateMenu
     } catch (err) {

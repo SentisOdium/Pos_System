@@ -2,27 +2,14 @@
 
 import React  from "react";
 
-import { PiBasketBold } from "react-icons/pi";
-
 type CardProps = {
-    
+    className?: string,
     children: React.ReactNode
 }
-const CardComponent = ({children}: CardProps) =>{
+const CardComponent = ({children, className}: CardProps) => {
     return(
-        <div>
-            <div className="border rounded-4xl shadow-lg w-300px h-200px">
-            
-                <div className="card-body">
-                    {children}
-                </div>
-
-                <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 
-                rounded-3xl mt-7 mb-3 mr-5 flex place-self-end align-middle items-center gap-1"> 
-                   <PiBasketBold className="text-xl"/>  Add to Cart! 
-
-                </button>
-            </div>
+        <div  className={`bg-gray-200  rounded-2xl shadow-md overflow-hidden flex flex-col ${className}`}>
+            {children}
         </div>
     )
 }

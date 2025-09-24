@@ -32,6 +32,7 @@ export type menuObject = {
   quantity:    string; 
   price:       string; 
   description: string; 
+  url:         string;
 };
 
 export const tblMenuHeaders =
@@ -42,6 +43,7 @@ export const tblMenuHeaders =
     { KEY: "quantity",     label: "Quantity",     sortable: true  },
     { KEY: "price",        label: "Price",        sortable: true  },
     { KEY: "description",  label: "Description",  sortable: true  },
+    { KEY: "url",          label: "Image URL",    sortable: true  },
     { KEY: "action",       label: "Action",       sortable: false },
 ]
 
