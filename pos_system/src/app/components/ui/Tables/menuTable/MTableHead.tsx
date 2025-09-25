@@ -7,6 +7,7 @@ type TableHeaderProps = {
     setSortColumn: (sortColumn: string) => void;
     setSortAsc: (asc: boolean) => void;
 }
+
 export default function TableHead({sortColumn, sortAsc, setSortAsc, setSortColumn}:TableHeaderProps){
  
 

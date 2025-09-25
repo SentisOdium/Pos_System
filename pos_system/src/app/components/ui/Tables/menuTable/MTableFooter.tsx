@@ -10,9 +10,12 @@ export default function TableFooter({page, setPage, totalPages, setLimit}: Foote
   return (
     <tfoot className='border m-2'>
       <tr>
-        <td colSpan={7}>
-          <PaginationControls page={page} setPage={setPage} totalPages={totalPages}/>
-          <SetRows setPage={setPage} setLimit={setLimit} />
+        <td colSpan={8}>
+          <div className="flex flex-col items-center justify-center gap-2 p-4">
+            <PaginationControls page={page} setPage={setPage} totalPages={totalPages}/>
+            <SetRows setPage={setPage} setLimit={setLimit} />  
+          </div>
+          
         </td>
       </tr>
 

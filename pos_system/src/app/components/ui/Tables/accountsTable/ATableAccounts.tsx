@@ -25,8 +25,6 @@ export default function TableAccounts({
     page, 
     setPage, 
     totalPages, 
-    searchQuery,
-    setsearchQuery,
     sortColumn,
     setSortColumn,
     sortAsc,
@@ -37,9 +35,10 @@ export default function TableAccounts({
     :TableAccountsProps)  {
 
   return (
-    <div className=" inset-0 flex items-center justify-center">
-      <table className="border border-gray-300 rounded-lg shadow-lg bg-white">
-        <TableHead sortColumn={sortColumn} 
+    <div className="relative mx-10 border border-gray-300 rounded-lg shadow-lg bg-white overflow-hidden">
+      <table className="fixed top-55 right-10 left-10 border-gray-300 rounded-lg shadow-lg bg-white">
+        <TableHead 
+          sortColumn={sortColumn} 
           setSortColumn={setSortColumn} 
           sortAsc={sortAsc} 
           setSortAsc={setSortAsc}/>

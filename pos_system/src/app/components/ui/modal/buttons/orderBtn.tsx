@@ -38,7 +38,7 @@ export const AddItemBtn = ({id, item, price = 0, addToCart}: OrderProps) => {
         <>
             <button
                 onClick={handleClick}
-                className="bg-yellow-500 hover:bg-yellow-600 px-6 m-1 text-gray-900 font-bold py-2 rounded-full mt-4">
+                className="bg-yellow-500 hover:bg-yellow-600 px-3 m-1 text-gray-900 font-bold py-2 rounded-full mt-4">
                     Add to Cart!                              
             </button>
 

@@ -8,7 +8,7 @@ import SetRows from "../../setRows/setRows";
 export default function TableFooter({page, setPage, totalPages, setLimit}: FooterProps) {
    
   return (
-    <tfoot className='border m-2 '>
+    <tfoot className='m-2'>
       <tr>
         <td colSpan={7}>
           <PaginationControls page={page} setPage={setPage} totalPages={totalPages}/>

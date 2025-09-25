@@ -20,12 +20,12 @@ export const ImagePreview =({item, price, description, url}: ItemProps) => {
     const openModalFunction = () => {
         setShowModal(true);
         setLoading(true);
-        setTimeout(() => setLoading(false), 200);
+        setTimeout(() => setLoading(false), 2000);
     }
 
     return(
         <>
-            <div className="w-[175px] h-[175px] mx-auto mt-8 rounded-xl overflow-hidden">
+            <div className="w-[150px] h-[150px] mx-auto mt-8 rounded-xl overflow-hidden">
                 <img
                     src={
                         url ? url
@@ -46,10 +46,10 @@ export const ImagePreview =({item, price, description, url}: ItemProps) => {
                 ):(
                  <div>
                     <div className="flex items-center justify-center space-x-5 border-b">
-                        <div className="px-4 py-2  text-2xl font-bold text-gray-800">
+                        <div className="px-3 py-1  text-xl font-bold text-gray-800">
                             {item}
                         </div>
-                        <div className="px-4 py-2  text-2xl font-bold text-green-700">
+                        <div className="px-3 py-1  text-xl font-bold text-green-700">
                             ₱ {price}
                         </div>
                     </div> 

@@ -35,8 +35,8 @@ export default function TableMenus({
 {
 
   return (
-    <div className=" inset-0 flex items-center justify-center">
-      <table className="border border-gray-300 rounded-lg shadow-lg bg-white">
+    <div className="relative mx-10 border border-gray-300 rounded-lg shadow-lg bg-white overflow-hidden">
+      <table className="table-auto w-full border-collapse border-gray-300 rounded-lg shadow-lg bg-white">
         <TableHead 
           sortColumn={sortColumn} 
           setSortColumn={setSortColumn} 

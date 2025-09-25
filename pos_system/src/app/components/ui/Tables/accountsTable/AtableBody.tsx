@@ -30,7 +30,6 @@
               <td className='p-4'>{user.name}</td>
               <td className='p-4'>{user.email}</td>
               <td className='p-4'>{user.contactNo}</td>
-              <td className='p-4'>{user.password}</td>
               <td className='p-4'>{user.description}</td>
               <td className='p-4'>{user.role}</td>   
               <td className='p-4 flex'>

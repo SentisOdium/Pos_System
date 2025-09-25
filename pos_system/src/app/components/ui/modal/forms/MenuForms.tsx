@@ -102,11 +102,11 @@ export default function MenuForms({mode, id, onSuccess, fetchData} : FormProps){
                 onChange={handleChange}/>
 
             {errors.item && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.item}</p>)}
-            <input 
+            <input     
                 type="text" 
                 name="item" 
                 placeholder="Item"
-                className="rounded-4xl bg-gray-200 p-2 m-1"
+                className=" rounded-4xl bg-gray-200 p-2 m-1"
                 value={formData.item}
                 onChange={handleChange}/>
 

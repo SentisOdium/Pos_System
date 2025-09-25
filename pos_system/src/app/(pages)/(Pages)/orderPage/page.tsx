@@ -9,6 +9,7 @@ import { CheckoutNav } from "@/app/components/ui/checkout/checkoutNav";
 import {ImagePreview} from "@/app/components/ui/modal/buttons/itemPreviewBtn";
 import { AddItemBtn } from "@/app/components/ui/modal/buttons/orderBtn";
 import { toast } from "react-toastify";
+import { OrderPageNav } from "@/app/components/ui/dropdown/OrderPageNav";
 
 export type CartProps = {
     id?: string;
@@ -23,7 +24,7 @@ export default function OrderPage() {
                 loading,     
                 page, 
                 setPage,    
-                totalPages,searchQuery, 
+                totalPages,
                 setSearchQuery,
             } = useTableData<menuObject>({
                 apiUrl: "http://localhost:5000/api/menu?limit=12",
@@ -48,66 +49,59 @@ export default function OrderPage() {
         })
     }
     return (
-        <div className="p-4 mt-18 flex flex-col items-center">
-            <div className="absolute top-22 inset-y-0 right-0 w-100">
-               <CheckoutNav cart={cart}/> 
+        <div className="w-full fixed top-[74.5px]  z-50">
+            <OrderPageNav search={setSearchQuery} page={setPage}/>
+
+            <div className="absolute top-3 inset-y-0 right-0 w-100">
+               <CheckoutNav  cart={cart} setCart={setCart}/>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 ">
-                {menu.length > 0 ? 
-                    (
-                        menu.map((item) =>(
-                            <CardComponent
-                                key={item.id} className="w-[200px] h-[400px] gap-2">
-                                
-                                    <ImagePreview 
-                                        item={item.item} 
-                                        price={item.price}
-                                        url={item.url}
-                                        description={item.description}
-                                    />
 
-                                <div className="flex flex-col flex-1 p-4">
-                                    <h3 className="text-gray-800 font-medium text-base text-center">
-                                        {item.item}
-                                    </h3>
+            <div className="flex flex-col items-center border mt-2">
+            
+                <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 ">
+                    {menu.length > 0 ? 
+                        (
+                            menu.map((item) =>(
+                                <CardComponent
+                                    key={item.id} className="w-[180px] h-[345px] gap-2">
                                     
-                                    <p  className="mt-auto text-lg font-semibold text-center border-t pt-2 text-gray-900">
-                                        ₱ {item.price}
-                                    </p>
-
-                                    {/* to be replaced with add to cart button */}
-                                    <AddItemBtn 
-                                        id={item.id} 
-                                        item={item.item} 
-                                        price={Number(item.price)}
-                                        addToCart={addToCart}
+                                        <ImagePreview 
+                                            item={item.item} 
+                                            price={item.price}
+                                            url={item.url}
+                                            description={item.description}
                                         />
-                                    
-                                </div>
-                                                                    
-                            </CardComponent>
-                        )) ):(
-                            <p>No menu items available.</p>
-                        )
-                }
-            </div>
 
-            <div>
-                <PaginationControls page={page} setPage={setPage} totalPages={totalPages}/>
-            </div>
-            <div>
-                <select value={searchQuery}
-                    onChange={(e) => { setSearchQuery(e.target.value); setPage(1); }}
-                    className="border p-1 rounded">
-                    <option value="">All Categories</option>
-                    <option value="sides">Sides</option>
-                    <option value="breakfast">Breakfast</option>
-                    <option value="lunch">Lunch</option>
-                    <option value="burger">Burger</option>
-                    <option value="dinner">Dinner</option>
-                    <option value="beverage">Beverages</option>
-                    <option value="dessert">Dessert</option>
-                </select>
+                                    <div className="flex flex-col flex-1 p-4">
+                                        <h3 className="text-gray-800 font-medium text-base text-center">
+                                            {item.item}
+                                        </h3>
+                                        
+                                        <p  className="mt-auto text-lg font-semibold text-center border-t pt-2 text-gray-900">
+                                            ₱ {item.price}
+                                        </p>
+
+                                        {/* to be replaced with add to cart button */}
+                                        <AddItemBtn 
+                                            id={item.id} 
+                                            item={item.item} 
+                                            price={Number(item.price)}
+                                            addToCart={addToCart}
+                                        />
+                                        
+                                    </div>
+                                                                        
+                                </CardComponent>
+                            )) ):(
+                                <p>No menu items available.</p>
+                            )
+                    }
+                </div>
+
+                <div className="mt-5">
+                    <PaginationControls page={page} setPage={setPage} totalPages={totalPages}/>
+                </div>
+                
             </div>
         </div>
     )
