@@ -48,7 +48,7 @@ export default function Login() {
       setUser(loggedInUser);
     }
     toast.success("Login Successful");
-    router.push("/auth/userPage");
+    router.replace("/auth/userPage");
    
   } catch (error: any) {
     toast.error("Login failed");

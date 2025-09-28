@@ -56,6 +56,6 @@ export function useTableData<T>({apiUrl, initialSortColumn} : UseTableDataOption
             searchQuery, setSearchQuery,
             sortColumn, setSortColumn,
             sortAsc, setSortAsc,
-            fetchData,
+            fetchData
         };
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import { CartProps } from "@/app/(pages)/(Pages)/orderPage/page";
 import React from "react";
 import { PiBasketBold } from "react-icons/pi";

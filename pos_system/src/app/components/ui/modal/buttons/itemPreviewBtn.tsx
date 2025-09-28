@@ -20,7 +20,7 @@ export const ImagePreview =({item, price, description, url}: ItemProps) => {
     const openModalFunction = () => {
         setShowModal(true);
         setLoading(true);
-        setTimeout(() => setLoading(false), 2000);
+        setTimeout(() => setLoading(false), 150);
     }
 
     return(

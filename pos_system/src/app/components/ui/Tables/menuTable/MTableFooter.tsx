@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import PaginationControls from "../../pagnation/pagination";
 import SetRows from "@/app/components/ui/setRows/setRows";

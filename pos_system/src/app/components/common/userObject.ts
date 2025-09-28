@@ -46,6 +46,17 @@ export const tblMenuHeaders =
     { KEY: "action",       label: "Action",       sortable: false },
 ]
 
+export const category = [
+    {KEY: "",           label: "All"        },
+    {KEY: "sides",      label: "Sides"      }, 
+    {KEY: "breakfast",  label: "Breakfast"  },
+    {KEY: "lunch",      label: "Lunch"      }, 
+    {KEY: "burger",     label: "Burger"     },
+    {KEY: "dinner",     label: "Dinner"     },
+    {KEY: "beverage",   label: "Beverage"   }, 
+    {KEY: "dessert",    label: "Dessert"    },
+]
+
 export type FooterProps = {
   page: number;
   setPage: (page: number) => void;

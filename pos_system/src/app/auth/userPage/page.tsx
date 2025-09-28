@@ -6,14 +6,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import "../../styles/auth.css";
 import { useUser } from './userContext';
 import { logoutUser } from './logoutUser';
+import { useRouter } from "next/navigation";
 
 export default function UserPage() {
-  const { user } = useUser();
-
+  const { user, setUser } = useUser();
+  const router = useRouter();
   async function handleLogout() {
     try {
-      await logoutUser();
-      window.location.href = "/auth/login";
+      await logoutUser();      
+      setUser(null);
+      router.replace("/auth/login");
     } catch (err) {
       console.error("Logout failed", err);
       toast.error("Failed to Logout User!");
@@ -27,7 +29,6 @@ export default function UserPage() {
           <p><strong>Name:</strong> {user?.name || "No User Data"}</p>
           <p><strong>Email:</strong> {user?.email || "No User Data"}</p>
           <p><strong>Contact No.:</strong> {user?.contactNo || "No User Data"}</p>
-          <p><strong>Password:</strong> ********</p>
           <p><strong>Description:</strong> {user?.description || "No User Data"}</p>
         </div>
         <UserBtn />

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fetchUser } from "./fetchSignedInUser";
+
 export type userdata= {
   name?: string;
   email?: string;

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "../../../styles/nav.css";
 import { useUser } from "@/app/auth/userPage/userContext";
+
 export default function Navigation() {
   const pathname = usePathname();
   const { user, loading } = useUser();
@@ -15,7 +16,6 @@ export default function Navigation() {
    let links;
 
   if (!user) {
-   
     links = [
       { href: "/", label: "Home" },
       { href: "/auth/register", label: "Register" },
@@ -25,7 +25,6 @@ export default function Navigation() {
   
     links = [
       { href: "/", label: "Home" },
-      { href: "/rwar", label: "Admin Dashboard" },
       { href: "/userTable", label: "Users Table" },
       { href: "/menuTable", label: "Menu Table" },
       { href: "/orderPage", label: "Order Page!" },

@@ -18,7 +18,7 @@ export const UpdateBtn = ({id, fetchData}: { id: string; fetchData: () => void})
             <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
                 <UserForms 
                 mode="update" 
-                userId={id}
+                id={id}
                 onSuccess={() => {
                     fetchData();
                     setShowModal(false);

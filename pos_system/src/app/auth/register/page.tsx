@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { registerUser } from './register';
 import "../../styles/auth.css";
 import { useRouter } from 'next/navigation';

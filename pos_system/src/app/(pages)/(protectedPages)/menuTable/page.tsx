@@ -5,7 +5,22 @@ import { useTableData } from "../../useTableData";
 import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
 import TableMenus from "@/app/components/ui/Tables/menuTable/MTableMenus";
 import { AddBtn } from "@/app/components/ui/modal/buttons/TableBtn";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useUser } from "@/app/auth/userPage/userContext";
+
 export default function MenuTable(){
+    const router = useRouter();
+    const { user } = useUser();
+
+    useEffect(() => {
+        if(!user){
+            router.replace("/");
+        }
+        
+    }, [user, router])
+
+
     const   {
                 data: menu, 
                 loading,     page, 
@@ -18,6 +33,10 @@ export default function MenuTable(){
                 apiUrl: "http://localhost:5000/api/menu",
                 initialSortColumn: "sku",
             })
+
+    if(!user){
+        return <p>Loading...</p>
+    }
 
     return(
         <div className='w-full flex flex-col mt-15 items-center justify-center border p-5'>
