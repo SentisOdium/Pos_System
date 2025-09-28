@@ -4,7 +4,7 @@ import React,{useState} from 'react'
 import { useRouter } from "next/navigation";
 import "../../styles/auth.css";
 import { loginUser } from './login';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { LoginFormSchema } from '@/lib/defenitions';
 import { useUser } from '../userPage/userContext';
 import { fetchUser } from '../userPage/fetchSignedInUser';

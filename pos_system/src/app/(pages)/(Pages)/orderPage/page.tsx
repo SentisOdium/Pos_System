@@ -8,7 +8,6 @@ import CardComponent from "@/app/components/ui/card/CardComponent";
 import { CheckoutNav } from "@/app/components/ui/checkout/checkoutNav";
 import {ImagePreview} from "@/app/components/ui/modal/buttons/itemPreviewBtn";
 import { AddItemBtn } from "@/app/components/ui/modal/buttons/orderBtn";
-import { toast } from "react-toastify";
 import { OrderPageNav } from "@/app/components/ui/dropdown/OrderPageNav";
 
 export type CartProps = {
