@@ -9,6 +9,7 @@ import { CheckoutNav } from "@/app/components/ui/checkout/checkoutNav";
 import { ImagePreview } from "@/app/components/ui/buttons/itemPreviewBtn";
 import { AddItemBtn } from "@/app/components/ui/buttons/orderBtn";
 import { OrderPageNav } from "@/app/components/ui/dropdown/OrderPageNav";
+import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
 
 export type CartProps = {
     id?: string;
@@ -49,8 +50,8 @@ export default function OrderPage() {
     }
     return (
         <div className="w-full fixed top-[74.5px]  z-50">
-            <OrderPageNav search={setSearchQuery} page={setPage}/>
-
+            <OrderPageNav setSearchQuery={setSearchQuery} setPage={setPage}/>
+                
             <div className="absolute top-3 inset-y-0 right-0 w-100">
                <CheckoutNav  cart={cart} setCart={setCart}/>
             </div>
@@ -79,6 +80,8 @@ export default function OrderPage() {
                                         <p  className="mt-auto text-lg font-semibold text-center border-t pt-2 text-gray-900">
                                             ₱ {item.price}
                                         </p>
+
+                                       
 
                                         {/* to be replaced with add to cart button */}
                                         <AddItemBtn 

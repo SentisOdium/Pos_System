@@ -6,12 +6,12 @@ import "../../styles/auth.css";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { SignupFormSchema } from "@/lib/defenitions";
-import { useUser } from "../../components/contexts/userContext";
-
+import { isUserAuthenticated } from "@/app/components/hooks/authHooks";
 export default function Register() {
-  const { user } = useUser();
-  const router = useRouter();
 
+  isUserAuthenticated();
+  
+  const router = useRouter();
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [formData, setFormdata] = useState({
     name: "",

@@ -152,7 +152,7 @@ export default function MenuForms({mode, id, onSuccess, fetchData} : FormProps){
                 name="url" 
                 placeholder="Image URL"
                 className="rounded-4xl bg-gray-200 p-2 m-1"
-                value={formData.url}
+                
                 onChange={handleChange}/>
 
             <button

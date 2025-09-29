@@ -8,8 +8,11 @@ import { AddBtn } from "@/app/components/ui/buttons/TableBtn";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/app/components/contexts/userContext";
+import { isSignedIn } from "@/app/components/hooks/authHooks";
 
 export default function MenuTable(){
+    isSignedIn();
+
     const router = useRouter();
     const { user } = useUser();
 

@@ -5,7 +5,11 @@ import { useTableData } from "../../../components/hooks/useTableData";
 import TableAccounts from "@/app/components/ui/Tables/accountsTable/ATableAccounts";
 import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
 import { AddBtn } from "@/app/components/ui/buttons/TableBtn";
+import { isSignedIn } from "@/app/components/hooks/authHooks";
+
 export  default function AccountsTable(){
+    isSignedIn();
+
     const {
         data: accounts,
         loading,     page, 

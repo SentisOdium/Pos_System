@@ -1,31 +1,31 @@
 import { category } from "../../common/userObject";
-
+import SearchQuery from "../searchQuery/searchQuery";
 type CategoryButtonProps = {
   label: string;
   onClick: () => void;
 };
 
 type OrderPageNavProps = {
-  search: (query: string) => void;
-  page: (page: number) => void;
+  setSearchQuery: (query: string) => void;
+  setPage: (page: number) => void;
 };
 
-export const OrderPageNav = ({ search, page }: OrderPageNavProps) => {
+export const OrderPageNav = ({ setSearchQuery, setPage }: OrderPageNavProps) => {
   return (
-    <div className="max-w-5xl mx-auto">
-      <nav className="w-full bg-amber-400 flex justify-center items-center p-2 rounded-b-4xl gap-4">
-        {category.map(({ KEY, label }) => (
-          <CategoryButton
-            key={KEY}
-            label={label}
-            onClick={() => {
-              search(KEY);
-              page(1);
-            }}
-          />
-        ))}
-      </nav>
-    </div>
+      <div className="max-w-5xl mx-auto">
+        <nav className="w-full bg-amber-400 flex justify-center items-center p-2 rounded-b-4xl gap-4">
+          {category.map(({ KEY, label }) => (
+            <CategoryButton
+              key={KEY}
+              label={label}
+              onClick={() => {
+                setSearchQuery(KEY);
+                setPage(1);
+              }}
+            />
+          ))}
+        </nav>
+      </div>
   );
 };
 

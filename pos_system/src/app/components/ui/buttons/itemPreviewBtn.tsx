@@ -1,7 +1,6 @@
 "use client";
 
 import React,{useState} from "react";
-import { toast } from "react-toastify";
 import Modal from "../modal/Modal";
 
 type ItemProps = {
@@ -16,21 +15,17 @@ export const ImagePreview =({item, price, description, url}: ItemProps) => {
 
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);  
-
+    
     const openModalFunction = () => {
         setShowModal(true);
         setLoading(true);
         setTimeout(() => setLoading(false), 150);
     }
-
     return(
         <>
             <div className="w-[150px] h-[150px] mx-auto mt-8 rounded-xl overflow-hidden">
                 <img
-                    src={
-                        url ? url
-                        : "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png?20210521171500"
-                        }
+                    src={`https://drive.google.com/thumbnail?id=${url}`}
                     alt={item}
                     className="w-full h-full object-cover object-center transition-transform duration-300 ease-in-out transform hover:scale-110"
                     onClick={openModalFunction}
@@ -55,8 +50,7 @@ export const ImagePreview =({item, price, description, url}: ItemProps) => {
                     </div> 
 
                     <div className="w-[400px] h-[400px] mx-auto mt-8 rounded-xl overflow-hidden">
-                        <img src={ url ? url
-                            : "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png?20210521171500"}
+                        <img  src={`https://drive.google.com/thumbnail?id=${url}`}
                             alt={item}
                             className="w-full h-full object-cover object-center"
                         />

@@ -8,8 +8,10 @@ import { toast } from 'react-toastify';
 import { LoginFormSchema } from '@/lib/defenitions';
 import { useUser } from '../../components/contexts/userContext';
 import { fetchUser } from '../../components/helperFunctions/fetchSignedInUser';
-
+import { isUserAuthenticated } from '@/app/components/hooks/authHooks';
 export default function Login() {
+  isUserAuthenticated();
+
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +19,6 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { user, setUser } = useUser(); 
 
-  
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   
@@ -57,7 +58,6 @@ export default function Login() {
     setLoading(false);
   }
 };
-
   return (
    <div className='container'>
         <div className='form-container'>
