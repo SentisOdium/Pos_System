@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { useTableData } from "../../useTableData";
+import { useTableData } from "../../../components/hooks/useTableData";
 import { menuObject } from "@/app/components/common/userObject";
 import PaginationControls from "@/app/components/ui/pagnation/pagination";
 import CardComponent from "@/app/components/ui/card/CardComponent";
 import { CheckoutNav } from "@/app/components/ui/checkout/checkoutNav";
-import {ImagePreview} from "@/app/components/ui/modal/buttons/itemPreviewBtn";
-import { AddItemBtn } from "@/app/components/ui/modal/buttons/orderBtn";
+import { ImagePreview } from "@/app/components/ui/buttons/itemPreviewBtn";
+import { AddItemBtn } from "@/app/components/ui/buttons/orderBtn";
 import { OrderPageNav } from "@/app/components/ui/dropdown/OrderPageNav";
 
 export type CartProps = {

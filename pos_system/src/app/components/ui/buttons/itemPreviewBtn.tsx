@@ -2,7 +2,7 @@
 
 import React,{useState} from "react";
 import { toast } from "react-toastify";
-import Modal from "../Modal";
+import Modal from "../modal/Modal";
 
 type ItemProps = {
     item?: string;

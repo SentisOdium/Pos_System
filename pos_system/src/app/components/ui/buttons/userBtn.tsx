@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Modal from "../Modal";
+import Modal from "../modal/Modal";
 import AccountEdit from "../forms/AccountEdit";
 
 export default function UserBtn() {

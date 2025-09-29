@@ -1,7 +1,6 @@
   import React from 'react'
   import { userObject } from '@/app/components/common/userObject';
-  import { DeleteBtn, UpdateBtn } from '../../modal/buttons/TableBtn';
-
+import { DeleteBtn, UpdateBtn } from '../../buttons/TableBtn';
   type TableBodyProps = {
     accounts: userObject[];
     loading: boolean;

@@ -1,11 +1,10 @@
 "use client";
 
 import { userObject } from "@/app/components/common/userObject";
-import { useTableData } from "../../useTableData";
+import { useTableData } from "../../../components/hooks/useTableData";
 import TableAccounts from "@/app/components/ui/Tables/accountsTable/ATableAccounts";
 import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
-import { AddBtn } from "@/app/components/ui/modal/buttons/TableBtn";
-
+import { AddBtn } from "@/app/components/ui/buttons/TableBtn";
 export  default function AccountsTable(){
     const {
         data: accounts,

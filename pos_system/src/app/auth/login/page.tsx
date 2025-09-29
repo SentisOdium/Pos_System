@@ -3,11 +3,11 @@
 import React,{useState} from 'react'
 import { useRouter } from "next/navigation";
 import "../../styles/auth.css";
-import { loginUser } from './login';
+import { loginUser } from '../../components/helperFunctions/loginUser';
 import { toast } from 'react-toastify';
 import { LoginFormSchema } from '@/lib/defenitions';
-import { useUser } from '../userPage/userContext';
-import { fetchUser } from '../userPage/fetchSignedInUser';
+import { useUser } from '../../components/contexts/userContext';
+import { fetchUser } from '../../components/helperFunctions/fetchSignedInUser';
 
 export default function Login() {
   const router = useRouter();
@@ -15,8 +15,9 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{[key: string]: string}>({})
   const [loading, setLoading] = useState(false);
-  const { setUser } = useUser(); 
+  const { user, setUser } = useUser(); 
 
+  
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   

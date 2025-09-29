@@ -1,8 +1,8 @@
 "use client";
 import React,{useState, useEffect} from "react";
-import { ToastContainer, toast } from "react-toastify";
-import { fetchUser } from "@/app/auth/userPage/fetchSignedInUser";
-import { updateSignedInUser } from "@/app/auth/userPage/updateSignedInUser";
+import { toast } from "react-toastify";
+import { fetchUser } from "@/app/components/helperFunctions/fetchSignedInUser";
+import { updateSignedInUser } from "@/app/components/helperFunctions/updateSignedInUser";
 
 type EditUserPageProps = {
   onClose: () => void;

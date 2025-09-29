@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Modal from "../Modal";
+import Modal from "../modal/Modal";
 import { toast } from "react-toastify";
 import { CartProps } from "@/app/(pages)/(Pages)/orderPage/page";
 

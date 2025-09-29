@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "../../../styles/nav.css";
-import { useUser } from "@/app/auth/userPage/userContext";
+import { useUser } from "@/app/components/contexts/userContext";
 
 export default function Navigation() {
   const pathname = usePathname();

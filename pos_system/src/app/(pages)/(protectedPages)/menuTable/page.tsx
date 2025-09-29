@@ -1,13 +1,13 @@
 "use client";
 
 import { menuObject } from "@/app/components/common/userObject";
-import { useTableData } from "../../useTableData";
+import { useTableData } from "../../../components/hooks/useTableData";
 import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
 import TableMenus from "@/app/components/ui/Tables/menuTable/MTableMenus";
-import { AddBtn } from "@/app/components/ui/modal/buttons/TableBtn";
+import { AddBtn } from "@/app/components/ui/buttons/TableBtn";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useUser } from "@/app/auth/userPage/userContext";
+import { useUser } from "@/app/components/contexts/userContext";
 
 export default function MenuTable(){
     const router = useRouter();

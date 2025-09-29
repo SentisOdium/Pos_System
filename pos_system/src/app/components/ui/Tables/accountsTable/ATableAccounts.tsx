@@ -36,7 +36,7 @@ export default function TableAccounts({
 
   return (
     <div className="relative mx-10 border border-gray-300 rounded-lg shadow-lg bg-white overflow-hidden">
-      <table className="fixed top-55 right-10 left-10 border-gray-300 rounded-lg shadow-lg bg-white">
+      <table className="table-auto w-full border-collapse border-gray-300 rounded-lg shadow-lg bg-white">
         <TableHead 
           sortColumn={sortColumn} 
           setSortColumn={setSortColumn} 

@@ -1,16 +1,17 @@
 "use client";
 
 import React from 'react'
-import UserBtn from '@/app/components/ui/modal/buttons/userBtn';
+import UserBtn from '@/app/components/ui/buttons/userBtn';
 import { ToastContainer, toast } from 'react-toastify';
 import "../../styles/auth.css";
-import { useUser } from './userContext';
-import { logoutUser } from './logoutUser';
+import { useUser } from '../../components/contexts/userContext';
+import { logoutUser } from '../../components/helperFunctions/logoutUser';
 import { useRouter } from "next/navigation";
 
 export default function UserPage() {
   const { user, setUser } = useUser();
   const router = useRouter();
+
   async function handleLogout() {
     try {
       await logoutUser();      

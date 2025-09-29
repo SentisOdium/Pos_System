@@ -1,10 +1,10 @@
 "use client";
 
 import React,{ useState } from "react";
-import { DeleteUser, DeleteMenu } from "../action/DeleteAction";
+import { DeleteUser, DeleteMenu } from "../../helperFunctions/DeleteAction";
 import {  toast } from "react-toastify";
 import { RiAddCircleLine, RiAlertFill, RiDeleteBin2Fill, RiEditFill } from "react-icons/ri";
-import Modal from "../Modal";
+import Modal from "../modal/Modal";
 import UserForms from "../forms/AccountForms";
 import MenuForms from "../forms/MenuForms";
 

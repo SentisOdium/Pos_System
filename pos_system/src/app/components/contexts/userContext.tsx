@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useContext, useEffect, createContext, useState } from "react";
-import { userdata } from "./updateSignedInUser";
-import { fetchUser } from "./fetchSignedInUser";
-
+import { userdata } from "../helperFunctions/updateSignedInUser";
+import { fetchUser } from "../helperFunctions/fetchSignedInUser";
 
 type UserContextType = {
   user: userdata | null;
@@ -25,7 +24,7 @@ export function UserProvider({children} : {children: React.ReactNode}){
                 
             } catch (err) {
                 console.error("Failed to Fetch User!", err);
-                setUser(null); 
+                setUser(null);  
             }finally{
                 setLoading(false);
             }

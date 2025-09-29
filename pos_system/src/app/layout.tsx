@@ -5,7 +5,7 @@ import Navigation from './components/ui/navbar/Navigation';
 import "./globals.css";
 import "./styles/toast.css";
 import {ToastContainer, Bounce} from 'react-toastify'; 
-import { UserProvider } from "./auth/userPage/userContext";
+import { UserProvider } from "./components/contexts/userContext";
 // Load Google fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",

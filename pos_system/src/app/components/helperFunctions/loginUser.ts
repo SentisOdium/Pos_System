@@ -1,5 +1,5 @@
 import axios from "axios";
-import { userdata } from "../userPage/updateSignedInUser";
+import { userdata } from "./updateSignedInUser";
 
 export async function loginUser(userData: any,setUser: (user: userdata | null) => void) {
   try {

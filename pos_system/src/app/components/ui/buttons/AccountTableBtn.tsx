@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "../Modal";
+import Modal from "../modal/Modal";
 import { RiEditFill, RiAddCircleLine  } from "react-icons/ri";
 import UserForms from "../forms/AccountForms";
 
