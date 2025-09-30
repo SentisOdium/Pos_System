@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/app/components/contexts/userContext";
 
-export function isSignedIn (redirect: string = "/auth/login"){
+export function useSignedIn (redirect: string = "/auth/login"){
     const { user } = useUser();
     const router = useRouter();
 
@@ -15,7 +15,7 @@ export function isSignedIn (redirect: string = "/auth/login"){
     },[user, router, redirect]);
 }
 
-export function isUserAuthenticated(redirect: string = "/"){
+export function useUserAuthenticated(redirect: string = "/"){
     const { user } = useUser();
     const router = useRouter();
 

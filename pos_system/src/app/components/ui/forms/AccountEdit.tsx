@@ -56,47 +56,81 @@ export default function AccountEdit({ onClose }: EditUserPageProps) {
     }
 
   return (
-    <div className="flex flex-col border-2 w-full p-10">
-                    <label className="ml-9">Name</label>
-                    <input 
-                        type="text"
-                        name="name" 
-                        placeholder=" Please fill out Name"
-                        value={user?.name || ""} 
-                        onChange={handleChange}
-                        className="mb-10 border-1"/>
+    <div className="flex flex-col border-2 w-full p-8 rounded-xl bg-white shadow-sm">
+      {/* Name */}
+      <div className="flex items-center mb-4">
+        <label htmlFor="name" className="w-40 font-semibold">
+          Name
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Please fill out Name"
+          value={user?.name || ""}
+          onChange={handleChange}
+          className="flex-1 rounded-lg border px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        />
+      </div>
 
-                    <label className="ml-9">Email</label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        placeholder="Please fill out Email"
-                        value={user?.email || "" } 
-                        onChange={handleChange}
-                        className="mb-10 border-1"/>
+      {/* Email */}
+      <div className="flex items-center mb-4">
+        <label htmlFor="email" className="w-40 font-semibold">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Please fill out Email"
+          value={user?.email || ""}
+          onChange={handleChange}
+          className="flex-1 rounded-lg border px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        />
+      </div>
 
-                    <label className="ml-9">Contact Number</label>
-                    <input 
-                        type="text" 
-                        name="contactNo" 
-                        placeholder="Contact No. - Please fill this out"
-                        onChange={handleChange}
-                        value={user?.contactNo || ""} 
-                        className="mb-10 border-1"/>
-                  
-                    <label className="ml-9">Description</label>
-                    <textarea
-                      rows={4}
-                      name="description"
-                      placeholder="Please fill out Description"
-                      value={user?.description || ""}
-                      onChange={handleChange}
-                      className="mb-10 border-1"
-                    />
+      {/* Contact Number */}
+      <div className="flex items-center mb-4">
+        <label htmlFor="contactNo" className="w-40 font-semibold">
+          Contact Number
+        </label>
+        <input
+          type="text"
+          id="contactNo"
+          name="contactNo"
+          placeholder="Contact No. - Please fill this out"
+          value={user?.contactNo || ""}
+          onChange={handleChange}
+          className="flex-1 rounded-lg border px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        />
+      </div>
 
-                    <button type="submit" onClick={handleUpdate} className="text-white bg-yellow-400 hover:bg-amber-300 p-2 rounded-full">
-                        Update Profile
-                    </button>
+      {/* Description */}
+      <div className="flex items-start mb-6">
+        <label htmlFor="description" className="w-40 font-semibold mt-2">
+          Description
+        </label>
+        <textarea
+          id="description"
+          rows={4}
+          name="description"
+          placeholder="Please fill out Description"
+          value={user?.description || ""}
+          onChange={handleChange}
+          className="flex-1 rounded-lg border px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        />
+      </div>
+
+      {/* Submit button */}
+      <div className="flex justify-end">
+        <button
+          type="submit"
+          onClick={handleUpdate}
+          className="text-white bg-yellow-400 hover:bg-amber-300 px-6 py-2 rounded-full font-semibold transition-colors"
+        >
+          Update Profile
+        </button>
+      </div>
     </div>
   );
 }

@@ -18,7 +18,6 @@ export default function Navigation() {
   if (!user) {
     links = [
       { href: "/", label: "Home" },
-      { href: "/orderPage", label: "Menu"},
       { href: "/auth/register", label: "Register" },
       { href: "/auth/login", label: "Login" },
       
@@ -29,6 +28,7 @@ export default function Navigation() {
       { href: "/", label: "Home" },
       { href: "/userTable", label: "Users Table" },
       { href: "/menuTable", label: "Menu Table" },
+      { href: "/salesTable", label: "Sales Table" },
       { href: "/orderPage", label: "Order Page!" },
       { href: "/auth/userPage", label: user.name || "Profile" },
     ];
@@ -56,7 +56,6 @@ export default function Navigation() {
           </Link>
         );
       })}
-      
     </nav>
   );
 }

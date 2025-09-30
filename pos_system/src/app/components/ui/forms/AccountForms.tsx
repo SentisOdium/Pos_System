@@ -86,81 +86,125 @@ export default function UserForms({mode, id, onSuccess, fetchData} : FormProps){
         };
 
         return(
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-            
-            {errors.name && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.name}</p>)}
-            <input 
-                type="text"
-                name="name" 
-                placeholder="Name" 
-                className="rounded-4xl bg-gray-200 p-2 m-1"
-                value={formData.name}
-                onChange={handleChange}/>
-            
-            {errors.email && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.email}</p>)}
-            <input 
-                type="email" 
-                name="email" 
-                placeholder="Email" 
-                className="rounded-4xl bg-gray-200 p-2 m-1"
-                value={formData.email}
-                onChange={handleChange}/>
-            
-            
-            {mode === "update" && 
-                (
-                <>
-                    {errors.contactNo && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.contactNo}</p>)}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+
+                {/* Name */}
+                {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+                <div className="flex items-center gap-1">
+                    <label htmlFor="name" className="font-semibold min-w-[120px] text-right">
+                    Name
+                    </label>
                     <input 
-                        type="text" 
-                        name="contactNo" 
-                        placeholder="Contact No." 
-                        className={`rounded-4xl bg-gray-200 p-2 m-1 `}
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
+                    className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
+                    value={formData.name}
+                    onChange={handleChange}
+                    />
+                </div>
+
+                {/* Email */}
+                {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                <div className="flex items-center gap-1">
+                    <label htmlFor="email" className="font-semibold min-w-[120px] text-right">
+                    Email
+                    </label>
+                    <input 
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
+                    value={formData.email}
+                    onChange={handleChange}
+                    />
+                </div>
+
+                {/* Contact Number (update only) */}
+                {errors.contactNo && <p className="text-red-500 text-sm">{errors.contactNo}</p>}
+                {mode === "update" && (
+                    <div className="flex items-center gap-1">
+                    <label htmlFor="contactNo" className="font-semibold min-w-[120px] text-right">
+                        Contact Number
+                    </label>
+                    <input 
+                        type="text"
+                        id="contactNo"
+                        name="contactNo"
+                        placeholder="Contact No."
+                        className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
                         value={formData.contactNo}
-                        onChange={handleChange}/>
-                </>
+                        onChange={handleChange}
+                    />
+                    </div>
                 )}
-            
-            {errors.password && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.password}</p>)}
-            <input 
-                type="password" 
-                name="password" 
-                placeholder="Password" 
-                className="rounded-4xl bg-gray-200 p-2 m-1"
-                value={formData.password}
-                onChange={handleChange}/>
 
-            
-            {mode === "update" &&
-                (
-                <>
-                {errors.description && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.description}</p>)}
-                <input 
-                    type="text" 
-                    name="description" 
-                    placeholder="Description" 
-                    className={`rounded-4xl bg-gray-200 p-2 m-1 `}
-                    value={formData.description}
-                    onChange={handleChange}/>
-                </>
+                {/* Password (add only) */}
+                {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+                {mode === "add" && (
+                    <div className="flex items-center gap-1">
+                    <label htmlFor="password" className="font-semibold min-w-[120px] text-right">
+                        Password
+                    </label>
+                    <input 
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password"
+                        className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
+                        value={formData.password}
+                        onChange={handleChange}
+                    />
+                    </div>
                 )}
-            
-            {errors.role && (<p className="ml-7 -mb-3 text-red-500 text-sm ">{errors.role}</p>)}
-            <input 
-                type="text" 
-                name="role" 
-                placeholder="Role" 
-                className="rounded-4xl bg-gray-200 p-2 m-1"
-                value={formData.role}
-                onChange={handleChange}/>
 
-            <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-4xl">
-                    {mode === "add" ? "Add User" : "Update User"}
-            </button>
+                {/* Description (update only) */}
+                {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
+                {mode === "update" && (
+                    <div className="flex items-center gap-1">
+                    <label htmlFor="description" className="font-semibold min-w-[120px] text-right">
+                        Description
+                    </label>
+                    <input 
+                        type="text"
+                        id="description"
+                        name="description"
+                        placeholder="Description"
+                        className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
+                        value={formData.description}
+                        onChange={handleChange}
+                    />
+                    </div>
+                )}
 
-    
-        </form>
+                {/* Role */}
+                {errors.role && <p className="text-red-500 text-sm">{errors.role}</p>}
+                <div className="flex items-center gap-1">
+                    <label htmlFor="role" className="font-semibold min-w-[120px] text-right">
+                        Role
+                    </label>
+                    <input 
+                    type="text"
+                    id="role"
+                    name="role"
+                    placeholder="Role"
+                    className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
+                    value={formData.role}
+                    onChange={handleChange}
+                    />
+                </div>
+
+                {/* Submit button */}
+                <div className="flex justify-end mt-2">
+                    <button
+                        type="submit"
+                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl mt-2 transition-colors">
+                            {mode === "add" ? "Add User" : "Update User"}
+                    </button>
+                </div>
+                
+            </form>
         )
     }

@@ -6,10 +6,12 @@ import "../../styles/auth.css";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { SignupFormSchema } from "@/lib/defenitions";
-import { isUserAuthenticated } from "@/app/components/hooks/authHooks";
+import { useUserAuthenticated } from "@/app/components/hooks/authHooks";
 export default function Register() {
 
-  isUserAuthenticated();
+  useEffect(() => {
+    useUserAuthenticated();    
+  },[]);;
   
   const router = useRouter();
   const [errors, setErrors] = useState<{ [key: string]: string }>({});

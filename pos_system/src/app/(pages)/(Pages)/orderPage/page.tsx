@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTableData } from "../../../components/hooks/useTableData";
 import { menuObject } from "@/app/components/common/userObject";
 import PaginationControls from "@/app/components/ui/pagnation/pagination";
@@ -20,6 +20,7 @@ export type CartProps = {
     quantity: number;
 }
 export default function OrderPage() {
+
     const [cart, setCart] = useState<CartProps[]>([]);
     const { user } = useUser();
     const   {

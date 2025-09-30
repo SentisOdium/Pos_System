@@ -1,6 +1,7 @@
 import React from 'react'
 import { menuObject } from '../../../common/userObject'
 import { DeleteBtn, UpdateBtn } from '../../buttons/TableBtn'
+
 type TableBodyProps = {
   menu: menuObject[];
   loading: boolean;

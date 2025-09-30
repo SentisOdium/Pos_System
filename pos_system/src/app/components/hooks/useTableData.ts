@@ -6,6 +6,15 @@ type UseTableDataOptions = {
     initialSortColumn: string;
 }
 
+type ApiResponse<T> ={
+    totalPages?: number;
+    users?: T[];
+    menu?: T[];
+    sales?: T[];
+    subTotalSale?: number;
+    totalSale?: number;
+}
+
 export function useTableData<T>({apiUrl, initialSortColumn} : UseTableDataOptions){
     const [data, setData] = useState<T[]>([]);
     const [loading, setLoading] = useState(false);
@@ -17,6 +26,9 @@ export function useTableData<T>({apiUrl, initialSortColumn} : UseTableDataOption
     const [searchQuery, setSearchQuery] = useState("");
     const [sortColumn, setSortColumn] = useState(initialSortColumn);
     const [sortAsc, setSortAsc] = useState(true);
+
+    const [subTotalSale, setSubTotalSale] = useState<number | null>(null);
+    const [totalSale, setTotalSale] = useState<number | null>(null);
 
     const fetchData = async () => {
         setLoading(true);
@@ -33,10 +45,19 @@ export function useTableData<T>({apiUrl, initialSortColumn} : UseTableDataOption
                 withCredentials: true,
             })
 
-            const responseData = res.data;
+            const responseData: ApiResponse<T> = res.data;
 
-            setData(responseData.users || responseData.menu || []);
+            setData(responseData.users || responseData.menu || responseData.sales || []);
             setTotalPages(responseData.totalPages || 1);
+
+            if(responseData.subTotalSale !== undefined && responseData.totalSale !== undefined){
+                setSubTotalSale(responseData.subTotalSale ?? 0);
+                setTotalSale(responseData.totalSale ?? 0);
+            }else{
+                setSubTotalSale(null);
+                setTotalSale(null);
+            }
+
         } catch (err) {
             console.error("Fetch Error", err);
         } finally{
@@ -56,6 +77,8 @@ export function useTableData<T>({apiUrl, initialSortColumn} : UseTableDataOption
             searchQuery, setSearchQuery,
             sortColumn, setSortColumn,
             sortAsc, setSortAsc,
-            fetchData
+            fetchData, subTotalSale,
+            setSubTotalSale, totalSale,
+            setTotalSale
         };
 }

@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// ================= AUTH FORMS =================
 export const SignupFormSchema = z.object({
   name: z
     .string()
@@ -22,7 +23,6 @@ export const SignupFormSchema = z.object({
 });
 
 export const LoginFormSchema = z.object({
-
   email: z
     .string()
     .email({ message: "Please enter a valid email" })
@@ -37,6 +37,8 @@ export const LoginFormSchema = z.object({
     .trim(),
 });
 
+
+// ================= USER FORMS =================
 export const UpdateFormSchema = z.object({
   name: z
     .string()
@@ -67,20 +69,22 @@ export const UpdateFormSchema = z.object({
   description: z
     .string()
     .optional()
-    .or(z.literal("")), //dunno what validation to put here, so its just needs to be string and trimmed or should this be skipped altogether?
-  
-    role: z
+    .or(z.literal("")),
+
+  role: z
     .string()
-    .min(4, {message: "Role Must be only \"user\" or \"admin\" "})
-    .max(5, {message: "Role Must be only \"user\" or \"admin\" "})
+    .min(4, { message: "Role Must be only \"user\" or \"admin\" " })
+    .max(5, { message: "Role Must be only \"user\" or \"admin\" " })
     .trim(),
 });
 
+
+// ================= MENU FORMS =================
 export const MenuFormSchema = z.object({
   sku: z.coerce.number().min(1, { message: "SKU is required" }),
   item: z.string().min(1, { message: "Item name is required" }).trim(),
   category: z.string().min(1, { message: "Category is required" }).trim(),
-  quantity:  z.coerce.number().min(0, { message: "Quantity must be 0 or more" }),
-  price:  z.coerce.number().min(0, { message: "Price must be 0 or more" }),
+  quantity: z.coerce.number().min(0, { message: "Quantity must be 0 or more" }),
+  price: z.coerce.number().min(0, { message: "Price must be 0 or more" }),
   description: z.string().trim(),
 });

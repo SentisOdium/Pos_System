@@ -90,79 +90,136 @@ export default function MenuForms({mode, id, onSuccess, fetchData} : FormProps){
 
 
     return(
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-            
-            {errors.sku && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.sku}</p>)}
-            <input 
-                type="number" 
-                name="sku" 
-                placeholder="SKU"
-                className="rounded-4xl bg-gray-200 p-2 m-1"
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+
+            {/* SKU */}
+            {errors.sku && <p className="text-red-500 text-sm">{errors.sku}</p>}
+            <div className="flex items-center gap-2">
+                <label htmlFor="sku" className="font-semibold min-w-[120px] text-right">
+                SKU
+                </label>
+                <input
+                type="number"
+                id="sku"
+                name="sku"
+                placeholder="Enter SKU"
+                className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
                 value={formData.sku}
-                onChange={handleChange}/>
+                onChange={handleChange}
+                />
+            </div>
 
-            {errors.item && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.item}</p>)}
-            <input     
-                type="text" 
-                name="item" 
-                placeholder="Item"
-                className=" rounded-4xl bg-gray-200 p-2 m-1"
+            {/* Item */}
+            {errors.item && <p className="text-red-500 text-sm">{errors.item}</p>}
+            <div className="flex items-center gap-2">
+                <label htmlFor="item" className="font-semibold min-w-[120px] text-right">
+                Item
+                </label>
+                <input
+                type="text"
+                id="item"
+                name="item"
+                placeholder="Enter item"
+                className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
                 value={formData.item}
-                onChange={handleChange}/>
+                onChange={handleChange}
+                />
+            </div>
 
-            {errors.category && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.category}</p>)}
-            <input 
-                type="text" 
-                name="category" 
-                placeholder="Category"
-                className="rounded-4xl bg-gray-200 p-2 m-1"
+            {/* Category */}
+            {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
+            <div className="flex items-center gap-2">
+                <label htmlFor="category" className="font-semibold min-w-[120px] text-right">
+                Category
+                </label>
+                <input
+                type="text"
+                id="category"
+                name="category"
+                placeholder="Enter category"
+                className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
                 value={formData.category}
-                onChange={handleChange}/>
+                onChange={handleChange}
+                />
+            </div>
 
-            {errors.quantity && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.quantity}</p>)}
-            <input 
-                type="number" 
-                name="quantity" 
-                placeholder="Quantity"
-                className="rounded-4xl bg-gray-200 p-2 m-1"
+            {/* Quantity */}
+            {errors.quantity && <p className="text-red-500 text-sm">{errors.quantity}</p>}
+            <div className="flex items-center gap-2">
+                <label htmlFor="quantity" className="font-semibold min-w-[120px] text-right">
+                Quantity
+                </label>
+                <input
+                type="number"
+                id="quantity"
+                name="quantity"
+                placeholder="Enter quantity"
+                className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
                 value={formData.quantity}
-                onChange={handleChange}/>
-            
-            {errors.price && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.price}</p>)}
-            <input 
-                type="number" 
-                name="price" 
-                placeholder="Price"
-                className="rounded-4xl bg-gray-200 p-2 m-1"
+                onChange={handleChange}
+                />
+            </div>
+
+            {/* Price */}
+            {errors.price && <p className="text-red-500 text-sm">{errors.price}</p>}
+            <div className="flex items-center gap-2">
+                <label htmlFor="price" className="font-semibold min-w-[120px] text-right">
+                Price
+                </label>
+                <input
+                type="number"
+                id="price"
+                name="price"
+                placeholder="Enter price"
+                className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
                 value={formData.price}
-                onChange={handleChange}/>
+                onChange={handleChange}
+                />
+            </div>
 
-            {errors.description && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.description}</p>)}
-            <input 
-                type="text" 
-                name="description" 
-                placeholder="Description"
-                className="rounded-4xl bg-gray-200 p-2 m-1"
+            {/* Description */}
+            {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
+            <div className="flex items-center gap-2">
+                <label htmlFor="description" className="font-semibold min-w-[120px] text-right">
+                Description
+                </label>
+                <input
+                type="text"
+                id="description"
+                name="description"
+                placeholder="Enter description"
+                className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
                 value={formData.description}
-                onChange={handleChange}/>
-            
-            {errors.url && (<p className="ml-7 text-red-500 text-sm -mb-3">{errors.url}</p>)}
-            <input 
-                type="text" 
-                name="url" 
-                placeholder="Image URL"
-                className="rounded-4xl bg-gray-200 p-2 m-1"
-                
-                onChange={handleChange}/>
+                onChange={handleChange}
+                />
+            </div>
 
-            <button
+            {/* Image URL */}
+            {errors.url && <p className="text-red-500 text-sm">{errors.url}</p>}
+            <div className="flex items-center gap-2">
+                <label htmlFor="url" className="font-semibold min-w-[120px] text-right">
+                Image URL
+                </label>
+                <input
+                type="text"
+                id="url"
+                name="url"
+                placeholder="Enter image URL"
+                className="flex-1 rounded-xl bg-gray-200 px-3 py-2"
+                value={formData.url}
+                onChange={handleChange}
+                />
+            </div>
+
+            {/* Submit */}
+            <div className="flex justify-end mt-2">
+                <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-4xl">
-                    {mode === "add" ? "Menu Item" : "Update Menu Item"}
-            </button>
-
-               
-        </form> 
-       
+                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl transition-colors"
+                >
+                {mode === "add" ? "Add Menu Item" : "Update Menu Item"}
+                </button>
+            </div>
+        </form>
     )
 }

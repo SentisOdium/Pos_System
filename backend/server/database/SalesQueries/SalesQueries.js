@@ -1,6 +1,6 @@
 import { pool } from "../../config/db.js";
 
-export async function AddSale(name, address, orders, deliveryFee, subTotal, total, ) {
+export async function AddSale(name, address, orders, deliveryFee, subTotal, total) {
     try {
         const [sale] = await pool.query(
             "INSERT INTO sales (name, address, orders, deliveryFee, subTotal, total) VALUES (?, ?, ?, ?, ?,?)",
@@ -27,7 +27,7 @@ export async function DeleteSale(orderId){
 }
 
 //whiteList columns - so that no value could be used.
-const allowedColumns = ["name", "address", "orders", "deliveryFee", "subTotal", "total"];
+const allowedColumns = ["orderId","name", "address", "orders", "deliveryFee", "subTotal", "total", "createAt"];
 const sortOrder = ["ASC", "DESC"];
 
 export async function GetSaleRecord(offset = 0, limit = 5, search = "", column = "orderId", order = "DESC", createAt){
@@ -95,7 +95,7 @@ export async function GetSaleSum(){
 
 export async function GetSaleById(orderId){
     try {
-        const [sale] = await pool.query(` SELECT * FROM sale WHERE orderId = ?`, [orderId]);
+        const [sale] = await pool.query(` SELECT * FROM sales WHERE orderId = ?`, [orderId]);
         return sale.length > 0 ? sale[0] : null;
 
     } catch (error) {

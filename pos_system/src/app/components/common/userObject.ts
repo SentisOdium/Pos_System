@@ -1,28 +1,31 @@
-export type userObject = {
-  id:           string;
-  name:         string;
-  email:        string;
-  contactNo:    string;
-  password:     string; 
-  description:  string; 
-  role:         string; 
+// ================= USER TYPES =================
+export type  userObject = {
+  id:          string;
+  name:        string;
+  email:       string;
+  contactNo:   string;
+  password:    string; 
+  description: string; 
+  role:        string; 
 };
 
-export type User= {
-  name: string;
-  email: string;
+export type User = {
+  name:     string;
+  email:    string;
   password: string;
-}
-export const tblHeaders =
-[
-    { KEY: "name",          label: "Name",          sortable: true  },
-    { KEY: "email",         label: "Email",         sortable: true  },
-    { KEY: "contactNo",     label: "Contact No.",   sortable: true  },
-    { KEY: "description",   label: "Description",   sortable: true  },
-    { KEY: "role",          label: "Role",          sortable: true  },
-    { KEY: "action",        label: "Action",        sortable: false },
-]
+};
 
+export const tblHeaders = [
+  { KEY: "name",        label: "Name",        sortable: true  },
+  { KEY: "email",       label: "Email",       sortable: true  },
+  { KEY: "contactNo",   label: "Contact No.", sortable: true  },
+  { KEY: "description", label: "Description", sortable: true  },
+  { KEY: "role",        label: "Role",        sortable: true  },
+  { KEY: "action",      label: "Action",      sortable: false },
+];
+
+
+// ================= MENU TYPES =================
 export type menuObject = {
   id:          string;
   sku:         string;
@@ -34,55 +37,84 @@ export type menuObject = {
   url:         string;
 };
 
-export const tblMenuHeaders =
-[
-    { KEY: "sku",          label: "Sku",          sortable: true  },
-    { KEY: "item",         label: "Item",         sortable: true  },
-    { KEY: "category",     label: "Category",     sortable: true  },
-    { KEY: "quantity",     label: "Quantity",     sortable: true  },
-    { KEY: "price",        label: "Price",        sortable: true  },
-    { KEY: "description",  label: "Description",  sortable: true  },
-    { KEY: "url",          label: "Image URL",    sortable: true  },
-    { KEY: "action",       label: "Action",       sortable: false },
-]
+export const tblMenuHeaders = [
+  { KEY: "sku",         label: "Sku",        sortable: true  },
+  { KEY: "item",        label: "Item",       sortable: true  },
+  { KEY: "category",    label: "Category",   sortable: true  },
+  { KEY: "quantity",    label: "Quantity",   sortable: true  },
+  { KEY: "price",       label: "Price",      sortable: true  },
+  { KEY: "description", label: "Description",sortable: true  },
+  { KEY: "url",         label: "Image URL",  sortable: true  },
+  { KEY: "action",      label: "Action",     sortable: false },
+];
 
 export const category = [
-    {KEY: "",           label: "All"        },
-    {KEY: "sides",      label: "Sides"      }, 
-    {KEY: "breakfast",  label: "Breakfast"  },
-    {KEY: "lunch",      label: "Lunch"      }, 
-    {KEY: "burger",     label: "Burger"     },
-    {KEY: "dinner",     label: "Dinner"     },
-    {KEY: "beverage",   label: "Beverage"   }, 
-    {KEY: "dessert",    label: "Dessert"    },
+  { KEY: "",          label: "All"       },
+  { KEY: "sides",     label: "Sides"     }, 
+  { KEY: "breakfast", label: "Breakfast" },
+  { KEY: "lunch",     label: "Lunch"     }, 
+  { KEY: "burger",    label: "Burger"    },
+  { KEY: "dinner",    label: "Dinner"    },
+  { KEY: "beverage",  label: "Beverage"  }, 
+  { KEY: "dessert",   label: "Dessert"   },
+];
+// ================= Sales Types =================
+export type salesObject = {
+  orderId: string;
+  name: string;
+  address: string;
+  orders: string;
+  deliveryFee: string;
+  subTotal: string;
+  total: string;
+  createAt: string;
+}
+
+export const tblSalesHeader = [
+  { KEY: "createAt",    label: "Date Ordered", sortable: true   },
+  { KEY: "name",        label: "Customer",     sortable: true   },
+  { KEY: "address",     label: "Address",      sortable: true   },
+  { KEY: "orders",      label: "Orders",       sortable: true   },
+  { KEY: "deliveryFee", label: "Delivery Fee", sortable: true   },
+  { KEY: "subTotal",    label: "SubTotal",     sortable: true   },
+  { KEY: "total",       label: "total",        sortable: true   },
+  { KEY: "action",      label: "Action",       sortable: false  },
 ]
 
+// ================= PAGINATION & UTILITY TYPES =================
 export type FooterProps = {
   page: number;
   setPage: (page: number) => void;
   totalPages: number;
   setLimit: (limit: number) => void;
-}
+};
 
 export type PaginationProps = {
   page: number;
   setPage: (page: number) => void;
   totalPages: number;
-}
+};
 
 export type SearchQueryProps = {
   setSearchQuery: (query: string) => void;
   setPage: (page: number) => void;
-}
+};
 
 export type SetRowsProps = {
   setLimit: (limit: number) => void;
   setPage: (page: number) => void;
-}
+};
 
 export type FormProps = {
-    mode: "add" | "update";
-    id?: string;
-    onSuccess?: () => void;
-    fetchData?: () => void; 
+  mode: "add" | "update";
+  id?: string;
+  onSuccess?: () => void;
+  fetchData?: () => void; 
+};
+
+export type TableHeaderProps = {
+    sortColumn: string;
+    sortAsc: boolean;
+    setSortColumn: (sortColumn: string) => void;
+    setSortAsc: (asc: boolean) => void;
 }

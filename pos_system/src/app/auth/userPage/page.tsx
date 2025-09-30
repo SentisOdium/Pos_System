@@ -1,14 +1,17 @@
 "use client";
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import UserBtn from '@/app/components/ui/buttons/userBtn';
 import { ToastContainer, toast } from 'react-toastify';
 import "../../styles/auth.css";
 import { useUser } from '../../components/contexts/userContext';
 import { logoutUser } from '../../components/helperFunctions/logoutUser';
 import { useRouter } from "next/navigation";
-
+import { useSignedIn } from '@/app/components/hooks/authHooks';
 export default function UserPage() {
+    
+      useSignedIn();    
+  
   const { user, setUser } = useUser();
   const router = useRouter();
 
