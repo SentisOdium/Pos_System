@@ -32,7 +32,7 @@ export const ImagePreview =({item, price, description, url}: ItemProps) => {
                 />
             </div>
 
-            <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
+            <Modal isVisible={showModal} onClose={() => setShowModal(false)} >
                 {loading ? (
                     <div className="flex items-center justify-center">
                         <p className="font-bold text-xl">Loading Item</p>    

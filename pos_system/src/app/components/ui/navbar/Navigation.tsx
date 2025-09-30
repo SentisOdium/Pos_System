@@ -18,8 +18,10 @@ export default function Navigation() {
   if (!user) {
     links = [
       { href: "/", label: "Home" },
+      { href: "/orderPage", label: "Menu"},
       { href: "/auth/register", label: "Register" },
       { href: "/auth/login", label: "Login" },
+      
     ];
   } else if (user.role === "admin") {
   

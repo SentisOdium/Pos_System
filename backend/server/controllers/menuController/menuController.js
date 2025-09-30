@@ -80,9 +80,7 @@ export async function getMenusController(req, res) {
 export async function getItemMenuController(req, res){
     try {
         const {id} = req.params;
-        console.log("Requested ID:", id); 
         const menu = await getItemMenu(id);
-          console.log("DB returned:", menu);
         if(!menu){
             return res.status(404).json({error: "Menu not found"});
         }

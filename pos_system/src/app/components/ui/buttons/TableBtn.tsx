@@ -18,16 +18,8 @@ type BtnPropsWithId = TableBtnProps & {
     id: string;
 };
 
-export const CancelBtn = ({onClose}: {onClose: () => void}) =>{
-    return(
-        <button className="bg-gray-400 hover:bg-gray-500 px-5 py-2 rounded-4xl m-1 
-            text-white flex items-center mr-2 cursor-pointer text-2xl" onClick={onClose}>
-                Cancel
-        </button>   
-    )
-}
-
 export const DeleteBtn = ({id, fetchData, mode, onsuccess}: BtnPropsWithId) => {
+
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -75,7 +67,7 @@ export const DeleteBtn = ({id, fetchData, mode, onsuccess}: BtnPropsWithId) => {
                 <RiDeleteBin2Fill />   Delete 
             </button>
 
-            <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
+            <Modal isVisible={showModal} onClose={() => setShowModal(false)} mode="delete">
                  <div>
                     <div className="flex flex-col items-center justify-center text-center">
                         <RiAlertFill  className="text-5xl text-red-600"/>
@@ -84,13 +76,18 @@ export const DeleteBtn = ({id, fetchData, mode, onsuccess}: BtnPropsWithId) => {
                     </div>
                     <div className="mt-5 flex justify-between">
                         <button onClick={handleDelete} disabled={loading}  className=" hover:bg-red-700 px-5 hover:text-white
-                            py-2 text-2xl text-red-600 rounded-4xl font-bold">
+                            py-2 text-xl text-red-600 rounded-4xl font-bold">
                                 {loading ? "Deleting..." : "Confirm"}
-                        </button>
-                        <CancelBtn onClose={() => setShowModal(false)}/>
-                            
+                        </button>  
+
+                        <button onClick={() => setShowModal(false)} className=" bg-gray-400 px-5 text-white
+                            py-2 text-xl rounded-4xl font-bold">
+                                Cancel
+                        </button>                         
+
                     </div>
-                
+
+                    
                  </div>
             </Modal>
             
@@ -108,7 +105,7 @@ export const AddBtn = ({fetchData, mode}: TableBtnProps) => {
                 <RiAddCircleLine /> Add
             </button>
 
-            <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
+            <Modal isVisible={showModal} onClose={() => setShowModal(false)} mode="updateAdd">
               {(() => {
                     if(mode === "account"){
                         return <UserForms mode="add" onSuccess={() => setShowModal(false)}/>;
@@ -118,7 +115,6 @@ export const AddBtn = ({fetchData, mode}: TableBtnProps) => {
                         return <div>Invalid mode {toast.error("Invalid mode")}</div>
                     }
                 })()}
-                <CancelBtn onClose={() => setShowModal(false)}/>
             </Modal>
 
         </>
@@ -135,7 +131,7 @@ export const UpdateBtn = ({id, fetchData, mode}: BtnPropsWithId) => {
                     <RiEditFill />   Update
             </button>
 
-            <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
+            <Modal isVisible={showModal} onClose={() => setShowModal(false)} mode="updateAdd">
               {(() => {
                     if(mode === "account"){
                         return <UserForms mode="update" id={id} fetchData={fetchData} onSuccess={() => setShowModal(false)}/>;
@@ -145,7 +141,6 @@ export const UpdateBtn = ({id, fetchData, mode}: BtnPropsWithId) => {
                         return <div>Invalid mode {toast.error("Invalid mode")}</div>
                     }
                 })()}
-                <CancelBtn onClose={() => setShowModal(false)}/>
             </Modal>
         </>
     )

@@ -10,6 +10,8 @@ import { ImagePreview } from "@/app/components/ui/buttons/itemPreviewBtn";
 import { AddItemBtn } from "@/app/components/ui/buttons/orderBtn";
 import { OrderPageNav } from "@/app/components/ui/dropdown/OrderPageNav";
 import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
+import { useUser } from "@/app/components/contexts/userContext";
+import RedirectLoginBtn from "@/app/components/ui/buttons/redirectLoginBtn";
 
 export type CartProps = {
     id?: string;
@@ -19,6 +21,7 @@ export type CartProps = {
 }
 export default function OrderPage() {
     const [cart, setCart] = useState<CartProps[]>([]);
+    const { user } = useUser();
     const   {
                 data: menu,  
                 loading,     
@@ -50,11 +53,12 @@ export default function OrderPage() {
     }
     return (
         <div className="w-full fixed top-[74.5px]  z-50">
+           
             <OrderPageNav setSearchQuery={setSearchQuery} setPage={setPage}/>
                 
-            <div className="absolute top-3 inset-y-0 right-0 w-100">
+            {user !== null && (<div className="absolute top-3 inset-y-0 right-0 w-90">
                <CheckoutNav  cart={cart} setCart={setCart}/>
-            </div>
+            </div>)}
 
             <div className="flex flex-col items-center border mt-2">
             
@@ -81,15 +85,17 @@ export default function OrderPage() {
                                             ₱ {item.price}
                                         </p>
 
-                                       
-
-                                        {/* to be replaced with add to cart button */}
-                                        <AddItemBtn 
+                                        { user !== null ? 
+                                        (<AddItemBtn 
                                             id={item.id} 
                                             item={item.item} 
                                             price={Number(item.price)}
-                                            addToCart={addToCart}
-                                        />
+                                            addToCart={addToCart}/>
+                                        ) 
+                                        : 
+                                        (
+                                            <RedirectLoginBtn/>
+                                        )}
                                         
                                     </div>
                                                                         

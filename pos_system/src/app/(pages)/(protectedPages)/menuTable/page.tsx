@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/app/components/contexts/userContext";
 import { isSignedIn } from "@/app/components/hooks/authHooks";
-
+import Spinner from "@/app/components/ui/spinner/spinner";
 export default function MenuTable(){
     isSignedIn();
 
@@ -38,7 +38,7 @@ export default function MenuTable(){
             })
 
     if(!user){
-        return <p>Loading...</p>
+        return <Spinner/>
     }
 
     return(

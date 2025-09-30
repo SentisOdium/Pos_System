@@ -1,7 +1,6 @@
 "use client";
 
 import React,{useState} from 'react'
-import { useRouter } from "next/navigation";
 import "../../styles/auth.css";
 import { loginUser } from '../../components/helperFunctions/loginUser';
 import { toast } from 'react-toastify';
@@ -9,10 +8,10 @@ import { LoginFormSchema } from '@/lib/defenitions';
 import { useUser } from '../../components/contexts/userContext';
 import { fetchUser } from '../../components/helperFunctions/fetchSignedInUser';
 import { isUserAuthenticated } from '@/app/components/hooks/authHooks';
+
 export default function Login() {
   isUserAuthenticated();
 
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{[key: string]: string}>({})
@@ -50,7 +49,7 @@ export default function Login() {
       setUser(loggedInUser);
     }
     toast.success("Login Successful");
-    router.replace("/auth/userPage");
+
    
   } catch (error: any) {
     toast.error("Login failed");
@@ -58,6 +57,7 @@ export default function Login() {
     setLoading(false);
   }
 };
+
   return (
    <div className='container'>
         <div className='form-container'>

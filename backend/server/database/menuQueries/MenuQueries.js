@@ -43,7 +43,7 @@ export async function GetMenus(offset = 0, limit = 5, search = "", column = "sku
             LIMIT ? OFFSET ? 
             `, [`%${search}%`,`%${search}%`,`%${search}%`,`%${search}%`,`%${search}%`,  limit, offset] )
         
-            return menu
+            return menu;
     }catch(err){
         console.error({
             message: "Failed to Fetch Menu", 
@@ -74,7 +74,7 @@ export async function PutMenu(id, sku, item, category, quantity, price, descript
                 WHERE id = ?
             `, [sku, item, category, quantity, price, description, url, id]
         );
-        return updateMenu
+        return updateMenu;
     } catch (err) {
         console.error({ success: false, message: "Failed to Update the specified Account." });
         throw err;
@@ -86,10 +86,9 @@ export async function getItemMenu(id){
         const [row] = await pool.query(
             `SELECT * FROM menu WHERE id = ?`,[id]
         )
-         console.log("DB Result:", row);
         return row.length > 0 ? row[0] : null; 
     } catch (err) {
-        console.error("Failed to Item Menu on the Database:", err.message);
+        console.error("Failed to Load  Item Menu on the Database:", err.message);
         return null;
     }
 }

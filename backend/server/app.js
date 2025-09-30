@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import accountsRouter from "./routes/accountsRouter.js";
 import menuRouter from "./routes/menuRouter.js";
+import salesRouter from "./routes/salesRouter.js"
 import cookieParser from "cookie-parser";
 import session from "express-session";
  
@@ -14,13 +15,13 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(session({
-    secret: 'FGKDSLGDFSDFDSFS'
-}));
+
 app.get("/api/home", (req, res) => {
     res.json({message: "Hello World!"});
 })
 
 app.use("/api", accountsRouter);
 app.use("/api", menuRouter);
+app.use("/api", salesRouter);
+
 export default app;
