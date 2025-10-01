@@ -4,6 +4,7 @@ import axios from "axios";
 type UseTableDataOptions = {
     apiUrl: string;
     initialSortColumn: string;
+    isSalesTable?: boolean;
 }
 
 type ApiResponse<T> ={
@@ -11,11 +12,13 @@ type ApiResponse<T> ={
     users?: T[];
     menu?: T[];
     sales?: T[];
+    total?: number;
+    totalUsers?: number;
     subTotalSale?: number;
     totalSale?: number;
 }
 
-export function useTableData<T>({apiUrl, initialSortColumn} : UseTableDataOptions){
+export function useTableData<T>({apiUrl, initialSortColumn, isSalesTable} : UseTableDataOptions){
     const [data, setData] = useState<T[]>([]);
     const [loading, setLoading] = useState(false);
 
@@ -29,6 +32,7 @@ export function useTableData<T>({apiUrl, initialSortColumn} : UseTableDataOption
 
     const [subTotalSale, setSubTotalSale] = useState<number | null>(null);
     const [totalSale, setTotalSale] = useState<number | null>(null);
+    const [totalUsers, setTotalUsers] = useState<number | null>(null);
 
     const fetchData = async () => {
         setLoading(true);
@@ -49,15 +53,16 @@ export function useTableData<T>({apiUrl, initialSortColumn} : UseTableDataOption
 
             setData(responseData.users || responseData.menu || responseData.sales || []);
             setTotalPages(responseData.totalPages || 1);
-
-            if(responseData.subTotalSale !== undefined && responseData.totalSale !== undefined){
-                setSubTotalSale(responseData.subTotalSale ?? 0);
-                setTotalSale(responseData.totalSale ?? 0);
+            
+            if (isSalesTable && responseData.sales){
+                setTotalUsers(responseData.total ?? null);
+                setSubTotalSale(Number(responseData.subTotalSale || 0));
+                setTotalSale(Number(responseData.totalSale || 0));
             }else{
+                setTotalUsers(null);
                 setSubTotalSale(null);
                 setTotalSale(null);
             }
-
         } catch (err) {
             console.error("Fetch Error", err);
         } finally{
@@ -67,7 +72,7 @@ export function useTableData<T>({apiUrl, initialSortColumn} : UseTableDataOption
 
     useEffect(() =>{
         fetchData();
-    }, [page, limit, searchQuery, sortColumn, sortAsc]);
+    }, [apiUrl, page, limit, searchQuery, sortColumn, sortAsc]);
     return{
             data, setData,
             loading, setLoading,
@@ -79,6 +84,6 @@ export function useTableData<T>({apiUrl, initialSortColumn} : UseTableDataOption
             sortAsc, setSortAsc,
             fetchData, subTotalSale,
             setSubTotalSale, totalSale,
-            setTotalSale
+            setTotalSale, totalUsers, setTotalUsers
         };
 }

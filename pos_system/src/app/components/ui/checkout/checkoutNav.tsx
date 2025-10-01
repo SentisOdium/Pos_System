@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import { PiBasketBold } from "react-icons/pi";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
-type CheckoutNavProps = { 
+import CheckoutBtn from "../buttons/CheckoutBtn";
+
+export type CheckoutNavProps = { 
     cart: CartProps[],
     setCart: React.Dispatch<React.SetStateAction<CartProps[]>> 
 };
@@ -61,11 +63,7 @@ export const CheckoutNav = ({cart, setCart}: CheckoutNavProps) => {
                 </div>
                 
                 <div className="mt-5 w-full">
-                <button
-                    onClick={() => handleClearCart()}
-                    className="bg-yellow-500 hover:bg-yellow-600 px-6 m-1 text-gray-900 font-bold py-2 rounded mt-4 w-full">
-                        Checkout Order                             
-                </button>
+                    <CheckoutBtn cart={cart} setCart={setCart}/>
             </div>
         </div>
     )

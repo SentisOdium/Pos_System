@@ -31,7 +31,9 @@ export default function TableSales({
     sortAsc,
     setSortAsc,
     fetchData,
-    setLimit}
+    setLimit
+
+}
     :TableSalesProps){
         return(
             <div className="relative mx-10 border border-gray-300 rounded-lg shadow-lg bg-white overflow-hidden">
