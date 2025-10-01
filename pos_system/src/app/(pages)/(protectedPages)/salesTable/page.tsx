@@ -5,7 +5,7 @@ import { useTableData } from "@/app/components/hooks/useTableData";
 import SearchQuery from "@/app/components/ui/searchQuery/searchQuery";
 import { useSignedIn } from "@/app/components/hooks/authHooks";
 import TableSales from "@/app/components/ui/Tables/salesTable/STableSales";
-// import add btn
+import { AddBtn } from "@/app/components/ui/buttons/TableBtn";
 
 export default function SalesTable(){
     useSignedIn();
@@ -28,7 +28,8 @@ export default function SalesTable(){
     return(
         <div className='w-full flex flex-col mt-15 items-center justify-center border p-5'>
             <div className="m-5 w-full flex border justify-center">
-
+                <SearchQuery setSearchQuery={setSearchQuery} setPage={setPage} />
+                <AddBtn fetchData={fetchData}  mode='sales'/>
             </div>
 
             <div className='flex justify-center'>

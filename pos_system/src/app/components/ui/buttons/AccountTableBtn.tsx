@@ -10,7 +10,7 @@ export const UpdateBtn = ({id, fetchData}: { id: string; fetchData: () => void})
     return(
         <>  
         
-            <button className="bg-yellow-400 hover:bg-yellow-500 px-5 py-1 rounded-4xl m-1 text-white
+            <button className="bg-yellow-400 hover:bg-yellow-500 px-5 py-1 rounded m-1 text-white
             flex items-center mr-2 cursor-pointer" onClick={() => setShowModal(true)}>
               <RiEditFill /> Update  
             </button>

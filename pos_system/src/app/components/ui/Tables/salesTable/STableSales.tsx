@@ -1,5 +1,7 @@
-import TableFooter from "./STableFooter";
 import TableHead from "./STableHead";
+import TableBody from "./STableBody";
+import TableFooter from "./STableFooter";
+
 import { salesObject } from "@/app/components/common/userObject";
 
 type TableSalesProps = {
@@ -40,7 +42,7 @@ export default function TableSales({
                     sortAsc={sortAsc} 
                     setSortAsc={setSortAsc}/>
             
-                {/* <TableBody menu={menu} loading={loading} fetchData={() => fetchData()}/> */}
+                <TableBody sales={sales} loading={loading} fetchData={() => fetchData()}/>
             
                 <TableFooter 
                     page={page}

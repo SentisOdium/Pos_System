@@ -1,21 +1,21 @@
 import React from 'react'
 import { menuObject } from '../../../common/userObject'
+import { TableBodyProps } from '../../../common/userObject'
+import Spinner from '../../spinner/spinner'
 import { DeleteBtn, UpdateBtn } from '../../buttons/TableBtn'
 
-type TableBodyProps = {
+type MenuBodyProps = TableBodyProps & {
   menu: menuObject[];
-  loading: boolean;
-  fetchData: () => void;
 }
 
-export default function TableBody({menu, loading, fetchData}: TableBodyProps) {
+export default function TableBody({menu, loading, fetchData}: MenuBodyProps) {
     
   return (
     <tbody>
       {loading? 
         (
           <tr>
-            <td colSpan={7} className='text-center p-4'> Loading </td>
+            <td colSpan={7} className='text-center p-4'> <Spinner /> </td>
           </tr>
         )
         : !menu || menu.length === 0 ?
@@ -36,8 +36,8 @@ export default function TableBody({menu, loading, fetchData}: TableBodyProps) {
               <td className='p-4 whitespace-normal break-words'>{item.description}</td> 
               <td className='p-4'>{item.url}</td> 
               <td className='p-4 flex'>
-                <DeleteBtn id={item.id} fetchData={fetchData} mode="menu"/>
                 <UpdateBtn id={item.id} fetchData={fetchData} mode="menu"/>
+                <DeleteBtn id={item.id} fetchData={fetchData} mode="menu"/>
               </td>
             </tr>
           ))

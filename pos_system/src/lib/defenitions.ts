@@ -81,10 +81,55 @@ export const UpdateFormSchema = z.object({
 
 // ================= MENU FORMS =================
 export const MenuFormSchema = z.object({
-  sku: z.coerce.number().min(1, { message: "SKU is required" }),
-  item: z.string().min(1, { message: "Item name is required" }).trim(),
-  category: z.string().min(1, { message: "Category is required" }).trim(),
-  quantity: z.coerce.number().min(0, { message: "Quantity must be 0 or more" }),
-  price: z.coerce.number().min(0, { message: "Price must be 0 or more" }),
-  description: z.string().trim(),
+  sku: 
+      z.coerce
+      .number()
+      .min(1, { message: "SKU is required" }),
+
+  item: 
+    z.string()
+    .min(1, { message: "Item name is required" })
+    .trim(),
+
+  category: 
+    z.string()
+    .min(1, { message: "Category is required" })
+    .trim(),
+
+  quantity: 
+    z.coerce
+    .number()
+    .min(0, { message: "Quantity must be 0 or more" }),
+
+  price: 
+    z.coerce
+    .number()
+    .min(0, { message: "Price must be 0 or more" }),
+
+  description: 
+    z.string()
+    .trim(),
+});
+
+// ================= SALES FORMS =================
+//add minimum if needed!
+
+//FOR TABLE UPLOAD ONLY!!!";
+
+export const SalesFormSchema = z.object({
+  name: z
+    .string()
+    .min(8, { message: "Name should be 8 characters or longer!" }),
+
+  address: z
+    .string()
+    .min(8, { message: "Address should be 8 characters or longer!" }),
+
+  orders: z.string(),
+
+  deliveryFee: z.coerce.number(),
+
+  subTotal: z.coerce.number(),
+
+  total: z.coerce.number(),
 });

@@ -56,7 +56,7 @@ export default function AccountEdit({ onClose }: EditUserPageProps) {
     }
 
   return (
-    <div className="flex flex-col border-2 w-full p-8 rounded-xl bg-white shadow-sm">
+    <div className="flex flex-col border-2 w-full p-3 rounded-xl bg-white shadow-sm">
       {/* Name */}
       <div className="flex items-center mb-4">
         <label htmlFor="name" className="w-40 font-semibold">
@@ -126,7 +126,7 @@ export default function AccountEdit({ onClose }: EditUserPageProps) {
         <button
           type="submit"
           onClick={handleUpdate}
-          className="text-white bg-yellow-400 hover:bg-amber-300 px-6 py-2 rounded-full font-semibold transition-colors"
+          className="text-white bg-yellow-500 hover:bg-yellow-600 px-6 py-2 rounded font-semibold transition-colors"
         >
           Update Profile
         </button>

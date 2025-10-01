@@ -5,22 +5,11 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@/app/components/contexts/userContext";
 
 export function useSignedIn (redirect: string = "/auth/login"){
-    const { user } = useUser();
+    const { user, loading } = useUser();
     const router = useRouter();
 
     useEffect(() => {
-        if (user === null){
-            router.replace(redirect);
-        }
-    },[user, router, redirect]);
-}
-
-export function useUserAuthenticated(redirect: string = "/"){
-    const { user } = useUser();
-    const router = useRouter();
-
-    useEffect(() => {
-        if (user !== null){
+        if (!loading && user === null){
             router.replace(redirect);
         }
     },[user, router, redirect]);

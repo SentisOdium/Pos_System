@@ -22,3 +22,13 @@ export async function DeleteMenu(id: string){
     }
 }
 
+export async function DeleteSales(id:string){
+    try {
+        const res = await axios.delete(`http://localhost:5000/api/sales/${id}`, {withCredentials: true});
+        return res.data;
+    } catch (err: any) {
+        console.error("Error Deleting Item in Menu: ", err.message);
+        return false;
+    }
+}
+

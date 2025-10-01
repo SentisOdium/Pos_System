@@ -19,16 +19,18 @@ export default function SearchQuery({setPage, setSearchQuery}: SearchQueryProps)
    }
 
     return(
-        <div className=" ">
-            <div className="flex items-center bg-gray-200 p-1 rounded-4xl">
-                    <input type="text"
-                        value={input}  
-                        className=" p-2 w-[500px] focus:outline-none " 
-                        placeholder="Search..."
-                        onChange={handleChange}
-                    />
-                <button className="p-2" onClick={() => setSearchQuery(input)}></button>
+        <div className="flex justify-center">
+            <div className="flex items-center bg-gray-200 rounded-lg overflow-hidden">
+                <input
+                type="text"
+                value={input}
+                onChange={handleChange}
+                placeholder="Search..."
+                className="px-4 py-1 w-[500px] background:none focus:outline-none"
+                />
+                
             </div>
         </div>
+
     )
 }

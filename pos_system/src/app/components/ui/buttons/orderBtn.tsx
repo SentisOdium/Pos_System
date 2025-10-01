@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Modal from "../modal/Modal";
-import { toast } from "react-toastify";
 import { CartProps } from "@/app/(pages)/(Pages)/orderPage/page";
 
 type OrderProps = {
@@ -38,7 +37,7 @@ export const AddItemBtn = ({id, item, price = 0, addToCart}: OrderProps) => {
         <>
             <button
                 onClick={handleClick}
-                className="bg-yellow-500 hover:bg-yellow-600 px-3 m-1 text-gray-900 font-bold py-2 rounded-full mt-4">
+                className="bg-yellow-500 hover:bg-yellow-600 px-3 m-1 text-gray-900 font-bold py-2 rounded mt-4">
                     Add to Cart!                              
             </button>
 
@@ -68,7 +67,7 @@ export const AddItemBtn = ({id, item, price = 0, addToCart}: OrderProps) => {
 
                     <button
                         onClick={handleAddToCart}
-                        className="bg-yellow-500 hover:bg-yellow-600 px-6 py-2 rounded-full font-bold">
+                        className="bg-yellow-500 hover:bg-yellow-600 px-6 py-2 rounded font-bold">
                         Add to Cart
                     </button>
                 </div>

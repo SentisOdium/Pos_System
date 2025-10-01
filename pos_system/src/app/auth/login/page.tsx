@@ -7,15 +7,15 @@ import { toast } from 'react-toastify';
 import { LoginFormSchema } from '@/lib/defenitions';
 import { useUser } from '../../components/contexts/userContext';
 import { fetchUser } from '../../components/helperFunctions/fetchSignedInUser';
-import { useUserAuthenticated } from '@/app/components/hooks/authHooks';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
-      useUserAuthenticated();    
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{[key: string]: string}>({})
   const [loading, setLoading] = useState(false);
-  const { user, setUser } = useUser(); 
+  const { setUser } = useUser(); 
 
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -43,54 +43,67 @@ export default function Login() {
 
     if(result.user){
       setUser(result.user);
+      
     }else{
       const loggedInUser = await fetchUser();
       setUser(loggedInUser);
     }
     toast.success("Login Successful");
-
+    router.replace("/");
    
   } catch (error: any) {
-    toast.error("Login failed");
+     toast.error(error?.response?.data?.message || "Login failed");
   } finally{
     setLoading(false);
   }
 };
 
   return (
-   <div className='container'>
-        <div className='form-container'>
-            <form onSubmit={handleSubmit}>
-                <div className='input-container'>
-                  {errors.email && <p className="text-red-500">{errors.email}</p>}
-                    <input  id="email" 
-                            name="email" 
-                            type="email" 
-                            placeholder="Email"  
-                            className='input'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            />
-                    {errors.password && <p className="text-red-500">{errors.password}</p>}
-                    <input 
-                            id="password" 
-                            name="password" 
-                            type="password" 
-                            placeholder='Password'
-                            className='input' 
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            />
-                     
-                    <button type="submit" className='bg-red-500 hover:bg-red-600'
-                    disabled={loading}>
-                      {loading ? "Logging in..." : "Login"}
-                      </button>    
-                </div>
-                
-                
-            </form>
-        </div>
+   <div className="container mx-auto max-w-sm p-6">
+      <div className="form-container bg-white rounded-lg shadow-md p-6">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+
+          {/* Email */}
+          <div className="flex flex-col">
+            {errors.email && <p className="text-red-500 text-sm mb-1">{errors.email}</p>}
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+          </div>
+
+          {/* Password */}
+          <div className="flex flex-col">
+            {errors.password && <p className="text-red-500 text-sm mb-1">{errors.password}</p>}
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="rounded-lg border border-gray-300 px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            />
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className={`bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors ${
+              loading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+
+        </form>
+      </div>
     </div>
   )
 }

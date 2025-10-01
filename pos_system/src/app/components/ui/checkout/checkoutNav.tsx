@@ -1,8 +1,8 @@
 import { CartProps } from "@/app/(pages)/(Pages)/orderPage/page";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PiBasketBold } from "react-icons/pi";
 import { IoClose } from "react-icons/io5";
-
+import { toast } from "react-toastify";
 type CheckoutNavProps = { 
     cart: CartProps[],
     setCart: React.Dispatch<React.SetStateAction<CartProps[]>> 
@@ -10,13 +10,26 @@ type CheckoutNavProps = {
 export const CheckoutNav = ({cart, setCart}: CheckoutNavProps) => {
     const subtotal = cart.reduce((acc, cur) => acc + (cur.price || 0 ) * cur.quantity, 0);
     const deliveryFee = 75;
+    const total = subtotal + deliveryFee;
+    const [checkout, setCheckout] = useState({
+        name: "",
+        address: "",
+        cart: [] as CartProps[],
+        deliveryFee: deliveryFee
+    });
 
-    const handleClearCart = () => {
-        setCart([]);
-    };
+    useEffect(() => {
+        setCheckout(prev => ({...prev, cart}));
+    }, [cart]);
 
-    const handleClearItem = (id?: string) =>{
-        setCart(prev => prev.filter(item => item.id !== id));
+    const handleClearCart = () => { setCart([]); };
+    const handleClearItem = (id?: string) =>{ setCart(prev => prev.filter(item => item.id !== id)); }
+
+    const handleCheckout = () => {
+        if (!checkout.name || !checkout.address ){
+            toast.error("Please Fillout Name and Address!");
+            return;
+        }
     }
     
     return(
@@ -42,7 +55,7 @@ export const CheckoutNav = ({cart, setCart}: CheckoutNavProps) => {
 
                 <div className="text-xl ml-5 border-t space-"> Items Total: ₱{subtotal}</div>
                 <div className="ml-5">Delivery Fee: ₱{deliveryFee} (subject to change)</div>
-                <div className="text-2xl ml-5"><strong>Total: ₱{deliveryFee + subtotal}</strong></div>
+                <div className="text-2xl ml-5"><strong>Total: ₱{total}</strong></div>
                 <div className="place-self-end text-blue-700 hover:text-blue-900">
                     <button onClick={() => handleClearCart()}>Clear cart</button>
                 </div>
@@ -50,7 +63,7 @@ export const CheckoutNav = ({cart, setCart}: CheckoutNavProps) => {
                 <div className="mt-5 w-full">
                 <button
                     onClick={() => handleClearCart()}
-                    className="bg-yellow-500 hover:bg-yellow-600 px-6 m-1 text-gray-900 font-bold py-2 rounded-full mt-4 w-full">
+                    className="bg-yellow-500 hover:bg-yellow-600 px-6 m-1 text-gray-900 font-bold py-2 rounded mt-4 w-full">
                         Checkout Order                             
                 </button>
             </div>

@@ -60,7 +60,7 @@ export const category = [
 ];
 // ================= Sales Types =================
 export type salesObject = {
-  orderId: string;
+  OrderId: string;
   name: string;
   address: string;
   orders: string;
@@ -117,4 +117,9 @@ export type TableHeaderProps = {
     sortAsc: boolean;
     setSortColumn: (sortColumn: string) => void;
     setSortAsc: (asc: boolean) => void;
+}
+
+export type TableBodyProps = {
+   loading: boolean;
+  fetchData: () => void;
 }

@@ -66,7 +66,7 @@ export async function GetSaleController(req, res){
             limit,
             total,
             totalPages: Math.ceil(total/limit),
-            record: record,
+            sales: record,
             subTotalSale,
             totalSale
         });

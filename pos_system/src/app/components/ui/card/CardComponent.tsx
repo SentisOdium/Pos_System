@@ -6,7 +6,7 @@ type CardProps = {
 }
 const CardComponent = ({children, className}: CardProps) => {
     return(
-        <div  className={`bg-gray-200  rounded-2xl shadow-md overflow-hidden flex flex-col ${className}`}>
+        <div  className={`bg-gray-200  rounded shadow-md overflow-hidden flex flex-col ${className}`}>
             {children}
         </div>
     )

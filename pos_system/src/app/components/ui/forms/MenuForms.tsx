@@ -33,6 +33,7 @@ export default function MenuForms({mode, id, onSuccess, fetchData} : FormProps){
                         url: res.data.url ?? "",
                     });
                 }catch (error) {
+                    toast.error("Error Fetching Menu Data");
                     console.error("Error fetching menu data:", error);
                 }
             };
@@ -66,7 +67,15 @@ export default function MenuForms({mode, id, onSuccess, fetchData} : FormProps){
             if(mode === "add"){
                 await axios.post (`http://localhost:5000/api/menu`,
                     formData, {withCredentials: true});
-                    setFormdata({sku: "", item: "", category: "", quantity: "", price: "", description: "", url: ""});
+                    setFormdata({
+                        sku: "", 
+                        item: "", 
+                        category: "", 
+                        quantity: "", 
+                        price: "", 
+                        description: "", 
+                        url: ""
+                    });
                     toast.success("Item Menu Added Successfully!");
             }else if (mode === "update"){
                 await axios.put(`http://localhost:5000/api/menu/${id}`,

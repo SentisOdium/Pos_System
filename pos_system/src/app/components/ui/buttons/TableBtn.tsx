@@ -1,16 +1,16 @@
 "use client";
 
 import React,{ useState } from "react";
-import { DeleteUser, DeleteMenu } from "../../helperFunctions/DeleteAction";
+import { DeleteUser, DeleteMenu, DeleteSales } from "../../helperFunctions/DeleteAction";
 import {  toast } from "react-toastify";
 import { RiAddCircleLine, RiAlertFill, RiDeleteBin2Fill, RiEditFill } from "react-icons/ri";
 import Modal from "../modal/Modal";
 import UserForms from "../forms/AccountForms";
 import MenuForms from "../forms/MenuForms";
-
+import SalesForms from "../forms/SalesForm";
 type TableBtnProps = {
     fetchData: () => void;
-    mode: "menu" | "account";
+    mode: "menu" | "account" | "sales";
     onsuccess?: () => void;
 }
 
@@ -34,6 +34,8 @@ export const DeleteBtn = ({id, fetchData, mode, onsuccess}: BtnPropsWithId) => {
                     result = await DeleteMenu(id);
                 } else if(mode === "account"){
                     result = await DeleteUser(id);
+                }else if (mode === "sales"){
+                    result =  await DeleteSales(id);
                 }else{
                     throw new Error("Invalid mode");
                 }
@@ -62,7 +64,7 @@ export const DeleteBtn = ({id, fetchData, mode, onsuccess}: BtnPropsWithId) => {
 
     return(
         <>
-            <button className="bg-red-600 hover:bg-red-700 px-5 py-1 rounded-4xl m-1 
+            <button className="bg-red-600 hover:bg-red-700 px-5 py-1 rounded m-1 
             text-white flex items-center mr-2 cursor-pointer" onClick={() => setShowModal(true)}>
                 <RiDeleteBin2Fill />   Delete 
             </button>
@@ -76,12 +78,12 @@ export const DeleteBtn = ({id, fetchData, mode, onsuccess}: BtnPropsWithId) => {
                     </div>
                     <div className="mt-5 flex justify-between">
                         <button onClick={handleDelete} disabled={loading}  className=" hover:bg-red-700 px-5 hover:text-white
-                            py-2 text-xl text-red-600 rounded-4xl font-bold">
+                            py-2 text-xl text-red-600 rounded font-bold">
                                 {loading ? "Deleting..." : "Confirm"}
                         </button>  
 
-                        <button onClick={() => setShowModal(false)} className=" bg-gray-400 px-5 text-white
-                            py-2 text-xl rounded-4xl font-bold">
+                        <button onClick={() => setShowModal(false)} className=" bg-gray-400 px-5 hover:bg-gray-500 text-white
+                            py-2 text-xl rounded font-bold">
                                 Cancel
                         </button>                         
 
@@ -100,7 +102,7 @@ export const AddBtn = ({fetchData, mode}: TableBtnProps) => {
     
     return(
         <>
-            <button className={`bg-blue-600 hover:bg-blue-700" px-5 py-1 rounded-4xl m-1 text-white flex items-center mr-2 cursor-pointer`} 
+            <button className={`bg-blue-600 hover:bg-blue-700" px-5 py-1 rounded m-1 text-white flex items-center mr-2 cursor-pointer`} 
                 onClick={() => setShowModal(true)}>
                 <RiAddCircleLine /> Add
             </button>
@@ -111,6 +113,8 @@ export const AddBtn = ({fetchData, mode}: TableBtnProps) => {
                         return <UserForms mode="add" onSuccess={() => setShowModal(false)}/>;
                     }else if(mode === "menu"){
                         return <MenuForms mode="add" onSuccess={() => setShowModal(false)}/>;
+                    }else if (mode === "sales"){
+                        return <SalesForms mode="add" onSuccess={()=> setShowModal(false)} />
                     }else{
                         return <div>Invalid mode {toast.error("Invalid mode")}</div>
                     }
@@ -126,7 +130,7 @@ export const UpdateBtn = ({id, fetchData, mode}: BtnPropsWithId) => {
     
     return(
         <>
-            <button className={`bg-yellow-400 hover:bg-yellow-500 px-5 py-1 rounded-4xl m-1 text-white flex items-center mr-2 cursor-pointer`} 
+            <button className={`bg-yellow-400 hover:bg-yellow-500 px-5 py-1 rounded m-1 text-white flex items-center mr-2 cursor-pointer`} 
                 onClick={() => setShowModal(true)}>
                     <RiEditFill />   Update
             </button>
@@ -137,7 +141,10 @@ export const UpdateBtn = ({id, fetchData, mode}: BtnPropsWithId) => {
                         return <UserForms mode="update" id={id} fetchData={fetchData} onSuccess={() => setShowModal(false)}/>;
                     }else if(mode === "menu"){
                         return <MenuForms mode="update" id={id} fetchData={fetchData} onSuccess={() => setShowModal(false)}/>;
-                    }else{
+                    }else if (mode === "sales"){
+                        return <SalesForms mode="update" id={id} fetchData={fetchData} onSuccess={() => setShowModal(false)}/>;
+                    }
+                    else{
                         return <div>Invalid mode {toast.error("Invalid mode")}</div>
                     }
                 })()}
