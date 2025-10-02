@@ -38,6 +38,7 @@ router.get(
 /*
  register Account
 */
+
 router.post(
   "/register", 
   addAccountsController
@@ -46,6 +47,7 @@ router.post(
 router.post(
   "/accounts",
   authenticateToken,
+   authorizeRoles("admin"),
   addAccountsController
 );
 

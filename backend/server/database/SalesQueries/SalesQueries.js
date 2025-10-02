@@ -26,26 +26,46 @@ export async function DeleteSale(orderId){
     }
 }
 
-//whiteList columns - so that no value could be used.
+//whiteList columns - so that no other value aside could be used.
 const allowedColumns = ["orderId","name", "address", "orders", "deliveryFee", "subTotal", "total", "createAt"];
 const sortOrder = ["ASC", "DESC"];
 
-export async function GetSaleRecord(offset = 0, limit = 5, search = "", column = "orderId", order = "DESC", createAt){
-    if(!allowedColumns.includes(column)) column = "orderId";
+export async function GetSaleRecord(
+    offset = 0,
+    limit = 5,
+    search = "",
+    column = "orderId",
+    order = "DESC",
+    createAt
+) {
+    if (!allowedColumns.includes(column)) column = "orderId";
     order = order.toUpperCase();
-    if(!sortOrder.includes(order)) order = "ASC";
+    if (!sortOrder.includes(order)) order = "ASC";
 
+    // base query
     let query = `
-            SELECT * FROM sales
-            WHERE (orderId LIKE ? OR address LIKE ? OR orders LIKE ? OR total LIKE ? OR createAt LIKE ?)`;
+        SELECT * FROM sales
+        WHERE (orderId LIKE ? 
+            OR address LIKE ? 
+            OR orders LIKE ? 
+            OR total LIKE ?
+            OR createAt LIKE ?)`;
 
-    let param = [`%${search}%`,`%${search}%`,`%${search}%`,`%${search}%`,`%${search}%`];
+    let param = [
+        `%${search}%`,
+        `%${search}%`,
+        `%${search}%`,
+        `%${search}%`,
+        `%${search}%`
+    ];
 
-    if(createAt){
-        query += " AND DATE(createAt) = DATE(?)";
+    // filter by date if provided, this get appended if createAt value is provided.
+    if (createAt) {
+        query += " AND DATE(createAt) = ? ";
         param.push(createAt);
     }
 
+    // sort + pagination. always get appended 
     query += ` ORDER BY ${column} ${order} LIMIT ? OFFSET ?`;
     param.push(limit, offset);
 
@@ -54,7 +74,7 @@ export async function GetSaleRecord(offset = 0, limit = 5, search = "", column =
         return sale;
     } catch (error) {
         console.error("Failed to Fetch Data", error.message);
-        throw error
+        throw error;
     }
 }
 

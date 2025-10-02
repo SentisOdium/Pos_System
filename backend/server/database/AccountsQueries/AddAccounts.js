@@ -13,3 +13,13 @@ export async function addAccounts(name, email, password, role){
         throw err;
     }
 }
+
+/*
+imported pool so that we could connect to the database.
+
+enclosed with try-catch
+
+inside is the sql query
+
+and in the catch, throws error and logs the error.
+*/

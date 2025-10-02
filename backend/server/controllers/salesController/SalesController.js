@@ -56,9 +56,10 @@ export async function GetSaleController(req, res){
     const search = req.query.search || "";
     const column = req.query.column || "orderId";
     const order = req.query.order || "ASC";
+    const createAt = req.query.createAt || null;
 
     try {
-        const record = await GetSaleRecord(offset, limit, search, column, order);
+        const record = await GetSaleRecord(offset, limit, search, column, order, createAt);
         const total = await GetSalesTotal(search);
         const {subTotalSale, totalSale} = await GetSaleSum();
         return res.json({
@@ -69,6 +70,7 @@ export async function GetSaleController(req, res){
             sales: record,
             subTotalSale,
             totalSale
+            
         });
     } catch (error) {
         console.error("Error Fetching the Sales Record", error);

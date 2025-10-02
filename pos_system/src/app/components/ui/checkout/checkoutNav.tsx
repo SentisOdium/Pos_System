@@ -9,6 +9,7 @@ export type CheckoutNavProps = {
     cart: CartProps[],
     setCart: React.Dispatch<React.SetStateAction<CartProps[]>> 
 };
+
 export const CheckoutNav = ({cart, setCart}: CheckoutNavProps) => {
     const subtotal = cart.reduce((acc, cur) => acc + (cur.price || 0 ) * cur.quantity, 0);
     const deliveryFee = 75;

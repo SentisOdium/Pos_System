@@ -17,7 +17,7 @@ export default function CheckoutBtn ({cart, setCart}: CheckoutBtnProps){
 
             <Modal isVisible={showModal} onClose={() => setShowModal(false)}>
                 <div>
-                    <div className="grid-cols-1">
+                    <div >
                         <label htmlFor="name">Name</label>
                         <input type="text" name="name" placeholder="Enter your Name"className=" rounded-lg border px-3 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-yellow-400"/>
                         <label htmlFor="address">Address</label>

@@ -26,7 +26,7 @@ export async function updateAccountsController(req, res) {
     );
 
 
-
+    //if there is no affected rows, it means the update did not go through
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: "Account not found." });
     }

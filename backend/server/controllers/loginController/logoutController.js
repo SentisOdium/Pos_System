@@ -9,6 +9,7 @@ export async function LogoutController(req, res ){
             path: "/",   
         });
 
+
         return res.json({ message: "Logout Successful!"});
     } catch (err) {
         console.error("Failed to Logout User!", err);

@@ -1,9 +1,12 @@
 import { getAccounts, getAccountTotal } from "../../database/AccountsQueries/GetAccount.js";
 export async function getAccountsController(req, res) {
+    //convert string to number
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 5;
     const offset = (page - 1) * limit;
+    //gets the data in search, if there is none, it defaults in "" empty string
     const search = req.query.search || "";
+    // defaults in column name if no data. same with order
     const column =  req.query.column || "name";
     const order = req.query.order || "ASC";
    try{
