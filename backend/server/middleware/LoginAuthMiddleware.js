@@ -10,12 +10,14 @@ export function authenticateToken(req, res, next) {
 
   const finalToken = token || cookieToken;
 
+  //checks if eithe token || cookieToken exist
   if (!finalToken) {
     return res.status(401).json({
       message: 'Unauthorized. No token provided.'
     });
   }
 
+  //verify the jwt token if expired or invalid reject request
   try {
     const decoded = jwt.verify(finalToken, process.env.TOKEN_SECRET);
     req.user = decoded;

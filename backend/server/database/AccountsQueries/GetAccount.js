@@ -15,13 +15,17 @@ export async function getAccounts(offset = 0, limit = 5, search = "", column = "
         order = order.toUpperCase();
         if (!sortOrder.includes(order)) order = "ASC";
 
-        //example of template literals: ORDER BY ${column} ${order}
+        //example of template literals:  ${column} ${order}
         const [rows] = await pool.query
             (   `
                 SELECT * FROM accounts 
                 WHERE name LIKE ? OR email LIKE ? OR contactNo LIKE ? OR role LIKE ?
                 ORDER BY ${column} ${order}
                 LIMIT ? OFFSET ?`, 
+                //template literals + sql wildcards: A wildcard character is used to substitute one or more characters in a string.
+                //for this context, matches anything containing the search term in SQL using LIKE
+                //tells the database to find anything that contains the word " that matches the db"
+
                     [`%${search}%`,`%${search}%`,`%${search}%`,`%${search}%`,  limit, offset]
             );
         return rows;
@@ -30,7 +34,7 @@ export async function getAccounts(offset = 0, limit = 5, search = "", column = "
         return[];
     }
 }
-                                    //the search is also in the parameter so that when we search, it will count the matching records that match
+//the search is also in the parameter so that when we search, it will count the matching records that match
 export async function getAccountTotal(search = "") {
     try {
         const [rows] = await pool.query(`
