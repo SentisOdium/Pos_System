@@ -1,7 +1,7 @@
 export async function LogoutController(req, res ){
     try {
         const isProduction = process.env.NODE_ENV === "production";
-        
+    
          res.clearCookie("token",{
             httpOnly: true,
             secure: isProduction,

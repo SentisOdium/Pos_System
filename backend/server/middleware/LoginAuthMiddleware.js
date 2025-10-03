@@ -9,16 +9,16 @@ export function authenticateToken(req, res, next) {
   const cookieToken = req.cookies?.token;
 
   const finalToken = token || cookieToken;
-
-  //checks if eithe token || cookieToken exist
+  
+  //if no tokens, it will prevent access
   if (!finalToken) {
     return res.status(401).json({
       message: 'Unauthorized. No token provided.'
     });
   }
 
-  //verify the jwt token if expired or invalid reject request
   try {
+    //decode jwt token, either token or cookieToken
     const decoded = jwt.verify(finalToken, process.env.TOKEN_SECRET);
     req.user = decoded;
     next();

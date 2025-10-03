@@ -43,7 +43,7 @@ export default function OrderPage() {
 
             if(existingIndex >= 0){
                 const updated = [...prev];
-                updated[existingIndex].quantity += quantity || 1;
+                updated[existingIndex].quantity += quantity;
                 return updated;
             }
 

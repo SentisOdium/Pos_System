@@ -73,7 +73,7 @@ router.post("/logout", LogoutController);
 
 /**
  * User Profile (User & Admin)
- */
+*/
 router.get(
   "/profile",
   authenticateToken,

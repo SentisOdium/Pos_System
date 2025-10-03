@@ -52,7 +52,7 @@ export async function deleteMenuController(req, res) {
 }
 
 export async function getMenusController(req, res) {
-    
+    //pagination query
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 5;
     const offset = (page - 1) * limit;

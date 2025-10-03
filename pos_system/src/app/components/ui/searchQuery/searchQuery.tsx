@@ -10,13 +10,13 @@ export default function SearchQuery({setPage, setSearchQuery}: SearchQueryProps)
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
 
-       if (debounce) clearTimeout(debounce);    
+            if (debounce) clearTimeout(debounce);    
 
-        debounce = setTimeout(() => {
-            setSearchQuery(e.target.value);
-            setPage(1); 
-        }, debounceDelay);
-   }
+            debounce = setTimeout(() => {
+                setSearchQuery(e.target.value);
+                setPage(1); 
+            }, debounceDelay);
+        }
 
     return(
         <div className="flex justify-center">

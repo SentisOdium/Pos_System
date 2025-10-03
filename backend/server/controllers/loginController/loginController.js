@@ -40,7 +40,6 @@ export async function loginController(req, res) {
       sameSite: "lax",
       path: "/",   
     });
-    console.log("Logging in account:", account); 
     return res.json({ message: "Login Successful" });
 
   } catch (error) {
